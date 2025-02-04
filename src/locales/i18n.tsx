@@ -13,8 +13,8 @@ i18n
       EN: { translation: EN },
       RU: { translation: RU },
     },
-    lng: localStorage.getItem("lang") || "EN", // Загружаем язык из localStorage
-    fallbackLng: "EN", // Должен быть в нижнем регистре!
+    lng: localStorage.getItem("lang") || "EN", 
+    fallbackLng: "EN", 
     interpolation: { escapeValue: false },
   });
 
