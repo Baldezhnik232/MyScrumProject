@@ -1,10 +1,8 @@
-import { useState, useEffect } from 'react';
-import { ITODo } from '../../types/data';
-import AppHeader from '././AppHeader/AppHeader'
+
+import AppHeader from './components/HomeHeader'
 import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom'
 import { useTranslation } from "react-i18next";
 import {Container,Typography } from "@mui/material";
-
 
 
 
@@ -15,7 +13,7 @@ const App: React.FC = () => {
     <Router>
       <AppHeader/>
       <Container sx={{ mt: 4 }}>
-        <Typography variant="h2">{t("welcome")}</Typography>
+        <Typography variant="h2">{t('homePage.title')}</Typography>
       </Container>
     </Router>
   );

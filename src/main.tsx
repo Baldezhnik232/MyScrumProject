@@ -5,8 +5,9 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { StrictMode } from 'react'
 import {createStore, bindActionCreators } from 'redux'
 import { createRoot } from 'react-dom/client'
-import App from './components/AppProject/AppProject.tsx'
-import "./i18n"; // 👈 Должно быть в самом верху
+import App from './pages/home/HomePage.tsx'
+import "./locales/i18n.tsx"; 
+import { Theme } from '@emotion/react';
 
 
 
