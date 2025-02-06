@@ -2,6 +2,9 @@
   "header": {
     "title": "Scrum Projects"
   },
+  "homeSearch": {
+    "title": "Search progects"
+  },
   "homePage": {
     "title": "Welcom"
   }

@@ -2,6 +2,9 @@
   "header": {
     "title": "Скрам Проекты"
   },
+  "homeSearch": {
+    "title": "Поиск проектов"
+  },
   "homePage": {
     "title": "Добро пожаловать"
   }

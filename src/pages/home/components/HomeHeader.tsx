@@ -4,7 +4,7 @@ import Select from '@mui/material/Select';
 import { useTranslation } from "react-i18next";
 import {useLanguage} from '../components/logicsHomeHeader/useHomeHeader'
 
-export default function AppHeader ()  {
+const AppHeader = () =>  {
       const { t,  } = useTranslation();
       const {lng, handleChange} = useLanguage()
   return ( <Box sx = {{flexGrow:1}}>
@@ -13,7 +13,7 @@ export default function AppHeader ()  {
                         <Typography variant='h5' component={'div'} color={'inherit'} sx={{flexGrow:1}}>
                         {t("header.title")}
                         </Typography>
-                        <FormControl sx={{m:4, minWidth: 80}}>
+                        <FormControl sx={{m:4, minWidth: 80}}> 
                                     <Select
                                           labelId="demo-simple-select-autowidth-label"
                                           id="demo-simple-select-autowidth"
@@ -24,7 +24,7 @@ export default function AppHeader ()  {
                                                 bgcolor: 'white'
                                           }}
                                           renderValue={(selected)=>(selected ? selected : "Lang")}
-                                    >                                 
+                                    >                               
                                     <MenuItem value= 'EN'>EN</MenuItem>
                                     <MenuItem value= 'RU'>RU</MenuItem>
                                     </Select>          
@@ -40,3 +40,6 @@ export default function AppHeader ()  {
   );        
           
 }
+
+
+export default AppHeader
