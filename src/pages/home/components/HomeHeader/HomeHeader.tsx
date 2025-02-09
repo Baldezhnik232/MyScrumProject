@@ -2,7 +2,7 @@ import { Box, AppBar, Toolbar, Typography,MenuItem } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useTranslation } from "react-i18next";
-import {useLanguage} from '../components/logicsHomeHeader/useHomeHeader'
+import {useLanguage} from './logicsHomeHeader/useHomeHeader'
 
 const AppHeader = () =>  {
       const { t,  } = useTranslation();
