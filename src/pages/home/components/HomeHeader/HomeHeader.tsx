@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import {useLanguage} from './logicsHomeHeader/useHomeHeader'
 
 const AppHeader = () =>  {
-      const { t,  } = useTranslation();
+      const { t  } = useTranslation();
       const {lng, handleChange} = useLanguage()
   return ( <Box sx = {{flexGrow:1}}>
             <AppBar position='static'>
@@ -29,7 +29,6 @@ const AppHeader = () =>  {
                                     <MenuItem value= 'RU'>RU</MenuItem>
                                     </Select>          
                         </FormControl>
-                        
                   </Toolbar>
 
 

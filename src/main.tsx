@@ -7,8 +7,6 @@ import {createStore, bindActionCreators } from 'redux'
 import { createRoot } from 'react-dom/client'
 import App from './pages/home/HomePage.tsx'
 import "./locales/i18n.tsx"; 
-import { Theme } from '@emotion/react';
-
 
 
 
@@ -28,7 +26,6 @@ createRoot(document.getElementById('root')!).render(
     <ThemeProvider theme={theme}>
     <App />
     </ThemeProvider>
-    
   </StrictMode>,
 )
 

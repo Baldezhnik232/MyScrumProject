@@ -5,6 +5,8 @@ import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom'
 import { useTranslation } from "react-i18next";
 import {Container,Typography } from "@mui/material";
 import AppSearch from './components/HomeSearch';
+import AppFooter from './components/HomeFooter'
+
 
 
 
@@ -18,8 +20,8 @@ const App: React.FC = () => {
           <Container sx={{ mt: 4 }}>
           <AppProjectsList /> 
           </Container>
-        <Typography variant="h2">{t('homePage.title')}</Typography>
-      </Container>
+      </Container >
+      <AppFooter/>    
     </Router>
   );
 }

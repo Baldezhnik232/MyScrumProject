@@ -23,5 +23,8 @@
           "description": "Description of Project C"
         }
       }
+    },
+    "footer": {
+      "title": "Footer projects"
     }
 }
