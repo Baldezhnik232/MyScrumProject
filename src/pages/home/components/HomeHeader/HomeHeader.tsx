@@ -2,11 +2,11 @@ import { Box, AppBar, Toolbar, Typography,MenuItem } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useTranslation } from "react-i18next";
-import {useLanguage} from './logicsHomeHeader/useHomeHeader'
+import {useLanguage} from './logic/useHomeHeader'
 
 const AppHeader = () =>  {
       const { t  } = useTranslation();
-      const {lng, handleChange} = useLanguage()
+      const { language, handleChange } = useLanguage();
   return ( <Box sx = {{flexGrow:1}}>
             <AppBar position='static'>
                   <Toolbar>
@@ -17,7 +17,7 @@ const AppHeader = () =>  {
                                     <Select
                                           labelId="demo-simple-select-autowidth-label"
                                           id="demo-simple-select-autowidth"
-                                          value={lng}
+                                          value={language}
                                           onChange={handleChange}
                                           displayEmpty
                                           sx={{

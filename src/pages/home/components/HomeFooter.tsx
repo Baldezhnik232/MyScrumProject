@@ -1,6 +1,7 @@
 import { Box, Typography, Container, Link, useTheme } from '@mui/material';
 import {useTranslation}  from "react-i18next"
 
+
 const AppFooter = () => {
   const theme = useTheme();
   const { t  } = useTranslation(); 

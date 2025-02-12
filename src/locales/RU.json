@@ -8,22 +8,6 @@
   "homePage": {
     "title": "Добро пожаловать"
   },
-  "homeItems": {
-    "projects": {
-      "projectA": {
-        "title": "Проект А",
-        "description": "Описание проекта А"
-      },
-      "projectB": {
-        "title": "Проект B",
-        "description": "Описание проекта В"
-      },
-      "projectC": {
-        "title": "Проект С",
-        "description": "Описание проекта С"
-      }
-    }
-  },
   "footer": {
     "title": "Подвал проектов"
   }

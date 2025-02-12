@@ -5,3 +5,8 @@ export interface Project {
     description: string;
     timestamp: string;
 }
+
+
+export interface IProjectsRequest {
+    filter?: string
+}

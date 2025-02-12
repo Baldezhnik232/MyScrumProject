@@ -1,14 +1,12 @@
 import { Card, CardMedia, CardContent, Typography, CardActions, Button, Grid2 } from "@mui/material"
-import {Project} from './logicsHomeProjects/interfaceApi'
-import { useTranslation } from "react-i18next"
-
+import {Project, } from '../../../api/interfaceApi'
+import {formDate} from '../../../api/projects.mock'
 
 interface ProjectProps {
   project: Project
 }
 
 export  const AppProjectsItem = ({project}: ProjectProps) => {
-  const {t} = useTranslation();
   return (
     <Grid2 size={4} >
       <Card sx={{ maxWidth: 345 }}>
@@ -18,11 +16,11 @@ export  const AppProjectsItem = ({project}: ProjectProps) => {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {t(project.titleKey)}
+          {project.titleKey}
         </Typography>
-        <Typography gutterBottom variant="h6">{t(project.description)}</Typography>
+        <Typography gutterBottom variant="h6">{project.description}</Typography>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          {new Date(project.timestamp).toLocaleDateString()}
+          {formDate(project.timestamp)}
         </Typography>
       </CardContent>
       <CardActions>

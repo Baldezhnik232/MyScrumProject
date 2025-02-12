@@ -1,25 +1,15 @@
 import  React from 'react'
 import  ReactDOM  from 'react-dom'
-import { StyledEngineProvider } from '@mui/material/styles';
+import {styled} from '@mui/material'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { StrictMode } from 'react'
 import {createStore, bindActionCreators } from 'redux'
 import { createRoot } from 'react-dom/client'
 import App from './pages/home/HomePage.tsx'
 import "./locales/i18n.tsx"; 
+import {theme} from './styles/themes/lightTheme.tsx'
 
 
-
-const theme = createTheme ({
-    palette: {
-      primary: {
-        main: '#CD0074'
-      },
-      secondary:{
-        main: '#9FEE00'
-      }
-    }
-})
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
