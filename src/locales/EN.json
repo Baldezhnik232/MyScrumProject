@@ -8,22 +8,6 @@
   "homePage": {
     "title": "Welcom"
   },
-  "homeItems": {
-      "projects": {
-        "projectA": {
-          "title": "Project A",
-          "description": "Description of Project A"
-        },
-        "projectB": {
-          "title": "Project B",
-          "description": "Description of Project B"
-        },
-        "projectC": {
-          "title": "Project C",
-          "description": "Description of Project C"
-        }
-      }
-    },
     "footer": {
       "title": "Footer projects"
     }

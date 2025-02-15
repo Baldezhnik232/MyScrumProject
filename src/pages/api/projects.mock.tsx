@@ -5,7 +5,6 @@ export const formDate = (timestamp: string)=> {
   return format(parseISO(timestamp), 'dd.MM.yyyy');
 }
 
-
 export const projectsMocks: Project[]= [
   {
     id: 1,

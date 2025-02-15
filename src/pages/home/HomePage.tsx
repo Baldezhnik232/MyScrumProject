@@ -3,8 +3,7 @@ import AppHeader from './components/HomeHeader/HomeHeader'
 import AppProjectsList from './components/HomeProjectsList/HomeProjectsList'
 import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom'
 import { useTranslation } from "react-i18next";
-import {Container,Typography } from "@mui/material";
-import AppSearch from './components/HomeSearch';
+import {Container } from "@mui/material";
 import AppFooter from './components/HomeFooter'
 
 
@@ -15,12 +14,9 @@ const App: React.FC = () => {
   return (
     <Router>
       <AppHeader/>
-      <Container sx={{ mt: 4 }}>
-          <AppSearch/>
           <Container sx={{ mt: 4 }}>
           <AppProjectsList /> 
           </Container>
-      </Container >
       <AppFooter/>    
     </Router>
   );
