@@ -3,14 +3,14 @@ import { useEffect } from "react"
 
 import { Grid2, Typography } from "@mui/material"
 import {AppProjectsItem} from '../HomeProjectsItems/HomeProjectsItem'
-import {Project} from '../../../api/interfaceApi'
+import {Project} from '../../api/interfaceApi'
 import AppSearch from '../HomeSearch'
-import { RootState, AppDispatch } from "../../../store";
+import { RootState, AppDispatch } from "../../store";
 import { useSelector, useDispatch } from "react-redux"
-import { fetchProjects } from "../../../store/projectsSlice";
+import { fetchProjects } from "../../store/projectsSlice";
 
 
-const AppProjectsList: React.FC = () => {
+export const AppProjectsList: React.FC = () => {
 
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
@@ -51,4 +51,3 @@ const AppProjectsList: React.FC = () => {
 
 }
 
-export default AppProjectsList

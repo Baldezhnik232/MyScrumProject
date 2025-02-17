@@ -5,11 +5,13 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { StrictMode } from 'react'
 import {createStore, bindActionCreators } from 'redux'
 import { createRoot } from 'react-dom/client'
-import App from './pages/home/HomePage.tsx'
+import App from './pages/homePage/HomePage.tsx'
 import "./locales/i18n.tsx"; 
 import {theme} from './styles/themes/lightTheme.tsx'
 import { Provider } from 'react-redux';
-import {store} from './pages/store'
+import {store} from './store/index.tsx'
+import {BrowserRouter, Route, Routes, Link} from 'react-router-dom'
+
 
 
 
@@ -17,7 +19,9 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
     <ThemeProvider theme={theme}>
-    <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ThemeProvider>
     </Provider>
   </StrictMode>,

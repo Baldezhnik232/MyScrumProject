@@ -7,6 +7,13 @@ export interface Project {
 }
 
 
+export interface Sprint extends Project {
+    TODO: [],
+    DOING: [],
+    DONE: []
+}
+
+
 export interface IProjectsRequest {
     filter?: string
 }
