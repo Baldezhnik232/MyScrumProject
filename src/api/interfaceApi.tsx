@@ -8,6 +8,7 @@ export interface Project {
 
 
 export interface Sprint extends Project {
+    projectId: number,
     TODO: [],
     DOING: [],
     DONE: []
