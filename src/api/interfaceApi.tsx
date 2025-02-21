@@ -6,6 +6,10 @@ export interface Project {
     timestamp: string;
 }
 
+export interface Backlog extends Project {
+    storyPoints: number
+}
+
 
 export interface Sprint extends Project {
     projectId: number,

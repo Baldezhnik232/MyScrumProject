@@ -3,11 +3,11 @@ import { useEffect } from "react"
 
 import { Grid2, Typography } from "@mui/material"
 import {AppProjectsItem} from '../HomeProjectsItems/HomeProjectsItem'
-import {Project} from '../../api/interfaceApi'
-import AppSearch from '../HomeSearch'
-import { RootState, AppDispatch } from "../../store";
+import {Project} from '../../../../api/interfaceApi'
+import AppSearch from '../HomeSearch/HomeSearch'
+import { RootState, AppDispatch } from "../../../../store";
 import { useSelector, useDispatch } from "react-redux"
-import { fetchProjects } from "../../store/projectsSlice";
+import { fetchProjects } from "../../../../store/projectsSlice";
 
 
 export const AppProjectsList: React.FC = () => {
@@ -29,8 +29,6 @@ export const AppProjectsList: React.FC = () => {
   if (loading) return <Typography align={'center'} >Загрузка...</Typography>;
   if( error) return <Typography align={'center'} >Ошибка: {error}</Typography>
 
-
-  
 
   return (
     <>

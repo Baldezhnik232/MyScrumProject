@@ -1,8 +1,8 @@
 import { TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { RootState } from "../store";
+import { RootState } from "../../../../store";
 import { useDispatch, useSelector } from "react-redux";
-import {setFilterProject} from '../store/projectsSlice'
+import {setFilterProject} from '../../../../store/projectsSlice'
 
 
 

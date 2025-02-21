@@ -1,13 +1,12 @@
 
-import AppHeader from '../../components/HomeHeader/HomeHeader'
-import {AppSprintsList} from '../../pages/projectsPage/SprintsProjectsList'
+import AppHeader from '../HomeHeader/HomeHeader'
+import {AppSprintsList} from '../../projectsPage/SprintsList/SprintsProjectsList'
 import {Route, Routes, Link} from 'react-router-dom'
 import { useTranslation } from "react-i18next";
 import {Container } from "@mui/material";
-import AppFooter from '../../components/HomeFooter'
-import {AppProjectsList} from '../../components/HomeProjectsList/HomeProjectsList'
-
-
+import AppFooter from '../HomeFooter/HomeFooter'
+import {AppProjectsList} from '../HomeProjectsList/HomeProjectsList'
+import {AppBacklogList} from '../../backlogPage/BacklogList/backlogList'
 
 
 const App: React.FC = () => {
@@ -19,6 +18,7 @@ const App: React.FC = () => {
             <Routes>
           <Route path="/" element={<AppProjectsList />} />
           <Route path="/Project/:id" element={<AppSprintsList />} />
+          <Route path="/Project/:id/Backlog" element={ <AppBacklogList />} />
           </Routes>
           </Container>
       <AppFooter/> 

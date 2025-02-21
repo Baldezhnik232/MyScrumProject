@@ -1,10 +1,10 @@
 
 
 import { useParams } from "react-router-dom"
-import { sprintsMoks } from "../../api/sprints.mock";
-import {Sprint} from '../../api/interfaceApi'
+import { sprintsMoks } from "../../../../api/sprints.mock";
+import {Sprint} from '../../../../api/interfaceApi'
 import { Card, CardMedia, CardContent, Typography, CardActions, Button, Grid2 } from "@mui/material"
-import {formDate} from '../../api/sprints.mock'
+import {formDate} from '../../../../api/sprints.mock'
 
 
 interface SprintsProps {
@@ -12,7 +12,6 @@ interface SprintsProps {
 }
 
 export const SprintsPageItems = ({sprints}:SprintsProps) => {
-  console.log(SprintsPageItems, 'wdw')
     return (
       <Grid2 size={4} >
         <Card sx={{ maxWidth: 345 }}>

@@ -1,6 +1,6 @@
 import { Card, CardMedia, CardContent, Typography, CardActions, Button, Grid2 } from "@mui/material"
-import {Project } from '../../api/interfaceApi'
-import {formDate} from '../../api/projects.mock'
+import {Project } from '../../../../api/interfaceApi'
+import {formDate} from '../../../../api/projects.mock'
 import { Link } from "react-router-dom"
 
 interface ProjectProps {
