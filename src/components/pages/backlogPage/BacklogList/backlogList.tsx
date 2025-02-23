@@ -9,12 +9,16 @@ import {AppSearchBacklog} from '../SearchBacklog/SearchBacklog'
 import {backlogMoksApi} from '../../../../api/index'
 import {Backlog} from '../../../../api/interfaceApi'
 import {AppButtonAdd} from '../AddButton/FloatingActionButton'
+import {AppForm} from '../AddForm/CreateFormTask'
 
 
 export const AppBacklogList = () => {
   const {id} = useParams<{id:string}>();
   const [task, setTask] = useState<Backlog[]>([])
   const [loading, setLoading] = useState<boolean>(true);
+  const [open, setOpen] = useState(false);
+
+  
   useEffect(()=> {
     backlogMoksApi.getBacklog({})
     .then((data)=> {
@@ -36,7 +40,8 @@ export const AppBacklogList = () => {
         ))}
       </Grid2>
       <Grid2 container  sx={{ mt:2, display: 'flex', justifyContent: 'center' }}>
-      <AppButtonAdd />
+      <AppButtonAdd setOpen={setOpen} />
+      <AppForm open={open} setOpen={setOpen}/>
       </Grid2>
     </>
 

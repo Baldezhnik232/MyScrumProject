@@ -14,8 +14,8 @@ export const BacklogPageItem = ({backlog}:BacklogProps ) => {
       <Grid2 size={4} >
         <Card sx={{ maxWidth: 345 }}>
         <CardMedia
-          sx={{ height: 300 }}
-          image="https://img.freepik.com/premium-photo/radiant-rhythms-exploring-neon-line-art-spectrum_1020495-70919.jpg?w=1060"
+          sx={{ height: 450 }}
+          image="https://img.freepik.com/free-photo/futuristic-cat-with-goggles_23-2150969289.jpg?t=st=1740336490~exp=1740340090~hmac=3633235324c389c47cefa94780d0ddd6f82960702c6c1a10242b8f3ed32d4e7b&w=1480"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
