@@ -17,8 +17,6 @@ import {fetchSprints} from "../../../../store/sprintsSlice"
 export const AppSprintsList = ()=> {
   const {t} = useTranslation()
   const {id} = useParams<{id:string}>()
-  // const [sprints, setSprints] = useState<Sprint[]>([])
-  // const [loading, setLoading] = useState<boolean>(true);
   const dispatch = useDispatch<AppDispatch>();
 
   const {sprints, loading} = useSelector((state:RootState)=> state.sprints)
