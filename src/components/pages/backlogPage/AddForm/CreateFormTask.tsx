@@ -1,8 +1,9 @@
 
-import { useState } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
-
+import {format, parse} from "date-fns"
+import {Backlog} from "../../../../api/interfaceApi"
+import { useTranslation } from "react-i18next";
 
 type FormValues = {
   titleKey: string;
@@ -13,21 +14,27 @@ type FormValues = {
 
 interface AppFormProps {
   open: boolean;
+  addTask: (value: Backlog)=> void
   setOpen: (value: boolean) => void;
 }
 
-export const AppForm = ({ open, setOpen }: AppFormProps) => {
-  const { handleSubmit, control, reset } = useForm<FormValues>({
+export const AppForm = ({ open, setOpen, addTask }: AppFormProps) => {
+  const {t} = useTranslation();
+  const { handleSubmit, control, reset, formState:{errors} } = useForm<FormValues>({
     defaultValues: {
       titleKey: "",
       storyPoints: 0,
       description: "",
-      timestamp: new Date().toISOString(),
+      timestamp: format(new Date(), "yyyy-MM-dd'T'HH:mm"),
     },
   });
-
   const onSubmit = (data: FormValues) => {
-    console.log("Новая задача:", data);
+    const newDate = {
+      ...data,
+      timestamp: format(parse(data.timestamp, "yyyy-MM-dd'T'HH:mm", new Date()), "yyyy-MM-dd'T'HH:mm" )
+    }
+    const newTask: Backlog = {id: Date.now(), ...newDate }
+    addTask(newTask)
     setOpen(false);
     reset();
   };
@@ -40,29 +47,44 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
           <Controller
             name="titleKey"
             control={control}
-            render={({ field }) => <TextField {...field} label="Task #" fullWidth margin="dense" />}
+            rules={{
+              required: t("formTaskRequired.required"),
+              minLength: {value:3, message: 'Нужно 3 слова' }
+            }}
+            render={({ field }) => <TextField {...field} label="Task #" fullWidth margin="dense" error={!!errors.titleKey} helperText={errors.titleKey?.message} />}
           />
           <Controller
             name="storyPoints"
             control={control}
-            render={({ field }) => <TextField {...field} label="Story Points" type="number" fullWidth margin="dense" />}
+            rules={{
+              required: t("formStorPointRequired.required"),
+              min:{value: 1, message: t('formStorPointRequired.message')}
+            }}
+            render={({ field }) => <TextField {...field} label="Story Points" type="number" fullWidth margin="dense" error={!!errors.storyPoints} helperText={errors.storyPoints?.message} />}
           />
           <Controller
             name="description"
             control={control}
-            render={({ field }) => <TextField {...field} label="Description" fullWidth multiline rows={2} margin="dense" />}
+            rules={{
+              required: t("formDescription.required"),
+              minLength: {value:3, message: t("formDescription.message") }
+            }}
+            render={({ field }) => <TextField {...field} label="Description" fullWidth multiline rows={2} margin="dense" error={!!errors.description} helperText={errors.description?.message} />}
           />
           <Controller
             name="timestamp"
             control={control}
-            render={({ field }) => <TextField {...field}  type="datetime-local" fullWidth margin="dense"/>}
+            rules={{
+              required: t("formDate.required"),
+            }}
+            render={({ field }) => <TextField {...field}  type="datetime-local"  fullWidth margin="dense" error={!!errors.timestamp} helperText={errors.timestamp?.message} />}
           />
         </form>
       </DialogContent>
 
       <DialogActions>
         <Button onClick={() => setOpen(false)} sx={{color:'black'}}>Cancel</Button>
-        <Button type="submit" onClick={handleSubmit(onSubmit)} variant="contained" color="primary">
+        <Button type="submit" onClick={handleSubmit(onSubmit)} variant="contained" color="primary" >
           Create
         </Button>
       </DialogActions>

@@ -10,9 +10,11 @@ import {backlogMoksApi} from '../../../../api/index'
 import {Backlog} from '../../../../api/interfaceApi'
 import {AppButtonAdd} from '../AddButton/FloatingActionButton'
 import {AppForm} from '../AddForm/CreateFormTask'
+import { useTranslation } from "react-i18next"
 
 
 export const AppBacklogList = () => {
+  const {t} =useTranslation();
   const {id} = useParams<{id:string}>();
   const [task, setTask] = useState<Backlog[]>([])
   const [loading, setLoading] = useState<boolean>(true);
@@ -22,13 +24,15 @@ export const AppBacklogList = () => {
   useEffect(()=> {
     backlogMoksApi.getBacklog({})
     .then((data)=> {
-      const filteredTask = data
-      setTask(filteredTask)
+      setTask(data)
     })
     .then(()=> setLoading(false))
   }, [id])
 
-  if (loading) return <Typography align={'center'} >Загрузка...</Typography>;
+  const addNewTask = (newTask:Backlog) => {
+    setTask((prevTasks)=> [...prevTasks, newTask])
+  }
+  if (loading) return <Typography align={'center'} >{t("loading")}</Typography>;
 
   return (
     <>
@@ -41,7 +45,7 @@ export const AppBacklogList = () => {
       </Grid2>
       <Grid2 container  sx={{ mt:2, display: 'flex', justifyContent: 'center' }}>
       <AppButtonAdd setOpen={setOpen} />
-      <AppForm open={open} setOpen={setOpen}/>
+      <AppForm open={open} setOpen={setOpen} addTask={addNewTask} />
       </Grid2>
     </>
 

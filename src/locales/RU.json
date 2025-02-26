@@ -10,5 +10,31 @@
   },
   "footer": {
     "title": "Подвал проектов"
-  }
+  },
+  "backlogSearch": {
+    "title": "Задачи"
+  },
+    "newTask": {
+      "title": "Новая Задача"
+  },
+  "formTaskRequired": {
+    "required": "Это поле обязательно для заполнения"
+  },
+  "formStorPointRequired": {
+    "required": "Необходимо заполнить",
+    "message": "Необходимо 1 число"
+  },
+  "formDescription": {
+    "required": "Описание обязательно для заполнения",
+    "message": "Необходимо 3 символа "
+},
+"formDate": {
+  "required": "Дата обязательна для заполнения"
+},
+    "homePageRoute":"Главная страница",
+    "projects": "Проекты",
+    "backlog": "Бэклог",
+    "loading": "Загрузка...",
+    "error": "Ошибка"
+  
 }

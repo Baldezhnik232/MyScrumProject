@@ -5,29 +5,31 @@ import { Grid2, Typography } from "@mui/material";
 import { SprintsPageItems } from "../Sprintsitems/SprintsProjectsPageItems";
 import { useState, useEffect } from "react";
 import { Sprint } from "../../../../api/interfaceApi";
+import { RootState, AppDispatch } from "../../../../store";
 import {sprintsMoksApi} from '../../../../api/index'
 import {sprintsMoks} from '../../../../api/sprints.mock'
 import { useParams } from "react-router-dom";
 import {AppBreadcrumbs} from '../RouterPanel/BreadcrumbsProjects'
+import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import {fetchSprints} from "../../../../store/sprintsSlice"
 
 export const AppSprintsList = ()=> {
+  const {t} = useTranslation()
   const {id} = useParams<{id:string}>()
-  const [sprints, setSprints] = useState<Sprint[]>([])
-  const [loading, setLoading] = useState<boolean>(true);
+  // const [sprints, setSprints] = useState<Sprint[]>([])
+  // const [loading, setLoading] = useState<boolean>(true);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const projectSprints = sprintsMoks.filter((sprints) => sprints.projectId.toString() === id);
+  const {sprints, loading} = useSelector((state:RootState)=> state.sprints)
 
   useEffect(() => {
-    sprintsMoksApi.getSprints({})
-      .then((data) => {
-        const filteredSprints = data.filter((sprint) => sprint.id.toString() === id);
-        setSprints(filteredSprints);
-      })
-      .finally(() => setLoading(false));
-  }, [id]);
+   dispatch(fetchSprints())
+  }, [dispatch]);
 
-  if (loading) return <Typography align={'center'} >Загрузка...</Typography>;
- 
+  const projectSprints = sprints.filter((sprints) => sprints.projectId.toString() === id);
+
+  if (loading) return <Typography align={'center'} >{t('loading')}</Typography>;
 
   return (
     <>

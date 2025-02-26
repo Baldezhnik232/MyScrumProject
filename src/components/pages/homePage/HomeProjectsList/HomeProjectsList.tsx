@@ -8,9 +8,11 @@ import AppSearch from '../HomeSearch/HomeSearch'
 import { RootState, AppDispatch } from "../../../../store";
 import { useSelector, useDispatch } from "react-redux"
 import { fetchProjects } from "../../../../store/projectsSlice";
+import { useTranslation } from "react-i18next"
 
 
 export const AppProjectsList: React.FC = () => {
+  const {t} = useTranslation()
 
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
@@ -26,8 +28,8 @@ export const AppProjectsList: React.FC = () => {
   project.titleKey.toLocaleLowerCase().includes(filterProject.toLocaleLowerCase()))
 
 
-  if (loading) return <Typography align={'center'} >Загрузка...</Typography>;
-  if( error) return <Typography align={'center'} >Ошибка: {error}</Typography>
+  if (loading) return <Typography align={'center'} >{t("loading")}</Typography>;
+  if( error) return <Typography align={'center'} >{t("error")}:{error}</Typography>
 
 
   return (
