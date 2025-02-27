@@ -3,11 +3,8 @@
 
 import { Grid2, Typography } from "@mui/material";
 import { SprintsPageItems } from "../Sprintsitems/SprintsProjectsPageItems";
-import { useState, useEffect } from "react";
-import { Sprint } from "../../../../api/interfaceApi";
+import { useEffect } from "react";
 import { RootState, AppDispatch } from "../../../../store";
-import {sprintsMoksApi} from '../../../../api/index'
-import {sprintsMoks} from '../../../../api/sprints.mock'
 import { useParams } from "react-router-dom";
 import {AppBreadcrumbs} from '../RouterPanel/BreadcrumbsProjects'
 import { useTranslation } from "react-i18next";

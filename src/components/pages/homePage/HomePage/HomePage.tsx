@@ -7,6 +7,7 @@ import {Container } from "@mui/material";
 import AppFooter from '../HomeFooter/HomeFooter'
 import {AppProjectsList} from '../HomeProjectsList/HomeProjectsList'
 import {AppBacklogList} from '../../backlogPage/BacklogList/backlogList'
+import {AppTaskSprints} from '../../sprintsPage/TaskSprintsList/TaskSprintsList'
 
 
 const App: React.FC = () => {
@@ -19,6 +20,7 @@ const App: React.FC = () => {
           <Route path="/" element={<AppProjectsList />} />
           <Route path="/Project/:id" element={<AppSprintsList />} />
           <Route path="/Project/:id/Backlog" element={ <AppBacklogList />} />
+          <Route path ="/Project/:id/sprint/:sprintId" element={< AppTaskSprints/>}/>
           </Routes>
           </Container>
       <AppFooter/> 

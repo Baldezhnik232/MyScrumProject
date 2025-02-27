@@ -10,13 +10,22 @@ export interface Backlog extends Project {
     storyPoints: number
 }
 
+interface Task {
+    id: number;
+    title: string;
+    description: string;
+  }
+
+
 
 export interface Sprint extends Project {
     projectId: number,
-    TODO: [],
-    DOING: [],
-    DONE: []
+    TODO: Task[],
+    DOING: Task[],
+    DONE: Task[]
 }
+
+
 
 
 export interface IProjectsRequest {

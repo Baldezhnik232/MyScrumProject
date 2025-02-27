@@ -13,7 +13,6 @@ import { useTranslation } from "react-i18next"
 
 export const AppProjectsList: React.FC = () => {
   const {t} = useTranslation()
-
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(fetchProjects());
