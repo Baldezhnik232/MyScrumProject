@@ -1,7 +1,5 @@
 
 
-import { useParams } from "react-router-dom"
-import { sprintsMoks } from "../../../../api/sprints.mock";
 import {Sprint} from '../../../../api/interfaceApi'
 import { Card, CardMedia, CardContent, Typography, CardActions, Button, Grid2 } from "@mui/material"
 import {formDate} from '../../../../api/sprints.mock'
@@ -31,7 +29,7 @@ export const SprintsPageItems = ({sprints}:SprintsProps) => {
         </CardContent>
         <CardActions>
           <Button size="small">Share</Button>
-          <Button size="small" component={Link} to={`/Project/${sprints.projectId}/sprint/${sprints.id}`} >Learn More</Button>
+          <Button size="small" component={Link} to={`/Project/${sprints.projectId}/sprints/${sprints.id}`} >Learn More</Button>
         </CardActions>
       </Card>
     </Grid2>

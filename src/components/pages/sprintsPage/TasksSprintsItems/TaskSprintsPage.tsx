@@ -1,57 +1,39 @@
 import { useParams } from 'react-router-dom';
-import { Grid2, Typography, Paper } from '@mui/material';
-import { sprintsMoks } from '../../../../api/sprints.mock'; // Предположим, что у вас есть файл с моковыми данными
-import {Sprint} from '../../../../api/interfaceApi'
+import { Tasks} from '../../../../api/interfaceApi'
+import {formDate} from '../../../../api/sprints.mock'
+import { Link } from "react-router-dom";
+import { Card, CardMedia, CardContent, Typography, CardActions, Button, Grid2 } from "@mui/material"
+
 
 interface TaskSprints {
-  tasks: Sprint
+  tasks: Tasks
 }
 
 export const TaskSprintsItems = ({tasks}: TaskSprints) => {
-  const { sprintId } = useParams<{ sprintId: string }>();
-  const sprint = sprintsMoks.find((s) => s.id.toString() === sprintId);
-
-  if (!sprint) {
-    return <Typography variant="h6">Sprint not found</Typography>;
-  }
-
   return (
     <>
-      <Typography variant="h4" sx={{ mb: 4 }}>
-        Tasks for {tasks.titleKey}
-      </Typography>
-      <Grid2 container spacing={3} component='div'>
-        <Grid2 columns={4} component='div'>
-          <Paper sx={{ p: 2 }}>
-            <Typography variant="h6">TODO</Typography>
-            {sprint.TODO.map((task) => (
-              <Paper key={task.id} sx={{ p: 2, my: 1 }}>
-                <Typography>{task.title}</Typography>
-              </Paper>
-            ))}
-          </Paper>
-        </Grid2>
-        <Grid2 columns={4} component='div'>
-          <Paper sx={{ p: 2 }}>
-            <Typography variant="h6">DOING</Typography>
-            {sprint.DOING.map((task) => (
-              <Paper key={task.id} sx={{ p: 2, my: 1 }}>
-                <Typography>{task.title}</Typography>
-              </Paper>
-            ))}
-          </Paper>
-        </Grid2>
-        <Grid2 columns={4} component='div'>
-          <Paper sx={{ p: 2 }}>
-            <Typography variant="h6">DONE</Typography>
-            {sprint.DONE.map((task) => (
-              <Paper key={task.id} sx={{ p: 2, my: 1 }}>
-                <Typography>{task.title}</Typography>
-              </Paper>
-            ))}
-          </Paper>
-        </Grid2>
-      </Grid2>
+    <Grid2 size={4} >
+        <Card sx={{ maxWidth: 345 }}>
+        <CardMedia
+          sx={{ height: 300 }}
+          image="https://img.freepik.com/premium-photo/high-quality-digital-image-wallpaper-jpg_783884-338550.jpg?uid=R187926988&ga=GA1.1.1227470513.1740776877&semt=ais_hybrid"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {tasks.titleKey}
+          </Typography>
+          <Typography gutterBottom variant="h6">{tasks.description}</Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            {formDate(tasks.timestamp)}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small">Share</Button>
+          <Button size="small" >Learn More</Button>
+        </CardActions>
+      </Card>
+    </Grid2>
+
     </>
   );
 };

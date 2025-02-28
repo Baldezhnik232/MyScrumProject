@@ -20,7 +20,7 @@ const App: React.FC = () => {
           <Route path="/" element={<AppProjectsList />} />
           <Route path="/Project/:id" element={<AppSprintsList />} />
           <Route path="/Project/:id/Backlog" element={ <AppBacklogList />} />
-          <Route path ="/Project/:id/sprint/:sprintId" element={< AppTaskSprints/>}/>
+          <Route path ="/Project/:id/sprints/:sprintId" element={< AppTaskSprints/>}/>
           </Routes>
           </Container>
       <AppFooter/> 

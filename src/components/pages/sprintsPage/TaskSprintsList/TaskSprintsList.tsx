@@ -2,23 +2,27 @@
 
 import { useEffect, useState } from "react"
 import {useParams} from "react-router-dom"
-import {Sprint} from "../../../../api/interfaceApi"
-import {sprintsMoks} from "../../../../api/sprints.mock"
-import { Grid2 } from "@mui/material"
+import {Tasks} from "../../../../api/interfaceApi"
+import {tasksMocks} from "../../../../api/Tasks.mock"
+import { Grid2, Typography } from "@mui/material"
 import {TaskSprintsItems} from '../../sprintsPage/TasksSprintsItems/TaskSprintsPage'
 
 
 
 
 export const AppTaskSprints = ()=> {
-  const { id } = useParams<{ id: string }>(); 
-  const [taskSpr, setTaskSpr] = useState<Sprint[]>([]);
+  const { id, sprintId } = useParams<{ id: string, sprintId: string }>(); 
+  const [taskSpr, setTaskSpr] = useState<Tasks[]>([]);
+  const [loading, setLoading] = useState<boolean>(true)
 
 
   useEffect(() => {
-    const filteredSprints = sprintsMoks.filter((task) => task.projectId.toString() === id);
+    const filteredSprints = tasksMocks.filter((task) => task.tasksID.toString() === sprintId);
     setTaskSpr(filteredSprints);
-  }, [id]);
+    setLoading(false) 
+  }, [sprintId]);
+  if (loading) return <Typography align={'center'} >Loading...</Typography>;
+
 
   return (
     <>
