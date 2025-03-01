@@ -1,15 +1,14 @@
 import { projectsMocks } from "./projects.mock";
-import {Project, IProjectsRequest, Sprint, Backlog} from './interfaceApi'
+import {Project, IProjectsRequest, Sprint, Backlog, Tasks} from './interfaceApi'
 import {sprintsMoks} from './sprints.mock'
 import {backlogMocks} from './backlog.mock'
-import { resolve } from "path";
+import {tasksMocks} from './tasks.mock'
 
 
 export const projectsAPI = {
   getProjects: async(_filters:IProjectsRequest ): Promise< Project[]> => {
     return new Promise ((resolve)=> {
       setTimeout(()=> {
-        console.log('Запрос данных')
         resolve(projectsMocks)
       }, 1000)
     })
@@ -32,6 +31,16 @@ export const backlogMoksApi = {
       setTimeout(()=> {
         resolve(backlogMocks)
       },1000 )
+    })
+  }
+}
+
+export const tasksMocksApi = {
+  getTasks: async(_filters:IProjectsRequest ): Promise<Tasks[]> => {
+    return new Promise((resolve)=> {
+      setTimeout(()=> {
+        resolve(tasksMocks)
+      },1000)
     })
   }
 }

@@ -12,7 +12,6 @@ import {AppButtonAdd} from '../AddButton/FloatingActionButton'
 import {AppForm} from '../AddForm/CreateFormTask'
 import { useTranslation } from "react-i18next"
 
-
 export const AppBacklogList = () => {
   const {t} =useTranslation();
   const {id} = useParams<{id:string}>();
@@ -36,7 +35,7 @@ export const AppBacklogList = () => {
 
   return (
     <>
-    <AppBreadcrumbs/>
+    <AppBreadcrumbs />
     <AppSearchBacklog/>
     <Grid2 container spacing={2} sx={{mt:5}}>
         {task.map((task)=>(
