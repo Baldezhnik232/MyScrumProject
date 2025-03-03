@@ -3,37 +3,38 @@
     "title": "Scrum Projects"
   },
   "homeSearch": {
-    "title": "Search progects"
+    "title": "Search projects"
   },
   "homePage": {
-    "title": "Welcom"
+    "title": "Welcome"
   },
-    "footer": {
-      "title": "Footer projects"
+  "footer": {
+    "title": "Footer projects"
   },
-    "backlogSearch": {
-      "title": "Tasks"
+  "backlogSearch": {
+    "title": "Tasks"
   },
-    "newTask": {
-      "title": "new Task"
-    },
-    "formTaskRequired": {
-      "required": "This field is required"
-    },
-      "formStorPointRequired": {
-        "required": "This is required",
-        "message": "You need 1 number"
-    },
-    "formDescription": {
-      "required": "Description is required",
-      "message": "You need 3 "
-    },
-    "formDate": {
-      "required": "Date is required "
-    },
-     "homePageRoute":"Home Page",
-     "projects": "Projects",
-     "backlog": "Backlog page",
-     "loading": "Loading...",
-     "error": "Error"  
+  "newTask": {
+    "title": "new Task"
+  },
+  "formTaskRequired": {
+    "required": "This field is required",
+    "message": "You need 3"
+  },
+  "formStorPointRequired": {
+    "required": "This is required",
+    "message": "You need 1 number"
+  },
+  "formDescription": {
+    "required": "Description is required",
+    "message": "You need 3 "
+  },
+  "formDate": {
+    "required": "Date is required "
+  },
+  "homePageRoute": "Home Page",
+  "projects": "Project #{{id}}",
+  "backlog": "Backlog page",
+  "loading": "Loading...",
+  "error": "Error"
 }

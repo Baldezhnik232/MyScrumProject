@@ -14,11 +14,12 @@
   "backlogSearch": {
     "title": "Задачи"
   },
-    "newTask": {
-      "title": "Новая Задача"
+  "newTask": {
+    "title": "Новая Задача"
   },
   "formTaskRequired": {
-    "required": "Это поле обязательно для заполнения"
+    "required": "Это поле обязательно для заполнения",
+    "message": "Необходимо 3 символа"
   },
   "formStorPointRequired": {
     "required": "Необходимо заполнить",
@@ -26,15 +27,14 @@
   },
   "formDescription": {
     "required": "Описание обязательно для заполнения",
-    "message": "Необходимо 3 символа "
-},
-"formDate": {
-  "required": "Дата обязательна для заполнения"
-},
-    "homePageRoute":"Главная страница",
-    "projects": "Проекты",
-    "backlog": "Бэклог",
-    "loading": "Загрузка...",
-    "error": "Ошибка"
-  
+    "message": "Необходимо 3 символа"
+  },
+  "formDate": {
+    "required": "Дата обязательна для заполнения"
+  },
+  "homePageRoute": "Главная страница",
+  "projects": "Проект #{{id}}",
+  "backlog": "Бэклог",
+  "loading": "Загрузка...",
+  "error": "Ошибка"
 }
