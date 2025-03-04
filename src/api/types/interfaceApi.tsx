@@ -6,17 +6,18 @@ export interface Project {
     timestamp: string;
 }
 
-// export interface Backlog extends Project {
-//     storyPoints: number
-// }
 
 
 export interface Sprint extends Omit<Project, 'id'> {
     projectId: number,
 }
 
+export type TaskStatus = "todo" | "doing" | "done";
+
 export interface Tasks extends Omit<Project, 'id'>  {
-    tasksID: number 
+    tasksID: number,
+    status: TaskStatus,
+    sprintId: number | null
 }
 
 export interface IProjectsRequest {

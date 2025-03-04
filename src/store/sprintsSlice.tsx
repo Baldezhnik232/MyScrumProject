@@ -8,10 +8,9 @@ import { sprintsMoksApi } from "../api/index";
       return response
  })  
 
-
- 
 interface SprintsState {
     sprints: Sprint[],
+    filterSprints: string,
     loading: boolean,
     error: string | null
 }
@@ -19,9 +18,10 @@ interface SprintsState {
 
 const initialState: SprintsState = {
   sprints: [],
+  filterSprints: '',
   loading: false,
-  error: null
-}
+  error: null,
+};
 
 const sprintsSlice = createSlice({
   name:'sprints',
@@ -29,7 +29,8 @@ const sprintsSlice = createSlice({
   reducers: {
     addSprint: (state, action: PayloadAction<Sprint>): void=>{
       state.sprints.push(action.payload)
-    }
+    },
+
   },
   extraReducers:(builder): void=> {
     builder

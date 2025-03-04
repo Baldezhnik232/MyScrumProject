@@ -17,6 +17,9 @@
   "newTask": {
     "title": "Новая Задача"
   },
+  "newSprint":{
+    "title": "Новый Спринт"
+  },
   "formTaskRequired": {
     "required": "Это поле обязательно для заполнения",
     "message": "Необходимо 3 символа"

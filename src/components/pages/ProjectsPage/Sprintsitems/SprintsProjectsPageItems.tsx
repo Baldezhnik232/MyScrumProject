@@ -2,8 +2,10 @@
 
 import {Sprint} from '../../../../api/types/interfaceApi.tsx'
 import { Card, CardMedia, CardContent, Typography, CardActions, Button, Grid2 } from "@mui/material"
+import DeleteIcon from '@mui/icons-material/Delete';
 import {formDate} from '../../../../api/moks/sprints.mock.tsx'
 import { Link } from "react-router-dom";
+import {useState} from "react";
 
 
 interface SprintsProps {
@@ -11,8 +13,17 @@ interface SprintsProps {
 }
 
 export const SprintsPageItems = ({sprints}:SprintsProps) => {
+    const [isVisible, setIsVisible] = useState(true);
+
+    const handleDelete = ():void => {
+        setIsVisible(false);
+    };
+
+    if (!isVisible) {
+        return null;
+    }
     return (
-      <Grid2 size={4} >
+      <Grid2  size={4} >
         <Card sx={{ maxWidth: 345 }}>
         <CardMedia
           sx={{ height: 300 }}
@@ -27,9 +38,12 @@ export const SprintsPageItems = ({sprints}:SprintsProps) => {
             {formDate(sprints.timestamp)}
           </Typography>
         </CardContent>
-        <CardActions>
+        <CardActions sx={{display: 'flex', justifyContent: 'space-between'}}>
           <Button size="small">Share</Button>
-          <Button size="small" component={Link} to={`/Project/${sprints.projectId}/sprints/${sprints.id}`} >Learn More</Button>
+          <Button size="small" component={Link} to={`/Project/${sprints.projectId}/sprints/${sprints.projectId}`} >Learn More</Button>
+            <Button size = "small" onClick={handleDelete}>
+                <DeleteIcon  />
+            </Button>
         </CardActions>
       </Card>
     </Grid2>

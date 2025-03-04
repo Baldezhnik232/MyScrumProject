@@ -5,8 +5,9 @@ import {useParams} from "react-router-dom"
 import {Tasks} from "../../../../api/types/interfaceApi.tsx"
 import { Grid2, Typography } from "@mui/material"
 import {TaskSprintsItems} from '../TasksSprintsItems/TaskSprintsPage'
-import {tasksMocksApi} from '../../../../api/index'
-import {AppBreadcrumbs} from '../../ProjectsPage/RouterPanel/BreadcrumbsProjects'
+import {tasksMocksApi} from '../../../../api'
+import {AppBreadcrumbs} from '../../ProjectsPage/RouterPanel/BreadcrumbsProjects.tsx'
+
 
 export const AppTaskSprints = ()=> {
   const { sprintId } = useParams<{ id: string, sprintId: string }>();
@@ -31,7 +32,7 @@ export const AppTaskSprints = ()=> {
     <AppBreadcrumbs showBacklogLink={false} />
       <Grid2 container spacing={2} sx={{ mt: 5 }}>
         {taskSpr.map((task: Tasks) => (
-          <TaskSprintsItems key={task.id} tasks={task} />
+          <TaskSprintsItems key={task.tasksID} tasks={task} />
         ))}
       </Grid2>
     </>

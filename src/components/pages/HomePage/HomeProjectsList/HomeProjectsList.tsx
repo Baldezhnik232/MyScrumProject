@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-
 import { Grid2, Typography } from '@mui/material';
 import { AppProjectsItem } from '../HomeProjectsItems/HomeProjectsItem';
 import { Project } from '../../../../api/types/interfaceApi.tsx';

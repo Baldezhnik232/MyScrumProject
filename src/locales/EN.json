@@ -17,6 +17,9 @@
   "newTask": {
     "title": "new Task"
   },
+  "newSprint": {
+    "title": "new Sprint"
+  },
   "formTaskRequired": {
     "required": "This field is required",
     "message": "You need 3"
