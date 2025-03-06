@@ -5,6 +5,9 @@ import {useParams} from 'react-router-dom';
 import {format, parse} from "date-fns"
 import {Sprint} from "../../../../api/types/interfaceApi.tsx";
 
+import { useTranslation } from 'react-i18next';
+
+
 
 type FormSprintsValues = {
     title: string,
@@ -21,6 +24,8 @@ interface AppFormPropsSprints{
 export const AppFormSprints = ( {open, setOpen, addSprints}:AppFormPropsSprints ) => {
 
     const { id } = useParams<{ id: string }>();
+
+    const { t } = useTranslation();
 
 
     const { handleSubmit, control, reset, formState:{errors} } = useForm<FormSprintsValues>({
@@ -52,8 +57,8 @@ export const AppFormSprints = ( {open, setOpen, addSprints}:AppFormPropsSprints 
                         name='title'
                         control={control}
                         rules={{
-                            required: 'Спринт',
-                            minLength: {value: 3, message: 'лыл'}
+                            required: t('formTaskRequired.required'),
+                            minLength: {value: 3, message: t('formTaskRequired.message')}
                         }}
                             render={({field}) => <TextField{...field} label= 'Sprint' fullWidth margin="dense" error={!!errors.title} helperText={errors.title?.message} /> }
                     />
@@ -61,10 +66,10 @@ export const AppFormSprints = ( {open, setOpen, addSprints}:AppFormPropsSprints 
                         name= 'description'
                         control={control}
                         rules={{
-                            required: 'Описание ',
-                            minLength: {value:3, message: 'wewe'}
+                            required: t('formDescription.required'),
+                            minLength: {value:3, message: t('formDescription.message')}
                         }}
-                        render={({field}) => <TextField {...field} label = 'Disc' fullWidth multiline rows={2} margin="dense" error={!!errors.description} helperText={errors.description?.message} />}
+                        render={({field}) => <TextField {...field} label = 'Description' fullWidth multiline rows={2} margin="dense" error={!!errors.description} helperText={errors.description?.message} />}
                         />
                     <Controller
                         name="timestamp"

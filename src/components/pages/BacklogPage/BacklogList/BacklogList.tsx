@@ -17,8 +17,6 @@ import {addBacklogTask} from '../../../../store/backlogSlice.tsx'
 export const AppBacklogList = () => {
   const {t} = useTranslation();
   const {id} = useParams<{id:string}>();
-  // const [task, setTask] = useState([])
-  // const [loading, setLoading] = useState<boolean>(true);
   const [open, setOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -33,17 +31,16 @@ export const AppBacklogList = () => {
     dispatch(fetchBacklog());
   }, [dispatch, id]);
 
-  // const addNewTask = (newTask): void => {
-  //   setTask((prevTasks)=> [...prevTasks, newTask])
-  // }
+
   if (loading) return <Typography sx={{display:'flex', justifyContent: 'center', minHeight: '100vh' }} >{t("loading")}</Typography>;
   return (
     <>
     <AppBreadcrumbs />
     <AppSearchBacklog/>
+
       <Grid2 container spacing={2} sx={{mt:5}}>
         {filteredBacklog.map((backlog)=>(
-          <BacklogPageItem key={backlog.id} backlog={backlog}/>
+          <BacklogPageItem key={backlog.tasksID} backlog={backlog}/>
         ))}
       </Grid2>
       <Grid2 container  sx={{ mt:2, display: 'flex', justifyContent: 'center' }}>

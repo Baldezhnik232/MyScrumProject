@@ -31,7 +31,7 @@ interface AppFormProps {
   setOpen: (value: boolean) => void;
 }
 
-export const AppForm = ({ open, setOpen, addTask }: AppFormProps) => {
+export const AppForm = ({ open, setOpen }: AppFormProps) => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
@@ -139,8 +139,8 @@ export const AppForm = ({ open, setOpen, addTask }: AppFormProps) => {
             name='storyPoints'
             control={control}
             rules={{
-              required: t('formStorPointRequired.required'),
-              min: { value: 1, message: t('formStorPointRequired.message') },
+              required: t('formStoryPointRequired.required'),
+              min: { value: 1, message: t('formStoryPointRequired.message') },
             }}
             render={({ field }) => (
               <TextField
@@ -158,7 +158,7 @@ export const AppForm = ({ open, setOpen, addTask }: AppFormProps) => {
             name='description'
             control={control}
             rules={{
-              required: t('formDescription.reqxuired'),
+              required: t('formDescription.required'),
               minLength: { value: 3, message: t('formDescription.message') },
             }}
             render={({ field }) => (

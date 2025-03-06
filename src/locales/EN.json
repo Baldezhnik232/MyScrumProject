@@ -24,7 +24,7 @@
     "required": "This field is required",
     "message": "You need 3"
   },
-  "formStorPointRequired": {
+  "formStoryPointRequired": {
     "required": "This is required",
     "message": "You need 1 number"
   },

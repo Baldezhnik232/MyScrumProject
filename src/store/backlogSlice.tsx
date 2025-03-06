@@ -1,6 +1,6 @@
 
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { Tasks } from "../types/interfaceApi"; // Подключаем тип задачи
+import { Tasks } from "../api/types/interfaceApi.tsx"
 import { backlogMoksApi } from '../api/index';
 
 

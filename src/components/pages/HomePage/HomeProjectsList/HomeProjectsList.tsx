@@ -45,7 +45,7 @@ export const AppProjectsList: React.FC = () => {
       <Grid2
         container
         spacing={2}
-        sx={{ mt: 5 }}
+        sx={{ mt:4 }}
       >
         {filterProjects.length > 0 ? (
           filterProjects.map((project: Project) => (

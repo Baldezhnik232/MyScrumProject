@@ -6,16 +6,15 @@ export interface Project {
     timestamp: string;
 }
 
-
-
 export interface Sprint extends Omit<Project, 'id'> {
     projectId: number,
 }
 
 export type TaskStatus = "todo" | "doing" | "done";
 
-export interface Tasks extends Omit<Project, 'id'>  {
+export interface Tasks  {
     tasksID: number,
+    title: string,
     status: TaskStatus,
     sprintId: number | null
 }

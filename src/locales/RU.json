@@ -24,7 +24,7 @@
     "required": "Это поле обязательно для заполнения",
     "message": "Необходимо 3 символа"
   },
-  "formStorPointRequired": {
+  "formStoryPointRequired": {
     "required": "Необходимо заполнить",
     "message": "Необходимо 1 число"
   },
