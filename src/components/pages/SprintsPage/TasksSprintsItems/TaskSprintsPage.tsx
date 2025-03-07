@@ -1,5 +1,5 @@
 import { Tasks} from '../../../../api/types/interfaceApi.tsx'
-import { Card, CardContent, Typography, CardActions, Button, Grid2 } from "@mui/material"
+import { Card, CardContent, Typography, Grid2 } from "@mui/material"
 
 
 interface TaskSprints {
@@ -7,8 +7,8 @@ interface TaskSprints {
 }
 
 export const TaskSprintsItems = ({tasks}: TaskSprints) => {
-  return (
 
+  return (
     <Grid2 size={4} >
         <Card sx={{  maxWidth: 600 }}>
         <CardContent >
@@ -16,10 +16,6 @@ export const TaskSprintsItems = ({tasks}: TaskSprints) => {
             {tasks.title}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small" >Learn More</Button>
-        </CardActions>
       </Card>
     </Grid2>
 

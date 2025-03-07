@@ -8,10 +8,9 @@ export const AppFooter = () => {
     <Box
       component='footer'
       sx={{
-        mt: 5,
+        mt: 3,
         backgroundColor: theme.palette.primary.main,
-        color: 'white',
-        padding: 5,
+        color: 'white'
       }}
     >
       <Container maxWidth='lg'>

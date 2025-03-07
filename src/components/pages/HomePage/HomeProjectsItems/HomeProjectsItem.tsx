@@ -10,7 +10,7 @@ interface ProjectProps {
 export const AppProjectsItem = ({project}: ProjectProps) => {
   return (
     <Grid2 size={4} >
-      <Card sx={{ width: {sx:300, sm:200, md: 300 } }}>
+      <Card sx={{ width: {sx:300, sm:200, md: 300 }  }}>
       <CardMedia
         sx={{ height: {xs: 100, sm:200, md: 300}}}
         image="https://img.freepik.com/premium-photo/owl-with-mountain-glasses-it_899894-52387.jpg?w=826"
@@ -24,7 +24,7 @@ export const AppProjectsItem = ({project}: ProjectProps) => {
           {formDate(project.timestamp)}
         </Typography>
       </CardContent>
-      <CardActions sx={{ display: 'flex', justifyContent:{ xs: 'start', sm: 'start', md: 'start' }, alignItems:'center', padding: { xs: '7px', sm: '16px' }}}>
+      <CardActions sx={{display: 'flex', flexWrap:'wrap', justifyContent: 'center', overflow: 'hidden'}}>
         <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}}  size="small">Share</Button>
         <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size="small" component={Link} to={`/project/${project.id}`}>Learn More</Button>
       </CardActions>

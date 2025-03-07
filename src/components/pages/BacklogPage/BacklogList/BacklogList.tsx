@@ -12,7 +12,10 @@ import { useTranslation } from "react-i18next"
 import {useDispatch, useSelector} from "react-redux"
 import {RootState} from "../../../../store";
 import {fetchBacklog} from "../../../../store/backlogSlice"
-import {addBacklogTask} from '../../../../store/backlogSlice.tsx'
+import {addBacklogTask, updateTaskStatus} from '../../../../store/backlogSlice.tsx'
+
+import {  TaskStatus} from "../../../../api/types/interfaceApi.tsx";
+
 
 export const AppBacklogList = () => {
   const {t} = useTranslation();
@@ -26,6 +29,12 @@ export const AppBacklogList = () => {
       backlog.title.toLowerCase().includes(filterBacklog.toLowerCase())
   );
 
+    const handleMoveTask = (taskID: number, sprintId: number, status: TaskStatus) => {
+
+    console.log('handleMoveTask called', { taskID, sprintId, status });
+    dispatch(updateTaskStatus({ taskID, sprintId, status }));
+
+  };
 
   useEffect((): void => {
     dispatch(fetchBacklog());
@@ -40,8 +49,9 @@ export const AppBacklogList = () => {
 
       <Grid2 container spacing={2} sx={{mt:5}}>
         {filteredBacklog.map((backlog)=>(
-          <BacklogPageItem key={backlog.tasksID} backlog={backlog}/>
-        ))}
+          <BacklogPageItem key={backlog.tasksID} backlog={backlog} onMoveTask={handleMoveTask}/>
+        ))
+        }
       </Grid2>
       <Grid2 container  sx={{ mt:2, display: 'flex', justifyContent: 'center' }}>
       <AppButtonAdd setOpen={setOpen} />

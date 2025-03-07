@@ -2,6 +2,7 @@
 
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import {tasksMocksApi} from "../api/index";
+
 import {Tasks} from "../api/types/interfaceApi.tsx";
 
 export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async():  Promise<Tasks[]> =>{
@@ -30,20 +31,7 @@ const tasksSlice = createSlice({
     reducers: {
         addTask: (state, action: PayloadAction<Tasks>): void => {
             state.tasks.push(action.payload)
-
-    },
-    updateTaskSprint: (state, action: PayloadAction<{ tasksID: number, projectID: number }>): void => {
-        const task = state.tasks.find((t) => t.tasksID === action.payload.tasksID)
-        if (task) {
-            task.tasksID = action.payload.projectID
         }
-    },
-    updateTaskStatus: (state, action: PayloadAction<{ taskId: number, status: TasksStatus }>) => {
-        const task = state.tasks.find((t) => t.tasksID === action.payload.taskId);
-        if (task) {
-            task.status = action.payload.status;
-            }
-        },
     },
     extraReducers: (builder) => {
         builder
@@ -62,5 +50,5 @@ const tasksSlice = createSlice({
     },
 })
 
-export const { addTask, updateTaskSprint, updateTaskStatus } = tasksSlice.actions;
+export const { addTask } = tasksSlice.actions;
 export default tasksSlice.reducer

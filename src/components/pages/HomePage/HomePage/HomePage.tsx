@@ -11,7 +11,7 @@ const App: React.FC = () => {
   return (
     <Box sx={{display: 'flex', flexDirection: 'column',  minHeight: '100vh'}}>
       <AppHeader />
-      <Container sx={{ flexGrow: 1, mt: 4 }}>
+      <Container sx={{flexGrow: 1, mt: 5, display: 'flex', flexDirection: 'column'}}>
         <Routes>
           <Route
             path='/'

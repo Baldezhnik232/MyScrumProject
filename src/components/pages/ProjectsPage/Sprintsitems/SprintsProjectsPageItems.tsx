@@ -24,23 +24,23 @@ export const SprintsPageItems = ({sprints}:SprintsProps) => {
     }
     return (
       <Grid2  size={4} >
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ width: {sx:300, sm:200, md: 300 } }}>
         <CardMedia
-          sx={{ height: 300 }}
+          sx={{ height: {xs: 100, sm:200, md: 300}}}
           image="https://img.freepik.com/premium-photo/radiant-rhythms-exploring-neon-line-art-spectrum_1020495-70919.jpg?w=1060"
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+        <CardContent sx={{ width: {sx:'100%'}}}>
+          <Typography  sx={{fontSize:{xs:'1rem', sm:'1.5rem'}}} gutterBottom variant="h5" component="div">
             {sprints.title}
           </Typography>
-          <Typography gutterBottom variant="h6">{sprints.description}</Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+          <Typography sx={{fontSize:{xs:'0.7rem', sm:'1.5rem'}}} gutterBottom variant="h6">{sprints.description}</Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary', fontSize:{xs:'0.6rem', sm:'1.5rem'} }}>
             {formDate(sprints.timestamp)}
           </Typography>
         </CardContent>
-        <CardActions sx={{display: 'flex', justifyContent: 'space-between'}}>
-          <Button size="small">Share</Button>
-          <Button size="small" component={Link} to={`/Project/${sprints.projectId}/sprints/${sprints.projectId}`} >Learn More</Button>
+        <CardActions sx={{display: 'flex', flexWrap:'wrap', justifyContent: 'center', overflow: 'hidden'}}>
+          <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size="small">Share</Button>
+          <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size="small" component={Link} to={`/Project/${sprints.projectId}/sprints/${sprints.projectId}`} >Learn More</Button>
             <Button size = "small" onClick={handleDelete}>
                 <DeleteIcon  />
             </Button>

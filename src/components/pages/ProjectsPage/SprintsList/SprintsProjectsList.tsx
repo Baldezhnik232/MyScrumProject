@@ -25,7 +25,6 @@ export const AppSprintsList = () => {
   const { sprints, loading } = useSelector((state: RootState) => state.sprints);
 
 
-
   useEffect((): void => {
     dispatch(fetchSprints());
   }, [dispatch]);
