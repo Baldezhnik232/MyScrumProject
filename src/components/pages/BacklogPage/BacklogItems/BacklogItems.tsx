@@ -11,7 +11,7 @@ import { formDate } from '../../../../api/moks/sprints.mock.tsx';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {useState} from "react";
 import {TaskModal} from "../TasksModal/TasksModal.tsx";
-import { TaskStatus} from "../../../../api/types/interfaceApi.tsx";
+import {TaskStatus, Tasks} from "../../../../api/types/interfaceApi.tsx";
 import React from "react";
 
 interface BacklogPageItemProps {
@@ -23,12 +23,13 @@ interface BacklogPageItemProps {
         timestamp: string;
 
     };
-    onMoveTask: (tasksID: number, sprintId: number, status: TaskStatus) => void;
+    onMoveTask: (tasksID: number,  status: TaskStatus, sprintId: number ) => void;
+    tasks: Tasks
+
 }
 
 
-
-export const BacklogPageItem: React.FC<BacklogPageItemProps>= ({ backlog, onMoveTask }) => {
+export const BacklogPageItem: React.FC<BacklogPageItemProps>= ({ backlog, onMoveTask}) => {
     const [isValide, setIsValide] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -47,9 +48,8 @@ export const BacklogPageItem: React.FC<BacklogPageItemProps>= ({ backlog, onMove
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
-
-
-
+    
+    
     return (
     <Grid2 size={4}>
       <Card sx={{ width: {sx:300, sm:200, md: 300 }, pb:1 }}>
@@ -97,7 +97,7 @@ export const BacklogPageItem: React.FC<BacklogPageItemProps>= ({ backlog, onMove
             open={isModalOpen}
             onClose={handleCloseModal}
             tasksID={backlog.id}
-            onSave={(status, sprintId) => onMoveTask(backlog.id, sprintId, status)}
+            onSave={( tasksID,  status, sprintId  ) => onMoveTask(tasksID, status, sprintId )}
         />
     </Grid2>
   );

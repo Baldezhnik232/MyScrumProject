@@ -9,19 +9,22 @@ import { TaskStatus} from "../../../../api/types/interfaceApi.tsx";
 interface TaskModalProps {
     open : boolean;
     onClose: () => void;
-    onSave: (status: TaskStatus, sprintId: number) => void
+    tasksID: number,
+    onSave: ( tasksID: number,  status: TaskStatus, sprintId: number) => void
 }
 
-export const TaskModal: React.FC<TaskModalProps> = ({open, onClose, onSave}) => {
-    const [sprintId, setSprintId] = useState<number>(1);
+export const TaskModal: React.FC<TaskModalProps> = ({open, onClose, tasksID, onSave }) => {
     const [status, setStatus]= useState<TaskStatus>('todo');
-
-
+    const [sprintId, setSprintId] = useState<number>(1);
+    console.log("Selected sprintId before dispatch:", sprintId);
+   
     const handleSave =()=> {
-        onSave( status, sprintId );
+        onSave( tasksID,  status, sprintId );
         onClose();
 
     }
+    console.log(TaskModal, 'sddsds');
+
 
     return (
         <Modal open={open} onClose={onClose} >

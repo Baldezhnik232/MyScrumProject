@@ -1,10 +1,9 @@
 
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { Tasks } from "../api/types/interfaceApi.tsx"
+import { Tasks, TaskStatus } from "../api/types/interfaceApi.tsx"
 import { backlogMoksApi } from '../api/index';
 
-
-export const  fetchBacklog = createAsyncThunk<Tasks[]>('backlog/fetchBacklog', async () => {
+export const fetchBacklog = createAsyncThunk<Tasks[]>('backlog/fetchBacklog', async () => {
     const response = await backlogMoksApi.getBacklog({})
     return response
 });
@@ -35,21 +34,23 @@ const backlogSlice = createSlice({
         addBacklogTask: (state, action: PayloadAction<Tasks>) => {
             state.backlog.push(action.payload);
         },
-        updateTaskStatus: (state, action: PayloadAction<{ taskID: number; sprintId: number; status: TaskStatus }>) => {
-            console.log(updateTaskStatus,'called');
+        updateTaskStatus: (state, action: PayloadAction<{ tasksID: number, status: TaskStatus, sprintId: number }>) => {
+            const { tasksID, status, sprintId  } = action.payload;
 
-            const { taskID, sprintId, status } = action.payload;
-            const taskIndex = state.backlog.findIndex((task) => task.id === taskID);
+            console.log("Backlog state:", state.backlog);
 
+
+            const taskIndex = state.backlog.findIndex((task) => task.id === tasksID);
             if (taskIndex !== -1) {
                 const task = state.backlog[taskIndex];
 
                 state.backlog.splice(taskIndex, 1);
                 state.sprints.push({
                     ...task,
-                    sprintId,
-                    status
-                });
+                    tasksID,
+                    status,
+                    sprintId 
+                 });
             }
         },
     },

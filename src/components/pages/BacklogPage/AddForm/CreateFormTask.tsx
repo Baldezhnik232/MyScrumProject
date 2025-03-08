@@ -21,7 +21,7 @@ type FormValues = {
   description: string;
   timestamp: string;
   status: string;
-  sprintId: null;
+  sprintId: number;
   image?: File;
 };
 
@@ -48,7 +48,7 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
       description: '',
       timestamp: format(new Date(), "yyyy-MM-dd'T'HH:mm"),
       status: 'todo',
-      sprintId: null,
+      sprintId: 1,
       image: undefined,
     },
   });

@@ -15,7 +15,6 @@ import { addSprint } from '../../../../store/sprintsSlice.tsx'
 
 export const AppSprintsList = () => {
   const { t } = useTranslation();
-
   const { id } = useParams<{ id: string }>();;
   const [open, setOpen] = useState(false);
 
@@ -46,6 +45,8 @@ export const AppSprintsList = () => {
         {t('loading')}
       </Typography>
     );
+
+
   return (
     <>
       <AppBreadcrumbs />

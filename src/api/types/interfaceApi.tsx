@@ -13,11 +13,15 @@ export interface Sprint extends Omit<Project, 'id'> {
 export type TaskStatus = "todo" | "doing" | "done";
 
 export interface Tasks  {
-    tasksID: number,
-    title: string,
-    status: TaskStatus,
-    sprintId: number | null
-}
+    tasksID: number;
+    status: TaskStatus;
+    sprintId: number; 
+}   
+// export interface SprintTask extends Tasks {
+//     storyPoints: number;
+//     description: string;
+//     timestamp: string;
+//   }
 
 
 
