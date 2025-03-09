@@ -10,7 +10,7 @@ export const fetchBacklog = createAsyncThunk<Tasks[]>('backlog/fetchBacklog', as
 
 interface BacklogState {
     backlog: Tasks[],
-    sprints: Tasks[],
+    tasks: Tasks[],
     filterBacklog: string,
     loading: boolean,
     error: string | null
@@ -18,7 +18,7 @@ interface BacklogState {
 
 const initialState: BacklogState = {
     backlog: [],
-    sprints: [],
+    tasks: [],
     filterBacklog: '',
     loading: false,
     error: null,
@@ -34,20 +34,19 @@ const backlogSlice = createSlice({
         addBacklogTask: (state, action: PayloadAction<Tasks>) => {
             state.backlog.push(action.payload);
         },
-        updateTaskStatus: (state, action: PayloadAction<{ tasksID: number, status: TaskStatus, sprintId: number }>) => {
-            const { tasksID, status, sprintId  } = action.payload;
-
-            console.log("Backlog state:", state.backlog);
-
-
+        updateTaskStatus: (state, action: PayloadAction<{ id: number, tasksID: number, status: TaskStatus, sprintId: number }>) => {
+            const { id, tasksID, status, sprintId  } = action.payload;
+            
             const taskIndex = state.backlog.findIndex((task) => task.id === tasksID);
+
             if (taskIndex !== -1) {
                 const task = state.backlog[taskIndex];
 
                 state.backlog.splice(taskIndex, 1);
-                state.sprints.push({
+
+                state.tasks.push({
                     ...task,
-                    tasksID,
+                    id,
                     status,
                     sprintId 
                  });

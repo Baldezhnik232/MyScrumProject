@@ -8,20 +8,16 @@ export interface Project {
 
 export interface Sprint extends Omit<Project, 'id'> {
     projectId: number,
+    tasksID: number
 }
 
-export type TaskStatus = "todo" | "doing" | "done";
+export type TaskStatus = "📝 To Do" | "🚀 Doing" | "🚀 Done";
 
 export interface Tasks  {
-    tasksID: number;
+    id: number;
     status: TaskStatus;
     sprintId: number; 
 }   
-// export interface SprintTask extends Tasks {
-//     storyPoints: number;
-//     description: string;
-//     timestamp: string;
-//   }
 
 
 

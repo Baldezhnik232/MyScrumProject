@@ -8,51 +8,34 @@ export const formDate = (timestamp: string): string => {
 
 export const tasksMocks: Tasks[] = [
   {
-    tasksID: 1,
-    status: 'todo',
+    
+    id: 1,
+    status: '📝 To Do',
     sprintId: 1
   },
   {
-    tasksID: 1,
-    status: 'todo',
+   
+    id: 1,
+    status: '📝 To Do',
     sprintId: 1
   },
   {
-    tasksID: 1,
-    status: 'todo',
+
+    id: 1,
+    status: '📝 To Do',
     sprintId: 1
   },
   {
-    tasksID: 2,
-    status: 'doing',
+
+    id: 2,
+    status: '🚀 Doing',
     sprintId: 2
   },
   {
-    tasksID: 2,
-    status: 'doing',
-    sprintId: 2
-  },
-  {
-    tasksID: 2,
-    status: 'doing',
-    sprintId: 2
-  },
-  {
-    tasksID: 3,
-    status: 'done',
+    id: 3,
+    status: '🚀 Doing',
     sprintId: 3
-  },
-  {
-    tasksID: 3,
-    status: 'done',
-    sprintId: 3
-  },
-  {
-    tasksID: 3,
-    status: 'done',
-    sprintId: 3
-  },
+  }
   
-
-
+  
 ];

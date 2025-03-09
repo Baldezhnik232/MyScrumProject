@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import {Sprint} from '../api/types/interfaceApi.tsx'
+import {Sprint, Tasks} from '../api/types/interfaceApi.tsx'
 import { sprintsMoksApi } from "../api/index";
 
 
@@ -10,7 +10,7 @@ import { sprintsMoksApi } from "../api/index";
 
 interface SprintsState {
     sprints: Sprint[],
-    filterSprints: string,
+    tasks: Tasks[],
     loading: boolean,
     error: string | null
 }
@@ -18,7 +18,7 @@ interface SprintsState {
 
 const initialState: SprintsState = {
   sprints: [],
-  filterSprints: '',
+  tasks: [],
   loading: false,
   error: null,
 };
@@ -27,10 +27,13 @@ const sprintsSlice = createSlice({
   name:'sprints',
   initialState,
   reducers: {
-    addSprint: (state, action: PayloadAction<Sprint>): void=>{
-      state.sprints.push(action.payload)
-    },
-
+    moveTaskToSprint: (state, action: PayloadAction<{ task: Tasks, tasksID: number }>) => {
+      const sprint = state.sprints.find(s => s.tasksID === action.payload.tasksID);
+      if (sprint) {
+          sprint.id.push(action.payload.task);
+      }
+  }
+    
   },
   extraReducers:(builder): void=> {
     builder
@@ -51,6 +54,6 @@ const sprintsSlice = createSlice({
   }
 })
 
+export const {moveTaskToSprint} = sprintsSlice.actions;
 
-export const {addSprint} = sprintsSlice.actions;
 export default sprintsSlice.reducer

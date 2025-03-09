@@ -1,4 +1,4 @@
-import {  Tasks} from '../../../../api/types/interfaceApi.tsx'
+import {  Tasks, TaskStatus} from '../../../../api/types/interfaceApi.tsx'
 import { Card, CardContent, Typography, Grid2, CardMedia, CardActions, Button } from "@mui/material"
 import { formDate } from '../../../../api/moks/sprints.mock.tsx';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 interface TaskSprints {
   tasks: Tasks
+  status: TaskStatus; 
 }
 
 export const TaskSprintsItems = ({tasks}: TaskSprints) => {
@@ -15,6 +16,10 @@ export const TaskSprintsItems = ({tasks}: TaskSprints) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleClose = () => {
+
+    if (tasks.status === '📝 To Do'|| tasks.status === '🚀 Doing' || tasks.status === '🚀 Done') {
+      setIsValide(false);
+    }
       setIsValide(false);
   }
 

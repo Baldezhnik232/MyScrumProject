@@ -26,7 +26,7 @@ const App: React.FC = () => {
             element={<AppBacklogList />}
           />
           <Route
-            path='/project/:id/sprints/:sprintId'
+            path='/project/:id/sprints/:tasksId'
             element={<AppTaskSprints />}
           />
         </Routes>

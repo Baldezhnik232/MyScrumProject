@@ -13,7 +13,7 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async():  Promise
 
 
 interface TasksState {
-    tasks: Tasks[]
+    tasks: Tasks[],
     loading: boolean,
     error: string | null
 }
@@ -31,6 +31,9 @@ const tasksSlice = createSlice({
     reducers: {
         addTask: (state, action: PayloadAction<Tasks>): void => {
             state.tasks.push(action.payload)
+        },
+        removeTaskFromBacklog: (state, action: PayloadAction<string>): void => {
+            state.tasks = state.tasks.filter(task => task.id !== Number(action.payload));
         }
     },
     extraReducers: (builder) => {

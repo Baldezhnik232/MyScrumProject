@@ -1,5 +1,7 @@
 
 
+
+
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 
@@ -14,14 +16,14 @@ interface AppButtonAddProps {
 
 
 
-export const AppButtonAddSpirits = ({setOpen}: AppButtonAddProps ) => {
+export const AppButtonAddTasks = ({setOpen}: AppButtonAddProps ) => {
     const {t} = useTranslation();
 
     return (
         <Box sx={{ '& > :not(style)': { m: 1 }} } onClick={()=>{setOpen(true)}}  >
             <Fab variant="extended"  color="primary">
                 <AddIcon sx={{ mr: 1 }}  />
-                {t("newSprint.title")}
+                {t("newTask.title")}
             </Fab>
         </Box>
 

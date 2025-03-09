@@ -8,15 +8,11 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSprints } from '../../../../store/sprintsSlice';
 import { Sprint } from '../../../../api/types/interfaceApi.tsx';
-import {AppButtonAddSpirits} from "../AddButtonSprints/AppButtonSpirits.tsx";
-import {AppFormSprints} from "../AddFormSpirits/CreateFormSprints.tsx";
-import { addSprint } from '../../../../store/sprintsSlice.tsx'
 
 
 export const AppSprintsList = () => {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();;
-  const [open, setOpen] = useState(false);
 
 
   const dispatch = useDispatch<AppDispatch>();
@@ -31,12 +27,7 @@ export const AppSprintsList = () => {
 
     const projectSprints = sprints.filter((sprint) => sprint.projectId.toString() === id);
 
-    const addNewSprint = (newSprint: Sprint) => {
-        dispatch(addSprint(newSprint));
-    };
-
-    console.log(addNewSprint, 'New Sprint');
-
+   
   if (loading)
     return (
       <Typography
@@ -60,10 +51,6 @@ export const AppSprintsList = () => {
             sprints={sprints}
           />
         ))}
-      </Grid2>
-      <Grid2 container sx={{ mt: 2, display: 'flex', justifyContent: 'center', minHeight: '5vh' }}>
-        <AppButtonAddSpirits setOpen={setOpen} />
-          <AppFormSprints open={open} setOpen={setOpen} addSprints={addNewSprint}  />
       </Grid2>
     </>
   );

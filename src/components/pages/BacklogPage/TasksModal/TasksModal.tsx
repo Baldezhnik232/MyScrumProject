@@ -10,16 +10,16 @@ interface TaskModalProps {
     open : boolean;
     onClose: () => void;
     tasksID: number,
-    onSave: ( tasksID: number,  status: TaskStatus, sprintId: number) => void
+    onSave: ( id: number,  status: TaskStatus, sprintId: number) => void
 }
 
-export const TaskModal: React.FC<TaskModalProps> = ({open, onClose, tasksID, onSave }) => {
-    const [status, setStatus]= useState<TaskStatus>('todo');
+export const TaskModal: React.FC<TaskModalProps> = ({open, onClose, onSave }) => {
+    const [status, setStatus]= useState<TaskStatus>('📝 To Do');
     const [sprintId, setSprintId] = useState<number>(1);
-    console.log("Selected sprintId before dispatch:", sprintId);
+   
    
     const handleSave =()=> {
-        onSave( tasksID,  status, sprintId );
+        onSave( id,  status, sprintId );
         onClose();
 
     }
@@ -57,9 +57,9 @@ export const TaskModal: React.FC<TaskModalProps> = ({open, onClose, tasksID, onS
                 </FormControl>
                 <FormControl fullWidth sx={{ mt: 2 }}>
                     <Select value={status} onChange={(e) => setStatus(e.target.value as TaskStatus)}>
-                        <MenuItem value="todo">To Do</MenuItem>
-                        <MenuItem value="doing">Doing</MenuItem>
-                        <MenuItem value="done">Done</MenuItem>
+                        <MenuItem value="📝 To Do">To Do</MenuItem>
+                        <MenuItem value="🚀 Doing">Doing</MenuItem>
+                        <MenuItem value="🚀 Done">Done</MenuItem>
                     </Select>
                 </FormControl>
                 <Box sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>

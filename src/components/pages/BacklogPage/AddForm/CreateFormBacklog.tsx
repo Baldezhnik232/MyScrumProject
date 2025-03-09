@@ -22,6 +22,7 @@ type FormValues = {
   timestamp: string;
   status: string;
   sprintId: number;
+  isLegacy: boolean,
   image?: File;
 };
 
@@ -47,8 +48,8 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
       storyPoints: 0,
       description: '',
       timestamp: format(new Date(), "yyyy-MM-dd'T'HH:mm"),
-      status: 'todo',
       sprintId: 1,
+      isLegacy: false,
       image: undefined,
     },
   });
@@ -60,7 +61,7 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
         "yyyy-MM-dd'T'HH:mm"
       ),
     };
-    const newTask = { id: Date.now(), ...newDate, image: data.image };
+    const newTask = { id: Date.now(), ...newDate, image: data.image || null, isLegacy: false };
     dispatch(addBacklogTask(newTask));
     setOpen(false);
     reset();
@@ -90,7 +91,7 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
             startIcon={<CloudUploadIcon />}
             sx={{ textTransform: 'none' }}
           >
-            Загрузить изображение
+            {t('formImage.button')}
           </Button>
         </label>
         {field.value && (
@@ -98,7 +99,7 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
             variant='body2'
             sx={{ mt: 1 }}
           >
-            Выбран файл: {field.value.name}
+            {t('formImage.value')} {field.value.name}
           </Typography>
         )}
       </Box>
@@ -113,7 +114,7 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
       fullWidth
     >
       <DialogTitle sx={{ display: 'flex', justifyContent: 'center' }}>
-        Create New Task
+        {t('ceateNewTask.message')}
       </DialogTitle>
       <DialogContent>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -127,7 +128,7 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
             render={({ field }) => (
               <TextField
                 {...field}
-                label='Task #'
+                label= {t('ceateNewTask.labelTasks')}
                 fullWidth
                 margin='dense'
                 error={!!errors.title}
@@ -145,7 +146,7 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
             render={({ field }) => (
               <TextField
                 {...field}
-                label='Story Points'
+                label={t('ceateNewTask.labelStory')}
                 type='number'
                 fullWidth
                 margin='dense'
@@ -164,7 +165,7 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
             render={({ field }) => (
               <TextField
                 {...field}
-                label='Description'
+                label={t('ceateNewTask.labelDesc')}
                 fullWidth
                 multiline
                 rows={2}
@@ -204,7 +205,7 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
           onClick={() => setOpen(false)}
           sx={{ color: 'black' }}
         >
-          Cancel
+         {t('ceateNewTask.cancel')}
         </Button>
         <Button
           type='submit'
@@ -212,7 +213,7 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
           variant='contained'
           color='primary'
         >
-          Create
+          {t('ceateNewTask.create')}
         </Button>
       </DialogActions>
     </Dialog>

@@ -40,7 +40,7 @@ export const SprintsPageItems = ({sprints}:SprintsProps) => {
         </CardContent>
         <CardActions sx={{display: 'flex', flexWrap:'wrap', justifyContent: 'center', overflow: 'hidden'}}>
           <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size="small">Share</Button>
-          <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size="small" component={Link} to={`/Project/${sprints.projectId}/sprints/${sprints.projectId}`} >Learn More</Button>
+          <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size="small" component={Link} to={`/Project/${sprints.projectId}/sprints/${sprints.tasksID}` } >Learn More</Button>
             <Button size = "small" onClick={handleDelete}>
                 <DeleteIcon  />
             </Button>
