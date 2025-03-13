@@ -12,11 +12,12 @@ import { useTranslation } from "react-i18next"
 import {useDispatch, useSelector} from "react-redux"
 import {RootState} from "../../../../store";
 import {fetchBacklog} from "../../../../store/backlogSlice"
-import {addBacklogTask, updateTaskStatus} from '../../../../store/backlogSlice.tsx'
+import {addBacklogTask, removeBacklogTasks} from '../../../../store/backlogSlice.tsx'
 import { AppDispatch } from "../../../../store/index.tsx"; 
 
 
 import {TaskStatus} from "../../../../api/types/interfaceApi.tsx";
+import { addTask } from "../../../../store/tasksSlice.tsx"
 
 
 export const AppBacklogList = () => {
@@ -25,15 +26,23 @@ export const AppBacklogList = () => {
   const [open, setOpen] = useState(false);
 
   const dispatch = useDispatch<AppDispatch>();
+
   const { backlog, filterBacklog, loading } = useSelector((state: RootState) => state.backlog);
 
     const filteredBacklog = backlog.filter((backlog) => backlog.title.toLowerCase().includes(filterBacklog.toLowerCase()) );
 
 
-    const handleMoveTask = (id: number, status: TaskStatus, sprintId: number,) => {
+    const handleMoveTask = (tasksID: number, status: TaskStatus, sprintId: number,) => {
+      const taskMove = backlog.find(task => task.id === tasksID);
+      if (!taskMove) return;
 
-    dispatch(updateTaskStatus({id,  status, sprintId }));
+      const newTask = {...taskMove, status, sprintId}
+      
 
+    dispatch(removeBacklogTasks(tasksID));
+    dispatch(addTask(newTask))
+
+    console.log(newTask, 'new Task');
   };
 
     
@@ -52,8 +61,8 @@ export const AppBacklogList = () => {
     <AppSearchBacklog/>
 
       <Grid2 container spacing={2} sx={{mt:5}}>
-        {filteredBacklog.map((backlog)=>(
-          <BacklogPageItem key={backlog.id} backlog={backlog} onMoveTask={handleMoveTask}/>
+        {filteredBacklog.map((task)=>(
+          <BacklogPageItem key={task.id} backlog={task} onMoveTask={handleMoveTask}/>
         ))
         }
       </Grid2>

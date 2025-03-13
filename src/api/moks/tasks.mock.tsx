@@ -7,35 +7,33 @@ export const formDate = (timestamp: string): string => {
 
 
 export const tasksMocks: Tasks[] = [
-  {
-    
-    id: 1,
-    status: '📝 To Do',
-    sprintId: 1
-  },
-  {
-   
-    id: 1,
-    status: '📝 To Do',
-    sprintId: 1
-  },
-  {
-
-    id: 1,
-    status: '📝 To Do',
-    sprintId: 1
-  },
-  {
-
-    id: 2,
-    status: '🚀 Doing',
-    sprintId: 2
-  },
-  {
-    id: 3,
-    status: '🚀 Doing',
-    sprintId: 3
-  }
+  { id: 1, status: '📝 To Do'},
+  { id: 1, status: '📝 To Do'},
+  { id: 1, status: '📝 To Do'},
+  { id: 2, status: '📝 To Do'},
+  { id: 2, status: '📝 To Do'},
+  { id: 2, status: '📝 To Do'},
+  { id: 3, status: '📝 To Do'},
+  { id: 3, status: '📝 To Do'},
+  { id: 3, status: '📝 To Do'},
+  { id: 1, status: '🚀 Doing'},
+  { id: 1, status: '🚀 Doing'},
+  { id: 1, status: '🚀 Doing'},
+  { id: 2, status: '🚀 Doing'},
+  { id: 2, status: '🚀 Doing'},
+  { id: 2, status: '🚀 Doing'},
+  { id: 3, status: '🚀 Doing'},
+  { id: 3, status: '🚀 Doing'},
+  { id: 3, status: '🚀 Doing'},
+  { id: 1, status: '🚀 Done'},
+  { id: 1, status: '🚀 Done'},
+  { id: 1, status: '🚀 Done'},
+  { id: 2, status: '🚀 Done'},
+  { id: 2, status: '🚀 Done'},
+  { id: 2, status: '🚀 Done'},
+  { id: 3, status: '🚀 Done'},
+  { id: 3, status: '🚀 Done'},
+  { id: 3, status: '🚀 Done'}
   
   
 ];

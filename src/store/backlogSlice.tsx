@@ -1,6 +1,6 @@
 
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { Tasks, TaskStatus } from "../api/types/interfaceApi.tsx"
+import { Tasks } from "../api/types/interfaceApi.tsx"
 import { backlogMoksApi } from '../api/index';
 
 export const fetchBacklog = createAsyncThunk<Tasks[]>('backlog/fetchBacklog', async () => {
@@ -10,7 +10,6 @@ export const fetchBacklog = createAsyncThunk<Tasks[]>('backlog/fetchBacklog', as
 
 interface BacklogState {
     backlog: Tasks[],
-    tasks: Tasks[],
     filterBacklog: string,
     loading: boolean,
     error: string | null
@@ -18,7 +17,6 @@ interface BacklogState {
 
 const initialState: BacklogState = {
     backlog: [],
-    tasks: [],
     filterBacklog: '',
     loading: false,
     error: null,
@@ -34,24 +32,9 @@ const backlogSlice = createSlice({
         addBacklogTask: (state, action: PayloadAction<Tasks>) => {
             state.backlog.push(action.payload);
         },
-        updateTaskStatus: (state, action: PayloadAction<{ id: number, tasksID: number, status: TaskStatus, sprintId: number }>) => {
-            const { id, tasksID, status, sprintId  } = action.payload;
-            
-            const taskIndex = state.backlog.findIndex((task) => task.id === tasksID);
-
-            if (taskIndex !== -1) {
-                const task = state.backlog[taskIndex];
-
-                state.backlog.splice(taskIndex, 1);
-
-                state.tasks.push({
-                    ...task,
-                    id,
-                    status,
-                    sprintId 
-                 });
-            }
-        },
+        removeBacklogTasks: (state, action: PayloadAction<number>)=> {
+            state.backlog = state.backlog.filter(task => task.id !== action.payload)
+        }
     },
     extraReducers: (builder): void => {
         builder
@@ -69,5 +52,5 @@ const backlogSlice = createSlice({
             });
     },
 });
-export const { setFilterBacklog, addBacklogTask, updateTaskStatus } = backlogSlice.actions;
+export const { setFilterBacklog, addBacklogTask, removeBacklogTasks } = backlogSlice.actions;
 export default backlogSlice.reducer;

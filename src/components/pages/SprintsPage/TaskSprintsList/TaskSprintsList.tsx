@@ -16,12 +16,12 @@ import {addTask} from '../../../../store/tasksSlice.tsx'
 
 
 export const AppTaskSprints = ()=> {
-  const { sprintId } = useParams<{ id: string, sprintId: string }>();
+  const { id } = useParams<{ id: string, sprintId: string }>();
 
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
-
-  const { tasks, loading } = useSelector((state: RootState) => state.backlog);
+  
+  const { tasks, loading } = useSelector((state: RootState) => state.tasks);
 
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export const AppTaskSprints = ()=> {
   }, [dispatch]);
 
 
-  const taskSpr: Tasks[] = tasks.filter((task) => task.sprintId?.toString() === sprintId);
+  const taskSpr: Tasks[] = tasks.filter((task) => task.id.toString() === id);
 
   const todoTasks = taskSpr.filter((task) => task.status === '📝 To Do');
   const doingTasks = taskSpr.filter((task) => task.status === '🚀 Doing');
@@ -46,7 +46,7 @@ return (
         <Typography variant="h6">📝 To Do</Typography>
         <Grid2 container spacing={2} sx={{ mt: 2 }}>
           {todoTasks.map((task) => (
-            <TaskSprintsItems key={task.tasksID} tasks={task} status={task.status} />
+            <TaskSprintsItems key={task.id} tasks={task} status={task.status} />
           ))}
         </Grid2>
       </>
@@ -56,7 +56,7 @@ return (
         <Typography variant="h6">🚀 Doing</Typography>
         <Grid2 container spacing={2} sx={{ mt: 2 }}>
           {doingTasks.map((task) => (
-            <TaskSprintsItems key={task.tasksID} tasks={task} status={task.status} />
+            <TaskSprintsItems key={task.id} tasks={task} status={task.status} />
           ))}
         </Grid2>
       </>
@@ -66,7 +66,7 @@ return (
         <Typography variant="h6">🚀 Done</Typography>
         <Grid2 container spacing={2} sx={{ mt: 5 }}>
           {doneTasks.map((task) => (
-            <TaskSprintsItems key={task.tasksID} tasks={task} status={task.status} />
+            <TaskSprintsItems key={task.id} tasks={task} status={task.status} />
           ))}
           
         </Grid2>

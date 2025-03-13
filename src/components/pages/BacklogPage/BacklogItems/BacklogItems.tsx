@@ -25,9 +25,8 @@ interface BacklogPageItemProps {
         isLegacy: boolean,
         image?:File
 
-    };
+    }; 
     onMoveTask: (tasksID: number,  status: TaskStatus, sprintId: number ) => void;
-    tasks: Tasks
 
 }
 

@@ -1,6 +1,6 @@
 
 
-import {Sprint} from '../../../../api/types/interfaceApi.tsx'
+import {Sprint, Tasks} from '../../../../api/types/interfaceApi.tsx'
 import { Card, CardMedia, CardContent, Typography, CardActions, Button, Grid2 } from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete';
 import {formDate} from '../../../../api/moks/sprints.mock.tsx'
@@ -9,10 +9,13 @@ import {useState} from "react";
 
 
 interface SprintsProps {
-  sprints: Sprint 
+  sprints: Sprint,
+  tasks: Tasks
+
+  
 }
 
-export const SprintsPageItems = ({sprints}:SprintsProps) => {
+export const SprintsPageItems = ({sprints, tasks}:SprintsProps) => {
     const [isVisible, setIsVisible] = useState(true);
 
     const handleDelete = ():void => {

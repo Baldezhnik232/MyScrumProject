@@ -1,6 +1,6 @@
 import { Grid2, Typography } from '@mui/material';
 import { SprintsPageItems } from '../Sprintsitems/SprintsProjectsPageItems';
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import { RootState, AppDispatch } from '../../../../store';
 import { useParams } from 'react-router-dom';
 import { AppBreadcrumbs } from '../RouterPanel/BreadcrumbsProjects';
@@ -48,6 +48,7 @@ export const AppSprintsList = () => {
       >
         {projectSprints.map((sprints: Sprint) => (
           <SprintsPageItems
+            key={sprints.tasksID}
             sprints={sprints}
           />
         ))}

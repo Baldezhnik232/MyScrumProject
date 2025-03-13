@@ -21,7 +21,6 @@ type FormValues = {
   description: string;
   timestamp: string;
   status: string;
-  sprintId: number;
   isLegacy: boolean,
   image?: File;
 };
@@ -48,7 +47,6 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
       storyPoints: 0,
       description: '',
       timestamp: format(new Date(), "yyyy-MM-dd'T'HH:mm"),
-      sprintId: 1,
       isLegacy: false,
       image: undefined,
     },

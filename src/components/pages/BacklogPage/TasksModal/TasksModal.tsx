@@ -3,23 +3,43 @@
 import { Modal, Box, Typography, Button, MenuItem, Select, FormControl } from '@mui/material';
 import React, { useState } from 'react';
 import { TaskStatus} from "../../../../api/types/interfaceApi.tsx";
-
+import  {useDispatch} from 'react-redux';
+import {addTask} from '../../../../store/tasksSlice.tsx'
+import {removeBacklogTasks} from '../../../../store/backlogSlice.tsx'
+ 
 
 
 interface TaskModalProps {
     open : boolean;
     onClose: () => void;
     tasksID: number,
-    onSave: ( id: number,  status: TaskStatus, sprintId: number) => void
+    onSave: ( 
+        id: number,  
+        status: TaskStatus, 
+        sprintId: number,  
+        title: string, 
+        storyPoints: number,
+        description: string,
+        timestamp: string,
+        isLegacy: boolean,
+        image?:File) => void
 }
 
-export const TaskModal: React.FC<TaskModalProps> = ({open, onClose, onSave }) => {
+export const TaskModal: React.FC<TaskModalProps> = ({open, onClose, tasksID, onSave }) => {
+    const dispatch = useDispatch();
     const [status, setStatus]= useState<TaskStatus>('📝 To Do');
     const [sprintId, setSprintId] = useState<number>(1);
    
    
     const handleSave =()=> {
-        onSave( id,  status, sprintId );
+        const newTask = {
+            id: tasksID,
+            title: `Tasks ${tasksID}`,
+            status,
+            sprintId,
+        }
+        dispatch(removeBacklogTasks(tasksID))
+        dispatch(addTask(newTask))
         onClose();
 
     }
@@ -44,15 +64,9 @@ export const TaskModal: React.FC<TaskModalProps> = ({open, onClose, onSave }) =>
                 <FormControl fullWidth sx={{mt:2}}>
 
                     <Select value={sprintId} onChange={(e) => setSprintId(Number(e.target.value))}>
-                        <MenuItem value={1}>Sprint 1</MenuItem>
-                        <MenuItem value={2}>Sprint 2</MenuItem>
-                        <MenuItem value={3}>Sprint 3</MenuItem>
-                        <MenuItem value={4}>Sprint 4</MenuItem>
-                        <MenuItem value={5}>Sprint 5</MenuItem>
-                        <MenuItem value={6}>Sprint 6</MenuItem>
-                        <MenuItem value={7}>Sprint 7</MenuItem>
-                        <MenuItem value={8}>Sprint 8</MenuItem>
-                        <MenuItem value={9}>Sprint 9</MenuItem>
+                    {[...Array(9)].map((_, i) => (
+                            <MenuItem key={i + 1} value={i + 1}>Sprint {i + 1}</MenuItem>
+                        ))}
                     </Select>
                 </FormControl>
                 <FormControl fullWidth sx={{ mt: 2 }}>

@@ -8,6 +8,9 @@ import { sprintsMoksApi } from "../api/index";
       return response
  })  
 
+
+
+
 interface SprintsState {
     sprints: Sprint[],
     tasks: Tasks[],
@@ -27,11 +30,23 @@ const sprintsSlice = createSlice({
   name:'sprints',
   initialState,
   reducers: {
-    moveTaskToSprint: (state, action: PayloadAction<{ task: Tasks, tasksID: number }>) => {
-      const sprint = state.sprints.find(s => s.tasksID === action.payload.tasksID);
-      if (sprint) {
-          sprint.id.push(action.payload.task);
-      }
+
+
+    moveTaskToSprint: (state, action: PayloadAction<{ id: number, sprintId: number, task: Tasks, tasksID: number }>) => {
+      const {id, sprintId, tasksID } = action.payload
+
+     const taskIndex = state.tasks.findIndex(t => t.id === tasksID);
+            if (taskIndex === -1) return; 
+
+
+            const sprint = state.sprints.find(s => s.sprintId === sprintId);
+            if (!sprint) return; 
+
+            
+            sprint.tasksID.push({tasksID});
+
+            state.tasks[taskIndex].status = '🚀 Doing'
+
   }
     
   },

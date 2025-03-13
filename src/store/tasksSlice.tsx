@@ -30,11 +30,8 @@ const tasksSlice = createSlice({
     initialState,
     reducers: {
         addTask: (state, action: PayloadAction<Tasks>): void => {
-            state.tasks.push(action.payload)
+            state.tasks.push(action.payload)     
         },
-        removeTaskFromBacklog: (state, action: PayloadAction<string>): void => {
-            state.tasks = state.tasks.filter(task => task.id !== Number(action.payload));
-        }
     },
     extraReducers: (builder) => {
         builder
