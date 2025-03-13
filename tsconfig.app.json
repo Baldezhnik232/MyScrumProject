@@ -22,5 +22,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "src/locales/i18n.tsx"]
+  "include": ["src", "src/locales/i18n.ts"]
 }
