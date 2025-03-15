@@ -11,7 +11,6 @@ import { format, parse } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { addBacklogTask } from '../../../store/backlogSlice.ts';
-
 import { Typography, Box } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
