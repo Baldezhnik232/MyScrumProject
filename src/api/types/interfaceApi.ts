@@ -20,6 +20,7 @@ export interface Tasks  {
     timestamp: string;
     status: TaskStatus;
     sprintId: number;
+    isLegacy: boolean
 }   
 // export interface SprintTask extends Tasks {
 //     storyPoints: number;

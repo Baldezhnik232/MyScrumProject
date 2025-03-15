@@ -20,6 +20,14 @@
   "newSprint":{
     "title": "Новый Спринт"
   },
+  "ceateNewTask": {
+    "message": "Создать Новую Задачу",
+    "labelTasks": "Задача #",
+    "labelStory": "Оценка задачи",
+    "labelDesc": "Описание",
+    "cancel": "Отменить",
+    "create": "Создать"
+  },
   "formTaskRequired": {
     "required": "Это поле обязательно для заполнения",
     "message": "Необходимо 3 символа"
@@ -34,6 +42,10 @@
   },
   "formDate": {
     "required": "Дата обязательна для заполнения"
+  },
+  "formImage": {
+    "button": "Добавить изображение",
+    "value": "Выбран файл:"
   },
   "homePageRoute": "Главная страница",
   "projects": "Проект #{{id}}",

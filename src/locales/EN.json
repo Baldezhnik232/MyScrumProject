@@ -20,6 +20,14 @@
   "newSprint": {
     "title": "new Sprint"
   },
+  "ceateNewTask": {
+    "message": "Create New Task",
+    "labelTasks": "Task #",
+    "labelStory": "Story Points",
+    "labelDesc": "Description",
+    "cancel": "Cancel",
+    "create": "Create"
+  },
   "formTaskRequired": {
     "required": "This field is required",
     "message": "You need 3"
@@ -34,6 +42,10 @@
   },
   "formDate": {
     "required": "Date is required "
+  },
+   "formImage": {
+    "button": "Add image",
+    "value": "Selected file:"
   },
   "homePageRoute": "Home Page",
   "projects": "Project #{{id}}",

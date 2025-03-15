@@ -45,7 +45,7 @@ export const AppBacklogList = () => {
     dispatch(fetchBacklog());
   }, [dispatch, id]);
 
-  console.log(handleMoveTask, '22332')
+
 
 
   if (loading) return <Typography sx={{display:'flex', justifyContent: 'center', minHeight: '100vh' }} >{t("loading")}</Typography>;

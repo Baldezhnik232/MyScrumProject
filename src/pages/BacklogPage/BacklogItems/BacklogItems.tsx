@@ -6,6 +6,7 @@ import {
   CardActions,
   Button,
   Grid2,
+  Box
 } from '@mui/material';
 import { formDate } from '../../../api/moks/sprints.mock.ts';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -17,7 +18,12 @@ import React from "react";
 interface BacklogPageItemProps {
     backlog: {
       tasksID: number,
-      title: string, storyPoints: number, description: string, timestamp: string,
+      title: string, 
+      storyPoints: number, 
+      description: string, 
+      timestamp: string,
+      isLegacy: boolean,
+      image?: File
     }
     onMoveTask: (tasksID: number, status: TaskStatus, sprintId: number ) => void;
     
@@ -49,10 +55,32 @@ export const BacklogPageItem: React.FC<BacklogPageItemProps>= ({ backlog, onMove
     return (
     <Grid2 size={4}>
       <Card sx={{ width: {sx:300, sm:200, md: 300 }, pb:1 }}>
-        <CardMedia
-            sx={{ height: {xs: 100, sm:200, md: 300}}}
-          image={'https://img.freepik.com/free-photo/futuristic-cat-with-goggles_23-2150969289.jpg?t=st=1740336490~exp=1740340090~hmac=3633235324c389c47cefa94780d0ddd6f82960702c6c1a10242b8f3ed32d4e7b&w=1480'}
-        />
+        
+      {backlog.isLegacy ? (
+      <CardMedia
+        sx={{ height: { xs: 100, sm: 200, md: 300 } }}
+        image={'https://img.freepik.com/free-photo/futuristic-cat-with-goggles_23-2150969289.jpg?t=st=1740336490~exp=1740340090~hmac=3633235324c389c47cefa94780d0ddd6f82960702c6c1a10242b8f3ed32d4e7b&w=1480'}
+      />
+    ) : backlog.image ? (
+      <CardMedia
+        sx={{ height: { xs: 100, sm: 200, md: 300 } }}
+        image={URL.createObjectURL(backlog.image)}
+      />
+    ) : (
+      <Box
+        sx={{
+          height: { xs: 100, sm: 200, md: 300 },
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#f0f0f0',
+        }}
+      >
+        <Typography variant="body2" color="text.secondary">
+          No Image
+        </Typography>
+      </Box>
+    )}
         <CardContent sx={{ width: {sx:'100%'}}}>
           <Typography  sx={{fontSize:{xs:'1rem', sm:'1.5rem'}}}
             gutterBottom
