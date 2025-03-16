@@ -10,7 +10,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { ControllerRenderProps, FieldValues } from "react-hook-form";
 import { format, parse } from 'date-fns';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../../store/hooks.ts';
 import { addBacklogTask } from '../../../store/backlogSlice.ts';
 import { Typography, Box } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -40,7 +40,7 @@ interface AppFormProps {
 export const AppForm = ({ open, setOpen }: AppFormProps) => {
   const { t } = useTranslation();
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const {
     handleSubmit,

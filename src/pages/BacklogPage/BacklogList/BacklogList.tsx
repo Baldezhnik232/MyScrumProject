@@ -9,11 +9,10 @@ import {AppSearchBacklog} from '../SearchBacklog/SearchBacklog.tsx'
 import {AppButtonAdd} from '../AddButton/FloatingActionButton.tsx'
 import {AppForm} from '../AddForm/CreateFormTask.tsx'
 import { useTranslation } from "react-i18next"
-import {useDispatch, useSelector} from "react-redux"
-import {RootState} from "../../../store/index.ts";
+import {useAppDispatch, useAppSelector} from "../../../store/hooks.ts"
 import {fetchBacklog} from "../../../store/backlogSlice.ts"
 import {addBacklogTask, updateTaskStatus} from '../../../store/backlogSlice.ts'
-import { AppDispatch } from "../../../store/index.ts"; 
+
 
 
 import {  TaskStatus} from "../../../api/types/interfaceApi.tsx";
@@ -24,8 +23,8 @@ export const AppBacklogList = () => {
   const {id} = useParams<{id:string}>();
   const [open, setOpen] = useState(false);
 
-  const dispatch = useDispatch<AppDispatch>();
-  const { backlog, filterBacklog, loading } = useSelector((state: RootState) => state.backlog);
+  const dispatch = useAppDispatch();
+  const { backlog, filterBacklog, loading } = useAppSelector(state => state.backlog);
 
   console.log("Backlog from Redux:", backlog);
 

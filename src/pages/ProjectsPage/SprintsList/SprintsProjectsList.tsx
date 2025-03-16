@@ -1,11 +1,10 @@
 import { Grid2, Typography } from '@mui/material';
 import { SprintsPageItems } from '../Sprintsitems/SprintsProjectsPageItems.tsx';
 import {useEffect, useState} from 'react';
-import { RootState, AppDispatch } from '../../../store/index.ts';
 import { useParams } from 'react-router-dom';
 import { AppBreadcrumbs } from '../RouterPanel/BreadcrumbsProjects.tsx';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
 import { fetchSprints } from '../../../store/sprintsSlice.ts';
 import { Sprint } from '../../../api/types/interfaceApi.tsx';
 import {AppButtonAddSpirits} from "../AddButtonSprints/AppButtonSpirits.tsx";
@@ -19,9 +18,9 @@ export const AppSprintsList = () => {
   const [open, setOpen] = useState(false);
 
 
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
-  const { sprints, loading } = useSelector((state: RootState) => state.sprints);
+  const { sprints, loading } = useAppSelector(state => state.sprints);
 
 
   useEffect((): void => {

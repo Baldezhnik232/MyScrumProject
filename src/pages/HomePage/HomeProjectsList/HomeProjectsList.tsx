@@ -3,30 +3,29 @@ import { Grid2, Typography } from '@mui/material';
 import { AppProjectsItem } from '../HomeProjectsItems/HomeProjectsItem.tsx';
 import { Project } from '../../../api/types/interfaceApi.tsx';
 import AppSearch from '../HomeSearch/HomeSearch.tsx';
-import { RootState, AppDispatch } from '../../../store/index.ts';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../../store/hooks.ts';
 import { fetchProjects } from '../../../store/projectsSlice.ts';
 import { useTranslation } from 'react-i18next';
 
 export const AppProjectsList: React.FC = () => {
   const { t } = useTranslation();
 
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   useEffect((): void => {
     dispatch(fetchProjects());
   }, [dispatch]);
 
-  const projects: Project[] = useSelector(
-    (state: RootState): Project[] => state.projects.projects
+  const projects: Project[] = useAppSelector(
+    state => state.projects.projects
   );
-  const filterProject: string = useSelector(
-    (state: RootState): string => state.projects.filterProject
+  const filterProject: string = useAppSelector(
+    state => state.projects.filterProject
   );
-  const loading: boolean = useSelector(
-    (state: RootState): boolean => state.projects.loading
+  const loading: boolean = useAppSelector(
+    state => state.projects.loading
   );
-  const error: string | null = useSelector(
-    (state: RootState): string | null => state.projects.error
+  const error: string | null = useAppSelector(
+    state => state.projects.error
   );
 
   const filterProjects = projects.filter((project) =>

@@ -1,7 +1,7 @@
 import { Breadcrumbs, Link, useTheme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink, useLocation, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
 import { AppDispatch, RootState } from '../../../store/index.ts';
 import { useEffect } from 'react';
 import { fetchProjects } from '../../../store/projectsSlice.ts';
@@ -25,12 +25,12 @@ export const AppBreadcrumbs: React.FC<ShowLinks> = ({
   const backlogPage: boolean = location.pathname === `/project/${id}/backlog`;
   const taskPage: boolean = location.pathname === `/project`;
 
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   useEffect((): void => {
     dispatch(fetchProjects());
   }, [dispatch]);
 
-  const currentProject = useSelector((state: RootState) =>
+  const currentProject = useAppSelector(state =>
     state.projects.projects.find((proj) => proj.id.toString() === id)
   );
 

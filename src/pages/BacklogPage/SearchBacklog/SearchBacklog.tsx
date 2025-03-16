@@ -1,16 +1,15 @@
 import { TextField } from "@mui/material"
 import { useTranslation } from "react-i18next"
-import {useDispatch, useSelector} from "react-redux"
-import {RootState} from "../../../store";
+import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
 import {setFilterBacklog} from "../../../store/backlogSlice"
 
 
 export const AppSearchBacklog = () => {
   const {t} = useTranslation()
 
-   const dispatch = useDispatch();
+   const dispatch = useAppDispatch();
 
-   const filterBacklog = useSelector((state:RootState): string => state.backlog.filterBacklog)
+   const filterBacklog = useAppSelector(state => state.backlog.filterBacklog);
 
 
 return (

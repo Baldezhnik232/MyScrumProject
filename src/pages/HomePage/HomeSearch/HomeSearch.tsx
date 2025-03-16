@@ -1,15 +1,14 @@
 import { TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { RootState } from "../../../store";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import {setFilterProject} from '../../../store/projectsSlice'
 
 
 
  const AppSearch = () => {
   const {t} = useTranslation()
-  const dispatch = useDispatch();
-  const filterProject: string = useSelector((state:RootState): string=> state.projects.filterProject)
+  const dispatch = useAppDispatch();
+  const filterProject: string = useAppSelector(state=> state.projects.filterProject)
 
 
     return (

@@ -7,16 +7,16 @@ import {TaskSprintsItems} from '../TasksSprintsItems/TaskSprintsPage.tsx'
 import {Tasks} from '../../../api/types/interfaceApi.tsx'
 import {AppBreadcrumbs} from '../../ProjectsPage/RouterPanel/BreadcrumbsProjects.tsx'
 import {fetchBacklog} from "../../../store/backlogSlice.ts"
-import {useDispatch, useSelector} from "react-redux";
-import { RootState, AppDispatch } from '../../../store/index.ts';
+import {useAppDispatch, useAppSelector} from "../../../store/hooks.ts";
+
 
 
 
 export const AppTaskSprints = ()=> {
   const { sprintId } = useParams<{ id: string, sprintId: string }>();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
-  const { sprints, loading } = useSelector((state: RootState) => state.backlog);
+  const { sprints, loading } = useAppSelector(state=> state.backlog);
 
 
   useEffect(() => {
