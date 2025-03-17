@@ -3,7 +3,8 @@
     "title": "Scrum Projects"
   },
   "homeSearch": {
-    "title": "Search projects"
+    "title": "Search projects",
+    "projectsFind": "Project not found"
   },
   "homePage": {
     "title": "Welcome"
@@ -49,7 +50,9 @@
   },
   "homePageRoute": "Home Page",
   "projects": "Project #{{id}}",
+  "sprints": "Sprint #{{id}}",
   "backlog": "Backlog page",
   "loading": "Loading...",
-  "error": "Error"
+  "error": "Error",
+  "projectsFind": "No tasks"
 }

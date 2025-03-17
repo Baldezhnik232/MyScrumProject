@@ -2,57 +2,56 @@
 
 import { Modal, Box, Typography, Button, MenuItem, Select, FormControl } from '@mui/material';
 import React, { useState } from 'react';
-import { TaskStatus} from "../../../api/types/interfaceApi.tsx";
+import { TaskStatus} from "../../../api/types/interfaceApi.ts";
+import Popover from '@mui/material/Popover';
 
 
 
-interface TaskModalProps {
-    open : boolean;
+
+interface TaskPopoverProps {
+    anchorEl: HTMLElement | null,
     onClose: () => void;
     tasksID: number,
     onSave: ( tasksID: number, status: TaskStatus, sprintId: number) => void
 }
 
-export const TaskModal: React.FC<TaskModalProps> = ({open, onClose, tasksID, onSave }) => {
+export const TaskPopover: React.FC<TaskPopoverProps> = ({anchorEl, onClose, tasksID, onSave }) => {
+    const open = Boolean(anchorEl);
     const [status, setStatus]= useState<TaskStatus>('todo');
     const [sprintId, setSprintId] = useState<number>(1);
-    console.log("Selected sprintId before dispatch:", sprintId);
    
     const handleSave =()=> {
         onSave( tasksID,  status, sprintId );
         onClose();
 
     }
-    console.log(TaskModal, 'sddsds');
-
-
     return (
-        <Modal open={open} onClose={onClose} >
+        <Popover
+            open={open}
+            anchorEl={anchorEl}
+            onClose={onClose}
+            anchorOrigin={{
+                vertical: 'center',
+                horizontal: 'right',
+            }}
+                transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+            }}
+         >
             <Box sx={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: 400,
-                bgcolor: 'background.paper',
-                boxShadow: 24,
-                p: 4,
+                p: 2, minWidth: 300
             }}>
                 <Typography variant="h6" gutterBottom>
                     Move Task to Sprint
                 </Typography>
-                <FormControl fullWidth sx={{mt:2}}>
-
+                <FormControl fullWidth sx={{mt:2}}> 
                     <Select value={sprintId} onChange={(e) => setSprintId(Number(e.target.value))}>
-                        <MenuItem value={1}>Sprint 1</MenuItem>
-                        <MenuItem value={2}>Sprint 2</MenuItem>
-                        <MenuItem value={3}>Sprint 3</MenuItem>
-                        <MenuItem value={4}>Sprint 4</MenuItem>
-                        <MenuItem value={5}>Sprint 5</MenuItem>
-                        <MenuItem value={6}>Sprint 6</MenuItem>
-                        <MenuItem value={7}>Sprint 7</MenuItem>
-                        <MenuItem value={8}>Sprint 8</MenuItem>
-                        <MenuItem value={9}>Sprint 9</MenuItem>
+                        {[...Array(9)].map((_, index) => (
+                            <MenuItem key={index + 1} value={index + 1}>
+                                Sprint {index + 1}
+                            </MenuItem>
+                        ))}
                     </Select>
                 </FormControl>
                 <FormControl fullWidth sx={{ mt: 2 }}>
@@ -71,7 +70,7 @@ export const TaskModal: React.FC<TaskModalProps> = ({open, onClose, tasksID, onS
                     </Button>
                 </Box>
             </Box>
-        </Modal>
+        </Popover>
     )
 }
 

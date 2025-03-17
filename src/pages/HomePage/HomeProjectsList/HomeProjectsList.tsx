@@ -54,7 +54,7 @@ export const AppProjectsList: React.FC = () => {
             />
           ))
         ) : (
-          <Typography align='center'>Проект не найден</Typography>
+          <Typography sx={{display: 'flex', justifyContent: 'center'}}>{t('homeSearch.projectsFind')}</Typography>
         )}
       </Grid2>
     </>

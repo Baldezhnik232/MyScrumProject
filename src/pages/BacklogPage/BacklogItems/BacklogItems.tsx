@@ -11,7 +11,7 @@ import {
 import { formDate } from '../../../api/moks/sprints.mock.ts';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {useState} from "react";
-import {TaskModal} from "../TasksModal/TasksModal.tsx";
+import {TaskPopover} from "../TasksModal/TasksPopover.tsx";
 import {TaskStatus, Tasks} from "../../../api/types/interfaceApi.tsx";
 import React from "react";
 
@@ -25,16 +25,13 @@ interface BacklogPageItemProps {
       isLegacy: boolean,
       image?: File
     }
-    onMoveTask: (tasksID: number, status: TaskStatus, sprintId: number ) => void;
-    
-
+    onMoveTask: (tasksID: number, status: TaskStatus, sprintId: number,  ) => void;
 }
 
 
 export const BacklogPageItem: React.FC<BacklogPageItemProps>= ({ backlog, onMoveTask}) => {
     const [isValide, setIsValide] = useState(true);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
     const handleClose = () => {
         setIsValide(false);
     }
@@ -43,14 +40,14 @@ export const BacklogPageItem: React.FC<BacklogPageItemProps>= ({ backlog, onMove
         return null
     }
 
-    const handleOpenModal = () => {
-        setIsModalOpen(true);
+    const handleOpenPopover = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorEl(event.currentTarget);
     };
+    const handleClosePopover = () => {
+      setAnchorEl(null)
+    }
 
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
-    
+
     
     return (
     <Grid2 size={4}>
@@ -109,7 +106,7 @@ export const BacklogPageItem: React.FC<BacklogPageItemProps>= ({ backlog, onMove
           </Typography>
         </CardContent>
         <CardActions sx={{display: 'flex', flexWrap:'wrap', justifyContent: 'center', overflow: 'hidden'}}>
-            <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small' onClick={handleOpenModal}>Share
+            <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small' onClick={handleOpenPopover}>Share
             </Button>
           <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small'>Learn More</Button>
           <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small' onClick={handleClose}>
@@ -117,9 +114,9 @@ export const BacklogPageItem: React.FC<BacklogPageItemProps>= ({ backlog, onMove
           </Button>
         </CardActions>
       </Card>
-        <TaskModal
-            open={isModalOpen}
-            onClose={handleCloseModal}
+        <TaskPopover
+            anchorEl={anchorEl}
+            onClose={handleClosePopover}
             tasksID={backlog.tasksID}
             onSave={( tasksID,  status, sprintId  ) => onMoveTask(tasksID, status, sprintId )}
         />

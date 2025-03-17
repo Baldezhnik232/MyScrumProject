@@ -3,7 +3,8 @@
     "title": "Скрам Проекты"
   },
   "homeSearch": {
-    "title": "Поиск проектов"
+    "title": "Поиск проектов",
+    "projectsFind": "Проект не найден"
   },
   "homePage": {
     "title": "Добро пожаловать"
@@ -49,7 +50,10 @@
   },
   "homePageRoute": "Главная страница",
   "projects": "Проект #{{id}}",
+  "sprints": "Спринт #{{id}}",
   "backlog": "Бэклог",
   "loading": "Загрузка...",
-  "error": "Ошибка"
+  "error": "Ошибка",
+  "projectsFind": "Нет Задач"
+
 }

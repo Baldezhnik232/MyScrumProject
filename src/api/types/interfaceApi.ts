@@ -21,6 +21,7 @@ export interface Tasks  {
     status: TaskStatus;
     sprintId: number;
     isLegacy: boolean
+    projectId: number
 }   
 // export interface SprintTask extends Tasks {
 //     storyPoints: number;

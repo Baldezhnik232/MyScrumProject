@@ -24,8 +24,7 @@ export const AppProjectsItem = ({project}: ProjectProps) => {
           {formDate(project.timestamp)}
         </Typography>
       </CardContent>
-      <CardActions sx={{display: 'flex', flexWrap:'wrap', justifyContent: 'center', overflow: 'hidden'}}>
-        <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}}  size="small">Share</Button>
+      <CardActions sx={{display: 'flex', flexWrap:'wrap', justifyContent: 'start', overflow: 'hidden'}}>
         <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size="small" component={Link} to={`/project/${project.id}`}>Learn More</Button>
       </CardActions>
     </Card>
