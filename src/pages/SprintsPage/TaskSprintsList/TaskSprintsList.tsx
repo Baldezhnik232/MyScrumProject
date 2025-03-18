@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom"
 import { Grid2, Typography } from "@mui/material"
 import {TaskSprintsItems} from '../TasksSprintsItems/TaskSprintsPage.tsx'
 import {Tasks} from '../../../api/types/interfaceApi.tsx'
-import {AppBreadcrumbs} from '../../ProjectsPage/RouterPanel/BreadcrumbsProjects.tsx'
+import {SideBar} from '../../ProjectsPage/RouterPanel/SidebarProjects.tsx'
 import {fetchBacklog} from "../../../store/backlogSlice.ts"
 import {useAppDispatch, useAppSelector} from "../../../store/hooks.ts";
 import { useTranslation } from 'react-i18next';
@@ -39,7 +39,7 @@ export const AppTaskSprints = ()=> {
 
   return (
     <>
-    <AppBreadcrumbs showSprintLink={true} showBacklogLink={false} />
+    <SideBar showSprintLink={true} showBacklogLink={false} />
 
     {taskSpr.length > 0 ? ( 
       <>

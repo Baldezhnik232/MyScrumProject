@@ -1,6 +1,8 @@
-import { Breadcrumbs, Link, useTheme } from '@mui/material';
+import { Breadcrumbs, Link, List, useTheme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink, useLocation, useParams } from 'react-router-dom';
+import {Drawer, ListItem} from '@mui/material';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
 import { useEffect } from 'react';
 import { fetchProjects } from '../../../store/projectsSlice.ts';
@@ -11,7 +13,7 @@ interface ShowLinks {
   showSprintLink?: boolean;
 }
 
-export const AppBreadcrumbs: React.FC<ShowLinks> = ({
+export const SideBar: React.FC<ShowLinks> = ({
   showBacklogLink = true,
   showTaskLink = false,
   showSprintLink = false,
@@ -37,7 +39,11 @@ export const AppBreadcrumbs: React.FC<ShowLinks> = ({
   const currentSprint = useAppSelector(state => state.sprints.sprints.find((spr) => spr.projectId.toString() === id));
 
   return (
-    <Breadcrumbs aria-label='breadcrumb'>
+    <Drawer variant="permanent" anchor="left" sx={{ width: 340, flexShrink: 0, position: 'fixed', left: 20, button: 0, height: '80vh', '& .MuiDrawer-paper': {
+      width: 365,
+      position: 'relative',
+  } }}>
+      <List sx={{width: '100%', display: 'grid', overFlowX: 'hidden'}}>
       <Link
         component={RouterLink}
         to={`/`}
@@ -46,15 +52,18 @@ export const AppBreadcrumbs: React.FC<ShowLinks> = ({
       >
         {t('homePageRoute')}
       </Link>
-
+      <ListItem divider />
       <Link
         sx={{ color: projectPage ? theme.palette.primary.main : 'black' }}
         component={RouterLink}
         to={`/project/${id}`}
         underline='none'
       >
-        {currentProject ? t('projects', { id: currentProject.id }) : '...'}
+       
+        {currentProject ? t('projects', { id: currentProject.id }) : '...'}  
       </Link>
+      <ListItem divider />
+
       {showBacklogLink && ( 
       <Link
         sx={{ color: backlogPage ? theme.palette.primary.main : 'black' }}
@@ -63,8 +72,10 @@ export const AppBreadcrumbs: React.FC<ShowLinks> = ({
         to={`/project/${id}/backlog`}
       >
         {t('backlog')}
+        <ArrowRightAltIcon fontSize='small' sx={{position: 'fixed'}} />
       </Link>
     )}
+    
     {showSprintLink && ( 
       <Link
         sx={{ color: sprintpage ? theme.palette.primary.main : 'black' }}
@@ -73,6 +84,7 @@ export const AppBreadcrumbs: React.FC<ShowLinks> = ({
         to={`/project/${id}/sprints/`}
       >
         {currentSprint ? t('sprints', { id: currentSprint.projectId }) : '...'}
+        <ArrowRightAltIcon fontSize='small' sx={{position: 'fixed'}}  />
       </Link>
     )}
       {showTaskLink && (
@@ -83,6 +95,7 @@ export const AppBreadcrumbs: React.FC<ShowLinks> = ({
           to={`/project`}
         ></Link>
       )}
-    </Breadcrumbs>
+      </List>
+    </Drawer>
   );
 };

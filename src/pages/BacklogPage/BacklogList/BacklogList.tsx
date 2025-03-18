@@ -3,7 +3,7 @@
 import { Typography, Grid2 } from "@mui/material"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import {AppBreadcrumbs} from '../../ProjectsPage/RouterPanel/BreadcrumbsProjects.tsx'
+import {SideBar} from '../../ProjectsPage/RouterPanel/SidebarProjects.tsx'
 import {BacklogPageItem} from '../BacklogItems/BacklogItems.tsx'
 import {AppSearchBacklog} from '../SearchBacklog/SearchBacklog.tsx'
 import {AppButtonAdd} from '../AddButton/FloatingActionButton.tsx'
@@ -50,7 +50,7 @@ export const AppBacklogList = () => {
   if (loading) return <Typography sx={{display:'flex', justifyContent: 'center', minHeight: '100vh' }} >{t("loading")}</Typography>;
   return (
     <>
-    <AppBreadcrumbs />
+    <SideBar />
     <AppSearchBacklog/>
 
       <Grid2 container spacing={2} sx={{mt:5}}>

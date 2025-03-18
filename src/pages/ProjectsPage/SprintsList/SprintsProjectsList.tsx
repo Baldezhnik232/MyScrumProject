@@ -2,7 +2,7 @@ import { Grid2, Typography } from '@mui/material';
 import { SprintsPageItems } from '../Sprintsitems/SprintsProjectsPageItems.tsx';
 import {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
-import { AppBreadcrumbs } from '../RouterPanel/BreadcrumbsProjects.tsx';
+import { SideBar } from '../RouterPanel/SidebarProjects.tsx';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
 import { fetchSprints } from '../../../store/sprintsSlice.ts';
@@ -47,23 +47,18 @@ export const AppSprintsList = () => {
 
 
   return (
-    <>
-      <AppBreadcrumbs />
-      <Grid2
-        container
-        spacing={2}
-        sx={{  mt: 5 }}
-      >
+   <>
+    <SideBar /> 
+      <Grid2 container spacing={2} sx={{ mt: 5 }}>
         {projectSprints.map((sprints: Sprint) => (
-          <SprintsPageItems
-            sprints={sprints}
-          />
+          <SprintsPageItems sprints={sprints} />
         ))}
       </Grid2>
+      
       <Grid2 container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
         <AppButtonAddSpirits setOpen={setOpen} />
-          <AppFormSprints open={open} setOpen={setOpen} addSprints={addNewSprint}  />
+        <AppFormSprints open={open} setOpen={setOpen} addSprints={addNewSprint} />
       </Grid2>
-    </>
+      </>
   );
 };
