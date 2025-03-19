@@ -9,9 +9,9 @@ export const AppFooter = () => {
       component='footer'
       sx={{
         width: '100%',
-        mt: {xs: 1, sm: 5, md:5},
+        mt: {xs: 1, sm: 5, md:5,},
         backgroundColor: theme.palette.primary.main,
-        color: 'white'
+        color: 'white',
       }}
     >
       <Container maxWidth='lg'>

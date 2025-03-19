@@ -1,4 +1,4 @@
-import { Breadcrumbs, Link, List, useTheme } from '@mui/material';
+import { Breadcrumbs, Link, List, useTheme, Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink, useLocation, useParams } from 'react-router-dom';
 import {Drawer, ListItem} from '@mui/material';
@@ -6,7 +6,10 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
 import { useEffect } from 'react';
 import { fetchProjects } from '../../../store/projectsSlice.ts';
-
+import {AppButtonAdd} from '../../BacklogPage/AddButton/FloatingActionButton.tsx'
+import {AppForm} from '../../BacklogPage/AddForm/CreateFormTask.tsx'
+import {addBacklogTask, updateTaskStatus} from '../../../store/backlogSlice.ts'
+import { useState } from 'react';
 interface ShowLinks {
   showBacklogLink?: boolean;
   showTaskLink?: boolean;
@@ -20,6 +23,7 @@ export const SideBar: React.FC<ShowLinks> = ({
 }) => {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string  }>();
+  const [open, setOpen] = useState(false);
 
   const theme = useTheme();
   const location = useLocation();
@@ -96,6 +100,13 @@ export const SideBar: React.FC<ShowLinks> = ({
         ></Link>
       )}
       </List>
+      {backlogPage && (
+      <Box sx={{ position: "absolute", top: "13%", right: "40%",  transform: "translateX(-50%)" }}>
+        <AppButtonAdd setOpen={setOpen} />
+        <AppForm open={open} setOpen={setOpen} addTask={addBacklogTask} />
+      </Box>
+    )}
+      
     </Drawer>
   );
 };

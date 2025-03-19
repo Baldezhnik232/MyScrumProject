@@ -26,7 +26,6 @@ export const AppBacklogList = () => {
   const dispatch = useAppDispatch();
   const { backlog, filterBacklog, loading } = useAppSelector(state => state.backlog);
 
-  console.log("Backlog from Redux:", backlog);
 
 
     const filteredBacklog = backlog.filter((backlog) => backlog.title.toLowerCase().includes(filterBacklog.toLowerCase()) );
@@ -59,10 +58,10 @@ export const AppBacklogList = () => {
         ))
         }
       </Grid2>
-      <Grid2 container  sx={{ mt:2, display: 'flex', justifyContent: 'center' }}>
+      {/* <Grid2 container  sx={{ mt:2, display: 'flex', justifyContent: 'center' }}>
       <AppButtonAdd setOpen={setOpen} />
         <AppForm open={open} setOpen={setOpen} addTask={addBacklogTask} />
-      </Grid2>
+      </Grid2> */}
     </>
 
   )

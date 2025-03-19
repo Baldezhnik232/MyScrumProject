@@ -40,7 +40,6 @@ export const AppTaskSprints = ()=> {
   return (
     <>
     <SideBar showSprintLink={true} showBacklogLink={false} />
-
     {taskSpr.length > 0 ? ( 
       <>
         {todoTasks.length > 0 && (
@@ -77,7 +76,7 @@ export const AppTaskSprints = ()=> {
         )}
       </>
     ) : (
-      <Typography sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Typography sx={{ display: 'flex', justifyContent: 'center', mt: 3}}>
         {t('projectsFind')}
       </Typography>
     )}
