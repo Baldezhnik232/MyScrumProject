@@ -14,7 +14,7 @@ interface AppButtonAddProps {
 
 
 
-export const AppButtonAddSpirits = ({setOpen}: AppButtonAddProps ) => {
+export const AppButtonAddSprints = ({setOpen}: AppButtonAddProps ) => {
     const {t} = useTranslation();
 
     return (

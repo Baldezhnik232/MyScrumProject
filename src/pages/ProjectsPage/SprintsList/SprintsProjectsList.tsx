@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
 import { fetchSprints } from '../../../store/sprintsSlice.ts';
 import { Sprint } from '../../../api/types/interfaceApi.tsx';
-import {AppButtonAddSpirits} from "../AddButtonSprints/AppButtonSpirits.tsx";
+import {AppButtonAddSprints} from "../AddButtonSprints/AppButtonSpirits.tsx";
 import {AppFormSprints} from "../AddFormSpirits/CreateFormSprints.tsx";
 import { addSprint } from '../../../store/sprintsSlice.ts'
 
@@ -31,10 +31,9 @@ export const AppSprintsList = () => {
     const projectSprints = sprints.filter((sprint) => sprint.projectId.toString() === id);
 
     const addNewSprint = (newSprint: Sprint) => {
-        dispatch(addSprint(newSprint));
-    };
+      dispatch(addSprint(newSprint));
+  };
 
-    console.log(addNewSprint, 'New Sprint');
 
   if (loading)
     return (
@@ -55,10 +54,10 @@ export const AppSprintsList = () => {
         ))}
       </Grid2>
       
-      <Grid2 container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-        <AppButtonAddSpirits setOpen={setOpen} />
+      {/* <Grid2 container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
+        <AppButtonAddSprints setOpen={setOpen} />
         <AppFormSprints open={open} setOpen={setOpen} addSprints={addNewSprint} />
-      </Grid2>
+      </Grid2> */}
       </>
   );
 };
