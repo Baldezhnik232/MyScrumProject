@@ -15,15 +15,26 @@ export const projectsAPI = {
   }
 }
 
+let localSprints = [...sprintsMoks]
+
 export const sprintsMoksApi = {
-  getSprints: async(_filters:IProjectsRequest ): Promise<Sprint[]> =>{
-    return new Promise ((resolve): void => {
+  getSprints: async (_filters: IProjectsRequest): Promise<Sprint[]> => {
+    return new Promise((resolve): void => {
       setTimeout((): void => {
-        resolve(sprintsMoks)
-      },1000)
-    })
-  }
-}
+        resolve(sprintsMoks);
+      }, 1000);
+    });
+  },
+
+  deleteSprints: async (projectId: number): Promise<void> => {
+    return new Promise((resolve): void => {
+      setTimeout((): void => {
+        localSprints = sprintsMoks.filter((sprint) => sprint.projectId !== projectId);
+        resolve();
+      }, 500);
+    });
+  },
+};
 
 export const backlogMoksApi = {
   getBacklog: async(_filters:IProjectsRequest ): Promise<Backlog[]> => {

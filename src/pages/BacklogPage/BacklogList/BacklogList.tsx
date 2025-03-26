@@ -52,13 +52,13 @@ export const AppBacklogList = () => {
     );
   return (
     <>
-      <SideBar />
+      
       <AppSearchBacklog />
-
+      <SideBar />
       <Grid2
         container
         spacing={2}
-        sx={{ mt: 5 }}
+        sx={{ mt: 5, pr: 4, ml: { xs: '6rem', lg: '14rem' }}}
       >
         {filteredBacklog.map((backlog) => (
           <BacklogPageItem

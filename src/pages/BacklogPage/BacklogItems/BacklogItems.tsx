@@ -55,7 +55,7 @@ export const BacklogPageItem: React.FC<BacklogPageItemProps>= ({ backlog, onMove
         
       {backlog.isLegacy ? (
       <CardMedia
-        sx={{ height: { xs: 100, sm: 200, md: 300 } }}
+        sx={{ height: { xs: 70, sm: 200, md: 300 } }}
         image={'https://img.freepik.com/free-photo/futuristic-cat-with-goggles_23-2150969289.jpg?t=st=1740336490~exp=1740340090~hmac=3633235324c389c47cefa94780d0ddd6f82960702c6c1a10242b8f3ed32d4e7b&w=1480'}
       />
     ) : backlog.image ? (
@@ -79,20 +79,20 @@ export const BacklogPageItem: React.FC<BacklogPageItemProps>= ({ backlog, onMove
       </Box>
     )}
         <CardContent sx={{ width: {sx:'100%'}}}>
-          <Typography  sx={{fontSize:{xs:'1rem', sm:'1.5rem'}}}
+          <Typography  sx={{fontSize:{xs:'0.6rem', sm:'1.5rem'}}}
             gutterBottom
             variant='h5'
             component='div'
           >
             {backlog.title}
           </Typography>
-          <Typography sx={{fontSize:{xs:'0.7rem', sm:'1.5rem'}}}
+          <Typography sx={{fontSize:{xs:'0.4rem', sm:'1.5rem'}}}
             gutterBottom
             variant='h6'
           >
             Story-points: {backlog.storyPoints}
           </Typography>
-          <Typography sx={{fontSize:{xs:'0.7rem', sm:'1.5rem'}}}
+          <Typography sx={{fontSize:{xs:'0.4rem', sm:'1.5rem'}}}
             gutterBottom
             variant='h6'
           >
@@ -100,16 +100,16 @@ export const BacklogPageItem: React.FC<BacklogPageItemProps>= ({ backlog, onMove
           </Typography>
           <Typography
             variant='body2'
-            sx={{ color: 'text.secondary', fontSize:{xs:'0.6rem', sm:'1.5rem'} }}
+            sx={{ color: 'text.secondary', fontSize:{xs:'0.4rem', sm:'1.5rem'} }}
           >
             {formDate(backlog.timestamp)}
           </Typography>
         </CardContent>
         <CardActions sx={{display: 'flex', flexWrap:'wrap', justifyContent: 'center', overflow: 'hidden'}}>
-            <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small' onClick={handleOpenPopover}>Share
+            <Button sx={{fontSize:{xs:'0.4rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small' onClick={handleOpenPopover}>Move
             </Button>
-          <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small'>Learn More</Button>
-          <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small' onClick={handleClose}>
+          <Button sx={{fontSize:{xs:'0.4rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small'>Learn More</Button>
+          <Button sx={ {display: ' flex',justifyContent: 'flex-start' ,fontSize:{xs:'0.4rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small' onClick={handleClose}>
             <DeleteIcon />
           </Button>
         </CardActions>

@@ -3,13 +3,13 @@
 import { useEffect } from "react"
 import {useParams} from "react-router-dom"
 import { Grid2, Typography } from "@mui/material"
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import {TaskSprintsItems} from '../TasksSprintsItems/TaskSprintsPage.tsx'
 import {Tasks} from '../../../api/types/interfaceApi.tsx'
 import {SideBar} from '../../ProjectsPage/RouterPanel/SidebarProjects.tsx'
-import {fetchBacklog} from "../../../store/backlogSlice.ts"
+import {fetchBacklog, updateTaskStatus} from "../../../store/backlogSlice.ts"
 import {useAppDispatch, useAppSelector} from "../../../store/hooks.ts";
 import { useTranslation } from 'react-i18next';
-
 
 
 
@@ -34,6 +34,20 @@ export const AppTaskSprints = ()=> {
   const todoTasks = taskSpr.filter((task) => task.status === 'todo');
   const doingTasks = taskSpr.filter((task) => task.status === 'doing');
   const doneTasks = taskSpr.filter((task) => task.status === 'done');
+
+
+  // const handleDragEnd = (res) => {
+  //     if(!res.description) return
+  // }
+
+  // const {source,description, draggableId } = res;
+  // const newStatus = description.draggableId
+
+
+  // dispatch(updateTaskStatus({ tasksID:Number (draggableId), status:newStatus }));
+
+
+
 
   if (loading) return <Typography sx={{display:'flex', justifyContent: 'center', minHeight: '50vh' }} >Loading...</Typography>;
 

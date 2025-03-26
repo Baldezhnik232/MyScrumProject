@@ -17,7 +17,7 @@ import {setFilterProject} from '../../../store/projectsSlice'
       label={t('homeSearch.title')} 
       type="search"
       fullWidth
-      sx={{mt:2}}
+      sx={{width: { xs: '83%', lg:'74%'}, mt:2,  ml:{xs:3, lg:28}}}
       value={filterProject}
       onChange={(e)=> dispatch((setFilterProject(e.target.value)))} 
       >

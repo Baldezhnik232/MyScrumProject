@@ -1,4 +1,4 @@
-import { Grid2, Typography } from '@mui/material';
+import { Grid2, Typography, Box } from '@mui/material';
 import { SprintsPageItems } from '../Sprintsitems/SprintsProjectsPageItems.tsx';
 import {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
@@ -20,15 +20,18 @@ export const AppSprintsList = () => {
 
   const dispatch = useAppDispatch();
 
-  const { sprints, loading } = useAppSelector(state => state.sprints);
+  const { sprints, loading } = useAppSelector(state => {
+    console.log('Состояние спринтво', state.sprints) 
+    return state.sprints
+  });
 
 
   useEffect((): void => {
     dispatch(fetchSprints());
-  }, [dispatch]);
+  }, [dispatch, sprints]);
 
 
-    const projectSprints = sprints.filter((sprint) => sprint.projectId.toString() === id);
+    const projectSprints: Sprint[] = sprints.filter((sprint) => sprint.projectId.toString() === id);
 
     const addNewSprint = (newSprint: Sprint) => {
       dispatch(addSprint(newSprint));
@@ -38,26 +41,27 @@ export const AppSprintsList = () => {
   if (loading)
     return (
       <Typography
-        sx={{ display: 'flex', justifyContent: 'center', minHeight: '100vh' }}
+        sx={{ display: 'flex', justifyContent: 'center', minHeight: '100vh'  }}
       >
         {t('loading')}
       </Typography>
     );
-
-
   return (
-   <>
-    <SideBar /> 
-      <Grid2 container spacing={2} sx={{ mt: 5 }}>
+   <Box >
+    { projectSprints.length > 0 ? (
+      <Grid2 container spacing={2} sx={{ mt: 5, ml: { xs: '6rem', lg: '15rem' }}}>
+        <SideBar  /> 
         {projectSprints.map((sprints: Sprint) => (
-          <SprintsPageItems sprints={sprints} />
-        ))}
+          <SprintsPageItems sprints={sprints} 
+          />
+        ) )}
       </Grid2>
-      
-      {/* <Grid2 container sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-        <AppButtonAddSprints setOpen={setOpen} />
-        <AppFormSprints open={open} setOpen={setOpen} addSprints={addNewSprint} />
-      </Grid2> */}
-      </>
+    ) : (
+      <Typography sx={{ display: 'flex', justifyContent: 'center', mt: 3}}> 
+            Нет спринтов 
+      </Typography>
+    )}
+      </Box>
+    
   );
 };

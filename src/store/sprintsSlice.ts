@@ -6,7 +6,19 @@ import { sprintsMoksApi } from "../api/index";
  export const fetchSprints = createAsyncThunk("sprints/fetchSprints",async (): Promise<Sprint[]>=> {
     const response: Sprint[] =  await sprintsMoksApi.getSprints({})
       return response
- })  
+ }) 
+ 
+ export const deleteSprints = createAsyncThunk<number, number>(
+  'sprints/deleteSprints',
+  async (projectId, { rejectWithValue }) => {
+    try {
+      await sprintsMoksApi.deleteSprints(projectId);
+      return projectId; 
+    } catch (error) {
+      return rejectWithValue("Ошибка удаления спринта");
+    }
+  }
+);
 
 interface SprintsState {
     sprints: Sprint[],
@@ -30,6 +42,9 @@ const sprintsSlice = createSlice({
     addSprint: (state, action: PayloadAction<Sprint>): void=>{
       state.sprints.push(action.payload)
     },
+    deleteSprints: (state, action: PayloadAction<number>) => {
+      state.sprints = state.sprints.filter((sprint) => sprint.projectId !== action.payload);
+    },
 
   },
   extraReducers:(builder): void=> {
@@ -47,7 +62,6 @@ const sprintsSlice = createSlice({
       state.error = action.error.message || "Ошибка загрузки" ;
 
     })
-    
   }
 })
 

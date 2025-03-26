@@ -1,8 +1,12 @@
-import { Breadcrumbs, Link, List, useTheme, Box } from '@mui/material';
+import {
+  Link,
+  List,
+  useTheme,
+  Typography,
+} from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink, useLocation, useParams } from 'react-router-dom';
 import { Drawer, ListItem } from '@mui/material';
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
 import { useEffect } from 'react';
 import { fetchProjects } from '../../../store/projectsSlice.ts';
@@ -38,9 +42,10 @@ export const SideBar: React.FC<ShowLinks> = ({
 
   const projectPage: boolean = location.pathname === `/project/${id}`;
   const backlogPage: boolean = location.pathname === `/project/${id}/backlog`;
-  const sprintpage: boolean = location.pathname.includes(
+  const sprintPage: boolean = location.pathname.includes(
     `/project/${id}/sprints/`
   );
+
   const taskPage: boolean = location.pathname === `/project`;
 
   const dispatch = useAppDispatch();
@@ -51,6 +56,7 @@ export const SideBar: React.FC<ShowLinks> = ({
   const currentProject = useAppSelector((state) =>
     state.projects.projects.find((proj) => proj.id.toString() === id)
   );
+
   const currentSprint = useAppSelector((state) =>
     state.sprints.sprints.find((spr) => spr.projectId.toString() === id)
   );
@@ -64,26 +70,30 @@ export const SideBar: React.FC<ShowLinks> = ({
       variant='permanent'
       anchor='left'
       sx={{
-        width: 340,
+        width: {xs:100, lg:140},
         flexShrink: 0,
-        position: 'fixed',
-        left: 20,
-        button: 0,
-        height: '80vh',
+        position: { xs:'fixed', lg:'fixed'},
+        left: 10,
+        height: { 
+          xs: '38vh',
+          lg: '75vh' },
         '& .MuiDrawer-paper': {
-          width: 365,
+          width: {
+            xs: 75,
+            lg: 200
+          } ,
           position: 'relative',
         },
       }}
     >
-      <List sx={{ width: '100%', display: 'grid', overFlowX: 'hidden' }}>
+      <List sx={{ width: '100%', display: 'grid', overFlowY: 'none'  }}>
         <Link
           component={RouterLink}
           to={`/`}
           underline='none'
           sx={{ color: 'black' }}
         >
-          {t('homePageRoute')}
+          <Typography sx={{fontSize:{xs: '0.6rem', lg: '1rem'}}}>{t('homePageRoute')}</Typography>
         </Link>
         <ListItem divider />
         <Link
@@ -92,21 +102,26 @@ export const SideBar: React.FC<ShowLinks> = ({
           to={`/project/${id}`}
           underline='none'
         >
-          {currentProject ? t('projects', { id: currentProject.id }) : '...'}
+          <Typography sx={{fontSize:{xs: '0.6rem', lg: '1rem'}}}>
+            {currentProject ? t('projects', { id: currentProject.id }) : '...'}
+          </Typography>
         </Link>
 
         <ListItem
-          sx={{ height: projectPage ? 70 : 'auto' }}
+          sx={{ height: projectPage ? 40 : 'auto' }}
           divider
         />
         {projectPage && (
-          <Box
+          <Link
             sx={{
-              position: 'absolute',
-              top: '45%',
-              right: '35%',
-              transform: 'translateX(-40%)',
+              color: 'black',
+              position: 'fixed',
+              top: {
+                xs: '28%',
+                lg:'22%'},
+              cursor: 'pointer',
             }}
+            underline='none'
           >
             <AppButtonAddSprints setOpen={setOpen} />
             <AppFormSprints
@@ -114,7 +129,7 @@ export const SideBar: React.FC<ShowLinks> = ({
               setOpen={setOpen}
               addSprints={addNewSprint}
             />
-          </Box>
+          </Link>
         )}
 
         {showBacklogLink && (
@@ -124,28 +139,24 @@ export const SideBar: React.FC<ShowLinks> = ({
             component={RouterLink}
             to={`/project/${id}/backlog`}
           >
-            {t('backlog')}
-            <ArrowRightAltIcon
-              fontSize='small'
-              sx={{ position: 'fixed' }}
-            />
+            <Typography sx={{fontSize:{xs: '0.6rem', lg: '1rem'}}}>
+              {t('backlog')}
+            </Typography>
           </Link>
         )}
 
         {showSprintLink && (
           <Link
-            sx={{ color: sprintpage ? theme.palette.primary.main : 'black' }}
+            sx={{ color: sprintPage ? theme.palette.primary.main : 'black' }}
             underline='none'
             component={RouterLink}
             to={`/project/${id}/sprints/`}
           >
+            <Typography sx={{fontSize:{xs: '0.6rem', lg: '1rem'}}}>
             {currentSprint
               ? t('sprints', { id: currentSprint.projectId })
               : '...'}
-            <ArrowRightAltIcon
-              fontSize='small'
-              sx={{ position: 'fixed' }}
-            />
+            </Typography>
           </Link>
         )}
 
@@ -159,13 +170,16 @@ export const SideBar: React.FC<ShowLinks> = ({
         )}
       </List>
       {backlogPage && (
-        <Box
+        <Link
           sx={{
-            position: 'absolute',
-            top: '13%',
-            right: '40%',
-            transform: 'translateX(-50%)',
+            color: 'black',
+            position: 'fixed',
+            top: {
+              xs:'27%',
+              lg:'23%'},
+            cursor: 'pointer'
           }}
+          underline='none' 
         >
           <AppButtonAdd setOpen={setOpen} />
           <AppForm
@@ -173,7 +187,7 @@ export const SideBar: React.FC<ShowLinks> = ({
             setOpen={setOpen}
             addTask={addBacklogTask}
           />
-        </Box>
+        </Link>
       )}
     </Drawer>
   );

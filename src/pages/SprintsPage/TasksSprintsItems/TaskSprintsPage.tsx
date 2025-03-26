@@ -66,7 +66,7 @@ export const TaskSprintsItems = ({tasks}: TaskSprints) => {
           </Typography>
         </CardContent>
         <CardActions sx={{display: 'flex', flexWrap:'wrap', justifyContent: 'center', overflow: 'hidden'}}>
-            <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small' onClick={handleOpenModal}>Share
+            <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small' onClick={handleOpenModal}>Move
             </Button>
           <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small'>Learn More</Button>
           <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small' onClick={handleClose}>
