@@ -19,8 +19,7 @@ import {
 import { useState } from 'react';
 import { AppButtonAddSprints } from '../AddButtonSprints/AppButtonSpirits.tsx';
 import { AppFormSprints } from '../AddFormSpirits/CreateFormSprints.tsx';
-import { addSprint } from '../../../store/sprintsSlice.ts';
-import { Sprint } from '../../../api/types/interfaceApi.ts';
+import {addSprints} from '../../../store/sprintsSlice.ts'
 
 interface ShowLinks {
   showBacklogLink?: boolean;
@@ -34,7 +33,7 @@ export const SideBar: React.FC<ShowLinks> = ({
   showSprintLink = false,
 }) => {
   const { t } = useTranslation();
-  const { id } = useParams<{ id: string }>();
+  const { id, sprintId } = useParams<{ id: string, sprintId: string }>();
   const [open, setOpen] = useState(false);
 
   const theme = useTheme();
@@ -43,7 +42,7 @@ export const SideBar: React.FC<ShowLinks> = ({
   const projectPage: boolean = location.pathname === `/project/${id}`;
   const backlogPage: boolean = location.pathname === `/project/${id}/backlog`;
   const sprintPage: boolean = location.pathname.includes(
-    `/project/${id}/sprints/`
+`/project/${id}/sprints/${sprintId}`
   );
 
   const taskPage: boolean = location.pathname === `/project`;
@@ -58,12 +57,9 @@ export const SideBar: React.FC<ShowLinks> = ({
   );
 
   const currentSprint = useAppSelector((state) =>
-    state.sprints.sprints.find((spr) => spr.projectId.toString() === id)
+    state.sprints.sprints.find((spr) => spr.sprintId.toString() === sprintId)
   );
 
-  const addNewSprint = (newSprint: Sprint) => {
-    dispatch(addSprint(newSprint));
-  };
 
   return (
     <Drawer
@@ -127,10 +123,11 @@ export const SideBar: React.FC<ShowLinks> = ({
             <AppFormSprints
               open={open}
               setOpen={setOpen}
-              addSprints={addNewSprint}
+              addSprint={addSprints}
             />
           </Link>
         )}
+        
 
         {showBacklogLink && (
           <Link
@@ -150,11 +147,11 @@ export const SideBar: React.FC<ShowLinks> = ({
             sx={{ color: sprintPage ? theme.palette.primary.main : 'black' }}
             underline='none'
             component={RouterLink}
-            to={`/project/${id}/sprints/`}
+            to={`/project/${id}/sprints/${sprintId}`}
           >
             <Typography sx={{fontSize:{xs: '0.6rem', lg: '1rem'}}}>
             {currentSprint
-              ? t('sprints', { id: currentSprint.projectId })
+              ? t('sprints', { id: currentSprint.sprintId })
               : '...'}
             </Typography>
           </Link>

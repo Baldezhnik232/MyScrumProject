@@ -23,11 +23,11 @@
   },
   "ceateNewTask": {
     "message": "Создать Новую Задачу",
-    "labelTasks": "Задача #",
-    "labelStory": "Оценка задачи",
-    "labelDesc": "Описание",
-    "cancel": "Отменить",
-    "create": "Создать"
+    "labelTasks": "Задача #"
+  },
+   "createNewSprint": {
+    "message": "Создать Новый Спринт",
+    "labelSprint": "Спринт #"
   },
   "formTaskRequired": {
     "required": "Это поле обязательно для заполнения",
@@ -48,9 +48,16 @@
     "button": "Добавить изображение",
     "value": "Выбран файл:"
   },
+
+  "labelStory": "Оценка задачи",
+  "labelDesc": "Описание",
+  "cancel": "Отменить",
+  "create": "Создать",
   "homePageRoute": "Главная страница",
   "projects": "Проект #{{id}}",
   "sprints": "Спринт #{{id}}",
+  "sprint": "Спринт",
+  "moveSpint": "Переместить Задачу в Спринт",
   "backlog": "Бэклог",
   "loading": "Загрузка...",
   "error": "Ошибка",

@@ -18,8 +18,6 @@ interface SprintsProps {
 export const SprintsPageItems = ({sprints}:SprintsProps) => {
     const [isVisible, setIsVisible] = useState(true);
     const dispatch = useAppDispatch();
-
-
         const handleDelete = (): void => {
         dispatch(deleteSprints(sprints.projectId)); 
         console.log("Текущий список спринтов:", sprints);
@@ -31,7 +29,6 @@ export const SprintsPageItems = ({sprints}:SprintsProps) => {
     }
     return (
       <Grid2  size={4} >
-        
         <Card sx={{ width: {sx:300, sm:200, md: 300 } }}>
         <CardMedia
           sx={{ height: {xs: 70, sm:200, md: 300}}}
@@ -47,7 +44,7 @@ export const SprintsPageItems = ({sprints}:SprintsProps) => {
           </Typography>
         </CardContent>
         <CardActions sx={{display: 'flex', flexWrap:'wrap', justifyContent: 'start', overflow: 'hidden'}}>
-          <Button sx={{fontSize:{xs:'0.4rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size="small" component={Link} to={`/project/${sprints.projectId}/sprints/${sprints.projectId}`} >Learn More</Button>
+          <Button sx={{fontSize:{xs:'0.4rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size="small" component={Link} to={`/project/${sprints.projectId}/sprints/${sprints.sprintId}`} >Learn More</Button>
             <Button sx={{display:'flex', justifyContent: 'flex-start'}} size = "small" onClick={handleDelete}>
                 <DeleteIcon  />
             </Button>

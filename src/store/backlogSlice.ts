@@ -32,7 +32,6 @@ const backlogSlice = createSlice({
             state.filterBacklog = action.payload
         },
 
-
         addBacklogTask: (state, action: PayloadAction<Tasks>) => {
             state.backlog.push(action.payload);
         },
@@ -43,21 +42,26 @@ const backlogSlice = createSlice({
             
             const taskIndex = state.backlog.findIndex((backlog) => backlog.tasksID === tasksID);
 
+
             if (taskIndex !== -1 && sprintId) {
 
                 const task = state.backlog[taskIndex];
 
                 state.backlog.splice(taskIndex, 1);
+
+
+
+            if (!state.sprints.some((t) => t.sprintId === sprintId)){
                 state.sprints.push({
                     ...task,
-                    // tasksID,
                     status,
                     sprintId,
                  });
                  return
             }
+                
+            }
             const sprintTaskIndex = state.sprints.findIndex(task => task.tasksID === tasksID);
-
                 if (sprintTaskIndex !== -1) {
                     state.sprints[sprintTaskIndex].status = status;
     }

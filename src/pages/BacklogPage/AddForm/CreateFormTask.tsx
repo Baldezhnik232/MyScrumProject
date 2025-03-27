@@ -173,7 +173,7 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
             render={({ field }) => (
               <TextField
                 {...field}
-                label={t('ceateNewTask.labelDesc')}
+                label={t('labelDesc')}
                 fullWidth
                 multiline
                 rows={2}
@@ -213,7 +213,7 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
           onClick={() => setOpen(false)}
           sx={{ color: 'black' }}
         >
-          {t('ceateNewTask.cancel')}
+          {t('cancel')}
         </Button>
         <Button
           type='submit'
@@ -221,7 +221,7 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
           variant='contained'
           color='primary'
         >
-          {t('ceateNewTask.create')}
+          {t('create')}
         </Button>
       </DialogActions>
     </Dialog>

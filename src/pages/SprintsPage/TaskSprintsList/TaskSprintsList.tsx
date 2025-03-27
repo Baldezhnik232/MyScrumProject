@@ -47,19 +47,17 @@ export const AppTaskSprints = ()=> {
   // dispatch(updateTaskStatus({ tasksID:Number (draggableId), status:newStatus }));
 
 
-
-
-  if (loading) return <Typography sx={{display:'flex', justifyContent: 'center', minHeight: '50vh' }} >Loading...</Typography>;
+  if (loading) return <Typography sx={{display:'flex', justifyContent: 'center', minHeight: '100vh' }} >{t('loading')}</Typography>;
 
   return (
     <>
-    <SideBar showSprintLink={true} showBacklogLink={false} />
+    <SideBar showSprintLink={true} showBacklogLink={false}/>
     {taskSpr.length > 0 ? ( 
       <>
         {todoTasks.length > 0 && (
           <>
-            <Typography variant="h6">📝 To Do</Typography>
-            <Grid2 container spacing={2} sx={{ mt: 2 }}>
+            {/* <Typography variant="h6">📝 To Do</Typography> */}
+            <Grid2 container spacing={2} sx={{ mt: 5, pr: 4, ml: { xs: '6rem', lg: '14rem' }}}>
               {todoTasks.map((task) => (
                 <TaskSprintsItems key={task.tasksID} tasks={task} />
               ))}
@@ -90,7 +88,7 @@ export const AppTaskSprints = ()=> {
         )}
       </>
     ) : (
-      <Typography sx={{ display: 'flex', justifyContent: 'center', mt: 3}}>
+      <Typography sx={{ display: 'flex', justifyContent: 'center', mt: 10, mb: 60 }}>
         {t('projectsFind')}
       </Typography>
     )}

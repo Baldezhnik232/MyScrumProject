@@ -8,6 +8,7 @@ export interface Project {
 
 export interface Sprint extends Omit<Project, 'id'> {
     projectId: number,
+    sprintId: number
 }
 
 export type TaskStatus = "todo" | "doing" | "done";
@@ -21,7 +22,7 @@ export interface Tasks  {
     status: TaskStatus;
     sprintId: number;
     isLegacy: boolean
-    projectId: number
+    
 }   
 // export interface SprintTask extends Tasks {
 //     storyPoints: number;

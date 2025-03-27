@@ -39,7 +39,7 @@ const sprintsSlice = createSlice({
   name:'sprints',
   initialState,
   reducers: {
-    addSprint: (state, action: PayloadAction<Sprint>): void=>{
+    addSprints: (state, action: PayloadAction<Sprint>)=>{
       state.sprints.push(action.payload)
     },
     deleteSprints: (state, action: PayloadAction<number>) => {
@@ -66,5 +66,5 @@ const sprintsSlice = createSlice({
 })
 
 
-export const {addSprint} = sprintsSlice.actions;
+export const {addSprints} = sprintsSlice.actions;
 export default sprintsSlice.reducer

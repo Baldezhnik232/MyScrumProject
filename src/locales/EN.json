@@ -24,10 +24,12 @@
   "ceateNewTask": {
     "message": "Create New Task",
     "labelTasks": "Task #",
-    "labelStory": "Story Points",
-    "labelDesc": "Description",
-    "cancel": "Cancel",
-    "create": "Create"
+    "labelStory": "Story Points"
+  
+  },
+  "createNewSprint": {
+    "message": "Create New Sprint",
+    "labelSprint": "Sprint #"
   },
   "formTaskRequired": {
     "required": "This field is required",
@@ -48,9 +50,15 @@
     "button": "Add image",
     "value": "Selected file:"
   },
+
+  "labelDesc": "Description",
+  "create": "Create",
+  "cancel":"Cancel",
   "homePageRoute": "Home Page",
   "projects": "Project #{{id}}",
   "sprints": "Sprint #{{id}}",
+  "moveSpint": "Move Task to Sprint",
+  "sprint": "Sprint",
   "backlog": "Backlog page",
   "loading": "Loading...",
   "error": "Error",
