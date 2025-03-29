@@ -6,7 +6,7 @@ import { format, parseISO } from 'date-fns';
   return format(parseISO(timestamp), 'dd.MM.yyyy');
 }
 
-export const backlogMocks = [
+export let backlogMocks = { tasks:[
   {
     tasksID:1,
     title: "Task #1",
@@ -34,4 +34,4 @@ export const backlogMocks = [
     image: null, 
     isLegacy: true, 
   }
-];
+]};

@@ -15,7 +15,6 @@ export const projectsAPI = {
   }
 }
 
-let localSprints = [...sprintsMoks]
 
 export const sprintsMoksApi = {
   getSprints: async (_filters: IProjectsRequest): Promise<Sprint[]> => {
@@ -26,25 +25,28 @@ export const sprintsMoksApi = {
     });
   },
 
-  deleteSprints: async (projectId: number): Promise<void> => {
+};
+
+export const backlogMoksApi = {
+  getBacklog: async (): Promise<Backlog[]> => {
     return new Promise((resolve): void => {
       setTimeout((): void => {
-        localSprints = sprintsMoks.filter((sprint) => sprint.projectId !== projectId);
+        resolve([...backlogMocks.tasks]); 
+      }, 1000);
+    });
+  },
+
+  removeTaskFromBacklog: async (tasksID: number): Promise<void> => {
+    return new Promise((resolve): void => {
+      setTimeout((): void => {
+        backlogMocks.tasks = backlogMocks.tasks.filter((task) => task.tasksID !== tasksID);
         resolve();
       }, 500);
     });
   },
 };
 
-export const backlogMoksApi = {
-  getBacklog: async(_filters:IProjectsRequest ): Promise<Backlog[]> => {
-    return new Promise((resolve): void => {
-      setTimeout((): void=> {
-        resolve(backlogMocks)
-      },1000 )
-    })
-  }
-}
+
 
 export const tasksMocksApi = {
   getTasks: async(_filters:IProjectsRequest ): Promise<Tasks[]> => {

@@ -4,7 +4,7 @@ import { Tasks, TaskStatus } from "../api/types/interfaceApi.tsx"
 import { backlogMoksApi } from '../api/index';
 
 export const fetchBacklog = createAsyncThunk<Tasks[]>('backlog/fetchBacklog', async () => {
-    const response = await backlogMoksApi.getBacklog({})
+    const response = await backlogMoksApi.getBacklog()
     return response
 });
 
@@ -46,10 +46,9 @@ const backlogSlice = createSlice({
             if (taskIndex !== -1 && sprintId) {
 
                 const task = state.backlog[taskIndex];
-
                 state.backlog.splice(taskIndex, 1);
 
-
+                backlogMoksApi.removeTaskFromBacklog(tasksID);
 
             if (!state.sprints.some((t) => t.sprintId === sprintId)){
                 state.sprints.push({
@@ -61,10 +60,7 @@ const backlogSlice = createSlice({
             }
                 
             }
-            const sprintTaskIndex = state.sprints.findIndex(task => task.tasksID === tasksID);
-                if (sprintTaskIndex !== -1) {
-                    state.sprints[sprintTaskIndex].status = status;
-    }
+        
         },
     },
     extraReducers: (builder): void => {
