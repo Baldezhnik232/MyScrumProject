@@ -24,12 +24,6 @@ export interface Tasks  {
     isLegacy: boolean
     
 }   
-// export interface SprintTask extends Tasks {
-//     storyPoints: number;
-//     description: string;
-//     timestamp: string;
-//   }
-
 
 
 export interface IProjectsRequest {

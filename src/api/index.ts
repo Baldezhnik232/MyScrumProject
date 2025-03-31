@@ -28,7 +28,7 @@ export const sprintsMoksApi = {
 };
 
 export const backlogMoksApi = {
-  getBacklog: async (): Promise<Backlog[]> => {
+  getBacklog:  () => {
     return new Promise((resolve): void => {
       setTimeout((): void => {
         resolve([...backlogMocks.tasks]); 
