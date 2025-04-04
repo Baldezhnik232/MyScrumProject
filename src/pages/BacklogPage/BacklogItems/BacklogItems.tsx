@@ -30,8 +30,11 @@ interface BacklogPageItemProps {
 
 
 export const BacklogPageItem: React.FC<BacklogPageItemProps>= ({ backlog, onMoveTask}) => {
+
     const [isValide, setIsValide] = useState(true);
+
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+    
     const handleClose = () => {
         setIsValide(false);
     }

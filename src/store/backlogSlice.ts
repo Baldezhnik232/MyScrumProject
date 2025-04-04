@@ -62,6 +62,32 @@ const backlogSlice = createSlice({
             }
         
         },
+
+        updateTaskStatusSprints: (state, action: PayloadAction<{SprintTasksID: number, status: TaskStatus, sprintId: number}>): void => {
+            const {SprintTasksID, status, sprintId} = action.payload
+
+            const sprintIndex = state.sprints.findIndex((task)=> task.tasksID === SprintTasksID)
+
+            if(sprintIndex !== -1 && sprintId ) {
+                const sprint = state.sprints[sprintIndex]
+                console.log("Удаляем из спринта:", state.sprints[sprintIndex]);
+
+                state.sprints.splice(sprintIndex, 1)
+
+                if(sprintId === 0) {
+                    console.log("Перемещаем в бэклог:", sprint);
+                    state.backlog.push({
+                        ...sprint
+                    });
+                 } else{
+                        state.sprints.push({
+                            ...sprint,
+                            status,
+                            sprintId
+                        });
+                    }
+                } 
+            }
     },
     extraReducers: (builder): void => {
         builder
@@ -79,5 +105,5 @@ const backlogSlice = createSlice({
             });
     },
 });
-export const { setFilterBacklog, addBacklogTask, updateTaskStatus } = backlogSlice.actions;
+export const { setFilterBacklog, addBacklogTask, updateTaskStatus, updateTaskStatusSprints } = backlogSlice.actions;
 export default backlogSlice.reducer;

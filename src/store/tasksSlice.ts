@@ -3,7 +3,8 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import {tasksMocksApi} from "../api/index";
 
-import {Tasks} from "../api/types/interfaceApi.tsx";
+import {Tasks, TaskStatus} from "../api/types/interfaceApi.tsx";
+import { updateTaskStatus } from "./backlogSlice.ts";
 
 export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async():  Promise<Tasks[]> =>{
     const response: Tasks[] = await tasksMocksApi.getTasks({})
@@ -31,7 +32,10 @@ const tasksSlice = createSlice({
     reducers: {
         addTask: (state, action: PayloadAction<Tasks>): void => {
             state.tasks.push(action.payload)
-        }
+        },
+
+       
+        
     },
     extraReducers: (builder) => {
         builder
