@@ -7,18 +7,7 @@ import { sprintsMoksApi } from "../api/index";
     const response: Sprint[] =  await sprintsMoksApi.getSprints({})
       return response
  }) 
- 
- export const deleteSprints = createAsyncThunk<number, number>(
-  'sprints/deleteSprints',
-  async (projectId, { rejectWithValue }) => {
-    try {
-      await sprintsMoksApi.deleteSprints(projectId);
-      return projectId; 
-    } catch (error) {
-      return rejectWithValue("Ошибка удаления спринта");
-    }
-  }
-);
+
 
 interface SprintsState {
     sprints: Sprint[],
@@ -41,11 +30,7 @@ const sprintsSlice = createSlice({
   reducers: {
     addSprints: (state, action: PayloadAction<Sprint>)=>{
       state.sprints.push(action.payload)
-    },
-    deleteSprints: (state, action: PayloadAction<number>) => {
-      state.sprints = state.sprints.filter((sprint) => sprint.projectId !== action.payload);
-    },
-
+    }
   },
   extraReducers:(builder): void=> {
     builder

@@ -15,8 +15,7 @@ export let backlogMocks = { tasks:[
     timestamp: "2025-03-01T10:00:00",
     image: null, 
     isLegacy: true,
-    status: "todo" as const, 
-    sprintId: 0, 
+    status: "todo" as const,  
   },
   {
     tasksID:2,
@@ -27,8 +26,6 @@ export let backlogMocks = { tasks:[
     image: null, 
     isLegacy: true,
     status: "todo" as const, 
-    sprintId: 0,
- 
   },
   {
     tasksID:3,
@@ -39,7 +36,5 @@ export let backlogMocks = { tasks:[
     image: null, 
     isLegacy: true, 
     status: "todo" as const, 
-    sprintId: 0,
-
   }
 ]};

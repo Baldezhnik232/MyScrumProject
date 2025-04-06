@@ -5,10 +5,7 @@ import { Card, CardMedia, CardContent, Typography, CardActions, Button, Grid2 } 
 import DeleteIcon from '@mui/icons-material/Delete';
 import {formDate} from '../../../api/moks/sprints.mock.ts'
 import { Link } from "react-router-dom";
-import { useAppDispatch } from '../../../store/hooks.ts'; // Хук для dispatch
-import { deleteSprints } from '../../../store/sprintsSlice.ts'; 
 import {useState} from "react";
-import { SideBar } from '../RouterPanel/SidebarProjects.tsx';
 
 
 interface SprintsProps {
@@ -16,11 +13,9 @@ interface SprintsProps {
 }
 
 export const SprintsPageItems = ({sprints}:SprintsProps) => {
+
     const [isVisible, setIsVisible] = useState(true);
-    const dispatch = useAppDispatch();
         const handleDelete = (): void => {
-        dispatch(deleteSprints(sprints.projectId)); 
-        console.log("Текущий список спринтов:", sprints);
         setIsVisible(false); 
     };
 

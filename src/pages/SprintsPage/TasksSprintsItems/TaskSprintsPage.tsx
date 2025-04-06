@@ -7,6 +7,7 @@ import {
   CardMedia,
   CardActions,
   Button,
+  Box
 } from '@mui/material';
 import { formDate } from '../../../api/moks/sprints.mock.ts';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -16,14 +17,13 @@ import { SprintTaskPopover } from '../SprintTaskPopover/SprintTaskPopover.tsx';
 interface TaskSprints {
   tasks: Tasks;
   onMoveSprintTask: (
-    tasksID: number,
+    SprintTasksID: number,
     status: TaskStatus,
     sprintId: number
   ) => void;
 }
 
 export const TaskSprintsItems = ({ tasks, onMoveSprintTask }: TaskSprints) => {
-
   const [isValide, setIsValide] = useState(true);
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -47,12 +47,36 @@ export const TaskSprintsItems = ({ tasks, onMoveSprintTask }: TaskSprints) => {
   return (
     <Grid2 size={4}>
       <Card sx={{ width: { sx: 300, sm: 200, md: 300 }, pb: 1 }}>
-        <CardMedia
-          sx={{ height: { xs: 100, sm: 200, md: 300 } }}
-          image={
-            'https://img.freepik.com/free-photo/futuristic-cat-with-goggles_23-2150969289.jpg?t=st=1740336490~exp=1740340090~hmac=3633235324c389c47cefa94780d0ddd6f82960702c6c1a10242b8f3ed32d4e7b&w=1480'
-          }
-        />
+        {tasks.isLegacy ? (
+          <CardMedia
+            sx={{ height: { xs: 100, sm: 200, md: 300 } }}
+            image={
+              'https://img.freepik.com/free-photo/futuristic-cat-with-goggles_23-2150969289.jpg?t=st=1740336490~exp=1740340090~hmac=3633235324c389c47cefa94780d0ddd6f82960702c6c1a10242b8f3ed32d4e7b&w=1480'
+            }
+          />
+        ) : tasks.image ? (
+          <CardMedia
+            sx={{ height: { xs: 100, sm: 200, md: 300 } }}
+            image={URL.createObjectURL(tasks.image)}
+          />
+        ) : (
+          <Box
+            sx={{
+              height: { xs: 100, sm: 200, md: 300 },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: '#f0f0f0',
+            }}
+          >
+            <Typography
+              variant='body2'
+              color='text.secondary'
+            >
+              No Image
+            </Typography>
+          </Box>
+        )}
         <CardContent sx={{ width: { sx: '100%' } }}>
           <Typography
             sx={{ fontSize: { xs: '1rem', sm: '1.5rem' } }}
@@ -126,13 +150,13 @@ export const TaskSprintsItems = ({ tasks, onMoveSprintTask }: TaskSprints) => {
         </CardActions>
       </Card>
       <SprintTaskPopover
-          anchorEl={anchorEl}
-          SprintTasksID={tasks.tasksID}
-          onClose={handleClosePopover}
-          onSave={( SprintTasksID,  status, sprintId  ) => onMoveSprintTask(SprintTasksID, status, sprintId )}
+        anchorEl={anchorEl}
+        SprintTasksID={tasks.tasksID}
+        onClose={handleClosePopover}
+        onSave={(SprintTasksID, status, sprintId) =>
+          onMoveSprintTask(SprintTasksID, status, sprintId)
+        }
       />
-
-
     </Grid2>
   );
 };

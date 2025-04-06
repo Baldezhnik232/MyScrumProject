@@ -15,7 +15,6 @@ export const projectsAPI = {
   }
 }
 
-
 export const sprintsMoksApi = {
   getSprints: async (_filters: IProjectsRequest): Promise<Sprint[]> => {
     return new Promise((resolve): void => {

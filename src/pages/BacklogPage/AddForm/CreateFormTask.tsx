@@ -69,7 +69,7 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
       ),
     };
 
-    const newTask = { id: Date.now(), ...newDate, image: data.image || null, isLegacy: false, status: newDate.status as TaskStatus };
+    const newTask = { id: Date.now(), ...newDate, image: data.image || undefined, isLegacy: false, status: newDate.status as TaskStatus };
     dispatch(addBacklogTask(newTask));
     setOpen(false);
     reset();

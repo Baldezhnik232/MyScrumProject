@@ -4,25 +4,19 @@ import { useEffect, useState } from 'react';
 import { SideBar } from '../../ProjectsPage/RouterPanel/SidebarProjects.tsx';
 import { BacklogPageItem } from '../BacklogItems/BacklogItems.tsx';
 import { AppSearchBacklog } from '../SearchBacklog/SearchBacklog.tsx';
-import { AppButtonAdd } from '../AddButton/FloatingActionButton.tsx';
-import { AppForm } from '../AddForm/CreateFormTask.tsx';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
-import { fetchBacklog } from '../../../store/backlogSlice.ts';
-import {
-  addBacklogTask,
-  updateTaskStatus,
-} from '../../../store/backlogSlice.ts';
-
+import { fetchBacklog,updateTaskStatus } from '../../../store/backlogSlice.ts';
 import { TaskStatus } from '../../../api/types/interfaceApi.tsx';
 
 export const AppBacklogList = () => {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const [open, setOpen] = useState(false);
+  const [showLoading, setShowLoading] = useState(true);
 
   const dispatch = useAppDispatch();
-  const { backlog, filterBacklog, loading } = useAppSelector(
+  const { backlog, filterBacklog } = useAppSelector(
     (state) => state.backlog
   );
 
@@ -38,11 +32,23 @@ export const AppBacklogList = () => {
     dispatch(updateTaskStatus({ tasksID, status, sprintId }));
   };
 
-  useEffect((): void => {
-    dispatch(fetchBacklog());
-  }, [dispatch, id]);
 
-  if (loading)
+  useEffect(()=> {
+    setShowLoading(true); 
+    const timeOut = setTimeout(()=>{
+      setShowLoading(false);
+    }, 1000)
+    return () => clearTimeout(timeOut)
+  }, [id])
+
+  useEffect((): void => {
+    if(backlog.length <= 0) {
+      dispatch(fetchBacklog())
+    }
+  }, [dispatch]);
+
+
+  if (showLoading)
     return (
       <Typography
         sx={{ display: 'flex', justifyContent: 'center', minHeight: '100vh' }}

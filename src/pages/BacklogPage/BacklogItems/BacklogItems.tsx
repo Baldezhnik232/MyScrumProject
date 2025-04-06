@@ -12,7 +12,7 @@ import { formDate } from '../../../api/moks/sprints.mock.ts';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {useState} from "react";
 import {TaskPopover} from "../TasksModal/TasksPopover.tsx";
-import {TaskStatus, Tasks} from "../../../api/types/interfaceApi.tsx";
+import {TaskStatus} from "../../../api/types/interfaceApi.tsx";
 import React from "react";
 
 interface BacklogPageItemProps {

@@ -32,10 +32,7 @@ const tasksSlice = createSlice({
     reducers: {
         addTask: (state, action: PayloadAction<Tasks>): void => {
             state.tasks.push(action.payload)
-        },
-
-       
-        
+        }
     },
     extraReducers: (builder) => {
         builder

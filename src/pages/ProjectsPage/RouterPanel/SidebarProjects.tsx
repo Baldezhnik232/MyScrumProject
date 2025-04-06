@@ -12,10 +12,7 @@ import { useEffect } from 'react';
 import { fetchProjects } from '../../../store/projectsSlice.ts';
 import { AppButtonAdd } from '../../BacklogPage/AddButton/FloatingActionButton.tsx';
 import { AppForm } from '../../BacklogPage/AddForm/CreateFormTask.tsx';
-import {
-  addBacklogTask,
-  updateTaskStatus,
-} from '../../../store/backlogSlice.ts';
+import { addBacklogTask} from '../../../store/backlogSlice.ts';
 import { useState } from 'react';
 import { AppButtonAddSprints } from '../AddButtonSprints/AppButtonSpirits.tsx';
 import { AppFormSprints } from '../AddFormSpirits/CreateFormSprints.tsx';

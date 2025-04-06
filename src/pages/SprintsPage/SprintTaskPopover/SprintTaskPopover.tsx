@@ -25,13 +25,24 @@ export const SprintTaskPopover: React.FC<SprintTaskPopoverProps> = ({
   SprintTasksID,
   onSave,
 }) => {
+
+  const {id} = useParams<{id: string}>();
+
+  const projectId = Number(id);
+
+ const getAvailableSprints = (projectId: number) =>
+   Array.from({ length: 3 }, (_, i) => i + 1 + (projectId - 1) * 3);
+
+  const availableSprints = getAvailableSprints(projectId);
+
+
   const { t } = useTranslation();
 
   const open = Boolean(anchorEl);
 
   const [status, setStatus] = useState<TaskStatus>('todo');
 
-  const [sprintId, setSprintId] = useState<number>(1);
+  const [sprintId, setSprintId] = useState<number>(availableSprints[0]);
 
   const handleSave = () => {
     onSave(SprintTasksID, status, sprintId );
@@ -72,12 +83,12 @@ export const SprintTaskPopover: React.FC<SprintTaskPopoverProps> = ({
             value={sprintId}
             onChange={(e) => setSprintId(Number(e.target.value))}
           >
-            {[...Array(9)].map((_, index) => (
+            {availableSprints.map((id) => (
               <MenuItem
-                key={index + 1}
-                value={index + 1}
+                key={id}
+                value={id}
               >
-                {t('sprint')} {index + 1}
+                {t('sprint')} {id}
               </MenuItem>
             ))}
             <MenuItem value={0}>{t('backlog')}</MenuItem>
