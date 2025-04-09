@@ -1,24 +1,26 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Grid2, Typography } from '@mui/material';
-import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
+import { DndContext, closestCenter, DragEndEvent, useSensor, PointerSensor, KeyboardSensor, MouseSensor, TouchSensor, useSensors } from '@dnd-kit/core';
 import { TaskSprintsItems } from '../TasksSprintsItems/TaskSprintsPage.tsx';
-import { Tasks } from '../../../api/types/interfaceApi.tsx';
+import { TaskStatus, Tasks } from '../../../api/types/interfaceApi.tsx';
 import { SideBar } from '../../ProjectsPage/RouterPanel/SidebarProjects.tsx';
 import {
   fetchBacklog,
   updateTaskStatusSprints,
+  removeTaskFromSprint,
 } from '../../../store/backlogSlice.ts';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
 import { useTranslation } from 'react-i18next';
-import {fetchSprints} from '../../../store/sprintsSlice.ts'
+import { fetchSprints } from '../../../store/sprintsSlice.ts';
+import { StatusColumn } from '../TasksDndColumn/StatusColumn.tsx';
 
 export const AppTaskSprints = () => {
   const { t } = useTranslation();
 
   const { sprintId } = useParams<{ id: string; sprintId: string }>();
 
-  const [showLoading, setShowLoading]= useState(true);
+  const [showLoading, setShowLoading] = useState(true);
 
   const dispatch = useAppDispatch();
 
@@ -31,26 +33,58 @@ export const AppTaskSprints = () => {
   ) => {
     dispatch(updateTaskStatusSprints({ SprintTasksID, status, sprintId }));
   };
+  const handleDeleteTask = (SprintTasksID: number) => {
+    dispatch(removeTaskFromSprint(SprintTasksID));
+  };
 
-  useEffect (()=> {
-    if(sprints.length === 0){
-      dispatch(fetchSprints)
+  useEffect(() => {
+    if (sprints.length === 0) {
+      dispatch(fetchSprints);
     }
-  }, [dispatch])
+  }, [dispatch]);
 
-  
-  useEffect(()=> {
-    setShowLoading(true)
-    const timeOut = setTimeout(()=> {
-      setShowLoading(false)
-    }, 1000)
-    
-    return ()=> clearTimeout(timeOut)
-  }, [sprintId])
+  useEffect(() => {
+    setShowLoading(true);
+    const timeOut = setTimeout(() => {
+      setShowLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timeOut);
+  }, [sprintId]);
 
   const taskSpr: Tasks[] = sprints.filter(
     (task) => task.sprintId?.toString() === sprintId
   );
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (over && active?.data?.current?.tasks) {
+      const task = active.data.current.tasks as Tasks;
+      console.log(over?.id);
+      console.log(task.status)
+      if (task.status !== over.id) {
+        dispatch(
+          updateTaskStatusSprints({
+            SprintTasksID: task.tasksID,
+            status: over.id as TaskStatus,
+            sprintId: task.sprintId!,
+          })
+        );
+      }
+      
+    }
+    
+  };
+
+  const touchSensor = useSensor(TouchSensor, {
+    activationConstraint: {
+      delay: 250,
+      tolerance: 5,
+    },
+  });
+
+  const sensors = useSensors(touchSensor)
+
 
   const todoTasks = taskSpr.filter((task) => task.status === 'todo');
   const doingTasks = taskSpr.filter((task) => task.status === 'doing');
@@ -72,64 +106,43 @@ export const AppTaskSprints = () => {
         showBacklogLink={false}
       />
       {taskSpr.length > 0 ? (
-        <>
-          {todoTasks.length > 0 && (
-            <>
-              {/* <Typography variant="h6">📝 To Do</Typography> */}
-              <Grid2
-                container
-                spacing={2}
-                sx={{ mt: 5, pr: 4, ml: { xs: '6rem', lg: '14rem' } }}
-              >
-                {todoTasks.map((task) => (
-                  <TaskSprintsItems
-                    key={task.tasksID}
-                    tasks={task}
-                    onMoveSprintTask={handleMoveSprintTask}
-                  />
-                ))}
-              </Grid2>
-            </>
-          )}
-
-          {doingTasks.length > 0 && (
-            <>
-              <Typography variant='h6'>🚀 Doing</Typography>
-              <Grid2
-                container
-                spacing={2}
-                sx={{ mt: 2 }}
-              >
-                {doingTasks.map((task) => (
-                  <TaskSprintsItems
-                    key={task.tasksID}
-                    tasks={task}
-                    onMoveSprintTask={handleMoveSprintTask}
-                  />
-                ))}
-              </Grid2>
-            </>
-          )}
-
-          {doneTasks.length > 0 && (
-            <>
-              <Typography variant='h6'>🚀 Done</Typography>
-              <Grid2
-                container
-                spacing={2}
-                sx={{ mt: 5 }}
-              >
-                {doneTasks.map((task: Tasks) => (
-                  <TaskSprintsItems
-                    key={task.tasksID}
-                    tasks={task}
-                    onMoveSprintTask={handleMoveSprintTask}
-                  />
-                ))}
-              </Grid2>
-            </>
-          )}
-        </>
+        <DndContext
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+          sensors={sensors}
+        
+        >
+          <Grid2
+            container
+            spacing={2}
+            sx={{ mt: 5, pr: 4, ml: { xs: '6rem', lg: '14rem' } }}
+          >
+            <StatusColumn
+              id='todo'
+              title='📝 To Do'
+              status='todo'
+              tasks={todoTasks}
+              onMoveSprintTask={handleMoveSprintTask}
+              onDeleteTask={handleDeleteTask}
+            />
+            <StatusColumn
+              id='doing'
+              title='🚀 Doing'
+              status='doing'
+              tasks={doingTasks}
+              onMoveSprintTask={handleMoveSprintTask}
+              onDeleteTask={handleDeleteTask}
+            />
+            <StatusColumn
+              id='done'
+              title='✅ Done'
+              status='done'
+              tasks={doneTasks}
+              onMoveSprintTask={handleMoveSprintTask}
+              onDeleteTask={handleDeleteTask}
+            />
+          </Grid2>
+        </DndContext>
       ) : (
         <Typography
           sx={{ display: 'flex', justifyContent: 'center', mt: 10, mb: 60 }}

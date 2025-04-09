@@ -40,7 +40,6 @@ const backlogSlice = createSlice({
             
             const taskIndex = state.backlog.findIndex((backlog) => backlog.tasksID === tasksID);
 
-
             if (taskIndex !== -1 && sprintId) {
 
                 const task = state.backlog[taskIndex];
@@ -48,14 +47,13 @@ const backlogSlice = createSlice({
 
                 backlogMoksApi.removeTaskFromBacklog(tasksID);
 
-            if (!state.sprints.some((t) => t.sprintId === sprintId)){
                 state.sprints.push({
                     ...task,
                     status,
                     sprintId,
                  });
                  return
-            }   
+               
             }
         },
         updateTaskStatusSprints: (state, action: PayloadAction<{SprintTasksID: number, status: TaskStatus, sprintId: number}>): void => {
@@ -81,7 +79,15 @@ const backlogSlice = createSlice({
                         });
                     }
                 } 
-            }
+            },
+            removeTaskFromSprint: (state, action: PayloadAction<number>) => {
+                const taskId = action.payload;
+                const index = state.sprints.findIndex(task => task.tasksID === taskId);
+                if (index !== -1) {
+                  console.log("Полное удаление из спринта:", state.sprints[index]);
+                  state.sprints.splice(index, 1);
+                }
+              }
     },
     extraReducers: (builder): void => {
         builder
@@ -99,5 +105,5 @@ const backlogSlice = createSlice({
             });
     },
 });
-export const { setFilterBacklog, addBacklogTask, updateTaskStatus, updateTaskStatusSprints } = backlogSlice.actions;
+export const { setFilterBacklog, addBacklogTask, updateTaskStatus, updateTaskStatusSprints,removeTaskFromSprint } = backlogSlice.actions;
 export default backlogSlice.reducer;
