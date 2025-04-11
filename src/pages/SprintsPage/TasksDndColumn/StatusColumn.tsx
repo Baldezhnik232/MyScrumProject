@@ -20,13 +20,13 @@ interface StatusColumnProps {
   onDeleteTask: (SprintTasksID:number) => void
 }
 
-export const StatusColumn: React.FC<StatusColumnProps> = ({id, title, status, tasks, onMoveSprintTask, onDeleteTask}) => {
+export const StatusColumn: React.FC<StatusColumnProps> = ({ title, status, tasks, onMoveSprintTask, onDeleteTask}) => {
   const { setNodeRef } = useDroppable({
     id: status,
   })
 
   return (
-    <div ref={setNodeRef} style={{minHeight:'200px', padding: '1rem'}}>
+    <div ref={setNodeRef} style={{minHeight:'200px', padding: '4rem'}}>
        <Typography variant="h6" sx={{ mb: 2 }}>
         {title}
       </Typography>

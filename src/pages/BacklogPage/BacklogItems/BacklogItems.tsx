@@ -50,8 +50,6 @@ export const BacklogPageItem: React.FC<BacklogPageItemProps>= ({ backlog, onMove
       setAnchorEl(null)
     }
 
-
-    
     return (
     <Grid2 size={4}>
       <Card sx={{ width: {sx:300, sm:200, md: 300 }, pb:1 }}>

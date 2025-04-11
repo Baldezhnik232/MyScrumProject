@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Grid2, Typography } from '@mui/material';
-import { DndContext, closestCenter, DragEndEvent, useSensor, PointerSensor, KeyboardSensor, MouseSensor, TouchSensor, useSensors } from '@dnd-kit/core';
+import { DndContext, closestCenter, DragEndEvent, useSensor,  MouseSensor, TouchSensor, useSensors, PointerSensor } from '@dnd-kit/core';
 import { TaskSprintsItems } from '../TasksSprintsItems/TaskSprintsPage.tsx';
 import { TaskStatus, Tasks } from '../../../api/types/interfaceApi.tsx';
 import { SideBar } from '../../ProjectsPage/RouterPanel/SidebarProjects.tsx';
@@ -76,15 +76,12 @@ export const AppTaskSprints = () => {
     
   };
 
-  const touchSensor = useSensor(TouchSensor, {
+  const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
-      delay: 250,
-      tolerance: 5,
+      distance: 10,
     },
   });
-
-  const sensors = useSensors(touchSensor)
-
+  const sensors = useSensors(mouseSensor);
 
   const todoTasks = taskSpr.filter((task) => task.status === 'todo');
   const doingTasks = taskSpr.filter((task) => task.status === 'doing');
@@ -110,7 +107,6 @@ export const AppTaskSprints = () => {
           collisionDetection={closestCenter}
           onDragEnd={handleDragEnd}
           sensors={sensors}
-        
         >
           <Grid2
             container

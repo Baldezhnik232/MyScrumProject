@@ -31,6 +31,7 @@ export const TaskSprintsItems = ({
   onMoveSprintTask,
   onDeleteTask,
 }: TaskSprints) => {
+
   const [isValide, setIsValide] = useState(true);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
@@ -39,7 +40,7 @@ export const TaskSprintsItems = ({
   };
 
   const handleClosePopover = () => {
-    setIsValide(false);
+    setAnchorEl(null);
   };
 
   const { attributes, listeners, setNodeRef, transform, transition } =
