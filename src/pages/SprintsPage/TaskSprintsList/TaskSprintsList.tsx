@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Grid2, Typography } from '@mui/material';
-import { DndContext, closestCenter, DragEndEvent, useSensor,  MouseSensor, TouchSensor, useSensors, PointerSensor } from '@dnd-kit/core';
+import { DndContext, closestCenter, DragEndEvent, useSensor,  MouseSensor, TouchSensor, useSensors, KeyboardSensor } from '@dnd-kit/core';
+import{sortableKeyboardCoordinates} from '@dnd-kit/sortable'
 import { TaskSprintsItems } from '../TasksSprintsItems/TaskSprintsPage.tsx';
 import { TaskStatus, Tasks } from '../../../api/types/interfaceApi.tsx';
 import { SideBar } from '../../ProjectsPage/RouterPanel/SidebarProjects.tsx';
@@ -14,6 +15,10 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
 import { useTranslation } from 'react-i18next';
 import { fetchSprints } from '../../../store/sprintsSlice.ts';
 import { StatusColumn } from '../TasksDndColumn/StatusColumn.tsx';
+
+
+
+
 
 export const AppTaskSprints = () => {
   const { t } = useTranslation();
@@ -78,10 +83,28 @@ export const AppTaskSprints = () => {
 
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
-      distance: 10,
+      distance: 5,
     },
   });
-  const sensors = useSensors(mouseSensor);
+
+  const touchSensor = useSensor(TouchSensor, {
+    activationConstraint: {
+      delay: 350,
+      tolerance: 10,
+    },
+  });
+
+  const keyboardSensor = useSensor(KeyboardSensor,{
+    coordinateGetter: sortableKeyboardCoordinates,
+    keyboardCodes: {
+      start: ['Space', 'Enter'],   
+      cancel: ['Escape'],          
+      end: ['Space', 'Enter'],     
+    },
+  });
+
+
+  const sensors = useSensors(mouseSensor,touchSensor, keyboardSensor);
 
   const todoTasks = taskSpr.filter((task) => task.status === 'todo');
   const doingTasks = taskSpr.filter((task) => task.status === 'doing');
