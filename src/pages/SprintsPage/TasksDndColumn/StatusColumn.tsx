@@ -3,7 +3,6 @@ import {Tasks, TaskStatus} from '../../../api/types/interfaceApi'
 import {TaskSprintsItems} from '../TasksSprintsItems/TaskSprintsPage'
 import { Grid2, Typography } from '@mui/material';
 import {SortableContext, horizontalListSortingStrategy} from '@dnd-kit/sortable'
-import { useState } from 'react';
 
 
 
@@ -26,11 +25,11 @@ export const StatusColumn: React.FC<StatusColumnProps> = ({ title, status, tasks
   })
 
   return (
-    <div ref={setNodeRef} style={{minHeight:'200px', padding: '4rem'}}>
+    <div ref={setNodeRef} style={{minHeight:'200px', padding: '5rem' }}>
        <Typography variant="h6" sx={{ mb: 2 }}>
-        {title}
+        {title} 
       </Typography>
-      <Grid2 container spacing={2}>
+      <Grid2 container spacing={2}  sx={{border: 2, borderColor: 'error.main'}}>
       <SortableContext
               items={tasks.map((task) => task.tasksID)}
               strategy={horizontalListSortingStrategy}

@@ -11,6 +11,7 @@ import {theme} from './styles/themes/lightTheme.ts'
 import { Provider } from 'react-redux';
 import {store} from './store/index.ts'
 import {BrowserRouter, Route, Routes, Link} from 'react-router-dom'
+// import './firebase.ts';
 
 
 

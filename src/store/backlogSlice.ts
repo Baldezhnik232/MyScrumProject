@@ -63,11 +63,9 @@ const backlogSlice = createSlice({
 
             if(sprintIndex !== -1) {
                 const sprint = state.sprints[sprintIndex]
-                console.log("Удаляем из спринта:", state.sprints[sprintIndex]);
                 state.sprints.splice(sprintIndex, 1)
                 
                 if(sprintId <= 0) {
-                    console.log("Перемещаем в бэклог:", sprint);
                     state.backlog.push({
                         ...sprint
                     });
@@ -84,7 +82,6 @@ const backlogSlice = createSlice({
                 const taskId = action.payload;
                 const index = state.sprints.findIndex(task => task.tasksID === taskId);
                 if (index !== -1) {
-                  console.log("Полное удаление из спринта:", state.sprints[index]);
                   state.sprints.splice(index, 1);
                 }
               }

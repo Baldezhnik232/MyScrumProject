@@ -1,13 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Grid2, Typography } from '@mui/material';
-import { DndContext, closestCenter, DragEndEvent, useSensor,  MouseSensor, TouchSensor, useSensors, KeyboardSensor } from '@dnd-kit/core';
-import{sortableKeyboardCoordinates} from '@dnd-kit/sortable'
-import { TaskSprintsItems } from '../TasksSprintsItems/TaskSprintsPage.tsx';
+import {
+  DndContext,
+  closestCenter,
+  DragEndEvent,
+  useSensor,
+  MouseSensor,
+  TouchSensor,
+  useSensors,
+  KeyboardSensor,
+} from '@dnd-kit/core';
+import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import { TaskStatus, Tasks } from '../../../api/types/interfaceApi.tsx';
 import { SideBar } from '../../ProjectsPage/RouterPanel/SidebarProjects.tsx';
 import {
-  fetchBacklog,
   updateTaskStatusSprints,
   removeTaskFromSprint,
 } from '../../../store/backlogSlice.ts';
@@ -15,10 +22,6 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
 import { useTranslation } from 'react-i18next';
 import { fetchSprints } from '../../../store/sprintsSlice.ts';
 import { StatusColumn } from '../TasksDndColumn/StatusColumn.tsx';
-
-
-
-
 
 export const AppTaskSprints = () => {
   const { t } = useTranslation();
@@ -29,7 +32,7 @@ export const AppTaskSprints = () => {
 
   const dispatch = useAppDispatch();
 
-  const { sprints, loading } = useAppSelector((state) => state.backlog);
+  const { sprints } = useAppSelector((state) => state.backlog);
 
   const handleMoveSprintTask = (
     SprintTasksID: number,
@@ -66,7 +69,7 @@ export const AppTaskSprints = () => {
     if (over && active?.data?.current?.tasks) {
       const task = active.data.current.tasks as Tasks;
       console.log(over?.id);
-      console.log(task.status)
+      console.log(task.status);
       if (task.status !== over.id) {
         dispatch(
           updateTaskStatusSprints({
@@ -76,9 +79,7 @@ export const AppTaskSprints = () => {
           })
         );
       }
-      
     }
-    
   };
 
   const mouseSensor = useSensor(MouseSensor, {
@@ -94,17 +95,16 @@ export const AppTaskSprints = () => {
     },
   });
 
-  const keyboardSensor = useSensor(KeyboardSensor,{
+  const keyboardSensor = useSensor(KeyboardSensor, {
     coordinateGetter: sortableKeyboardCoordinates,
     keyboardCodes: {
-      start: ['Space', 'Enter'],   
-      cancel: ['Escape'],          
-      end: ['Space', 'Enter'],     
+      start: ['Space', 'Enter'],
+      cancel: ['Escape'],
+      end: ['Space', 'Enter'],
     },
   });
 
-
-  const sensors = useSensors(mouseSensor,touchSensor, keyboardSensor);
+  const sensors = useSensors(mouseSensor, touchSensor, keyboardSensor);
 
   const todoTasks = taskSpr.filter((task) => task.status === 'todo');
   const doingTasks = taskSpr.filter((task) => task.status === 'doing');
