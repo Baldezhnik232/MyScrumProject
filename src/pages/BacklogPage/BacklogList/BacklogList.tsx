@@ -5,7 +5,7 @@ import { SideBar } from '../../ProjectsPage/RouterPanel/SidebarProjects.tsx';
 import { BacklogPageItem } from '../BacklogItems/BacklogItems.tsx';
 import { AppSearchBacklog } from '../SearchBacklog/SearchBacklog.tsx';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks/hooks.ts';
 import { fetchBacklog,updateTaskStatus } from '../../../store/backlogSlice.ts';
 import { TaskStatus } from '../../../api/types/interfaceApi.tsx';
 

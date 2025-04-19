@@ -11,7 +11,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { format, parse } from 'date-fns';
 import { Sprint } from '../../../api/types/interfaceApi.tsx';
-import { useAppDispatch } from '../../../store/hooks.ts';
+import { useAppDispatch } from '../../../store/hooks/hooks.ts';
 import { useTranslation } from 'react-i18next';
 import { addSprints } from '../../../store/sprintsSlice.ts';
 

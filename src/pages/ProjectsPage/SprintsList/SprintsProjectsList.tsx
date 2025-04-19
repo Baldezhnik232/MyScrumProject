@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { SideBar } from '../RouterPanel/SidebarProjects.tsx';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks/hooks.ts';
 import { addSprints, fetchSprints } from '../../../store/sprintsSlice.ts';
 import { Sprint } from '../../../api/types/interfaceApi.tsx';
 import { AppButtonAddSprints } from '../AddButtonSprints/AppButtonSpirits.tsx';

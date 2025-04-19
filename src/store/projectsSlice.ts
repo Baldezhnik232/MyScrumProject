@@ -7,7 +7,7 @@ export const fetchProjects = createAsyncThunk("projects/fetchProjects", async ()
   return response;
 });
 
-interface ProjectsState {
+export interface ProjectsState {
   projects: Project[],
   filterProject: string, 
   loading: boolean,

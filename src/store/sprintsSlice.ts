@@ -9,7 +9,7 @@ import { sprintsMoksApi } from "../api/index";
  }) 
 
 
-interface SprintsState {
+export interface SprintsState {
     sprints: Sprint[],
     filterSprints: string,
     loading: boolean,

@@ -3,8 +3,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import {tasksMocksApi} from "../api/index";
 
-import {Tasks, TaskStatus} from "../api/types/interfaceApi.tsx";
-import { updateTaskStatus } from "./backlogSlice.ts";
+import {Tasks} from "../api/types/interfaceApi.tsx";
 
 export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async():  Promise<Tasks[]> =>{
     const response: Tasks[] = await tasksMocksApi.getTasks({})
@@ -13,7 +12,7 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async():  Promise
 
 
 
-interface TasksState {
+export interface TasksState {
     tasks: Tasks[]
     loading: boolean,
     error: string | null

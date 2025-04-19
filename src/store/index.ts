@@ -3,13 +3,15 @@ import projectsReducer from "./projectsSlice";
 import sprintsReducer from "./sprintsSlice"
 import tasksReducer from "./tasksSlice";
 import backlogReducer from "./backlogSlice";
+import authSlice from "./authSlice";
 
-export const store = configureStore({
+export  const store = configureStore({
   reducer: {
     projects: projectsReducer,
     tasks: tasksReducer,
     backlog: backlogReducer,
-    sprints: sprintsReducer
+    sprints: sprintsReducer,
+    auth: authSlice
   },
 });
 

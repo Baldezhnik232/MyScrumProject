@@ -10,7 +10,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { ControllerRenderProps, FieldValues } from "react-hook-form";
 import { format, parse } from 'date-fns';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch } from '../../../store/hooks.ts';
+import { useAppDispatch } from '../../../store/hooks/hooks.ts';
 import { addBacklogTask } from '../../../store/backlogSlice.ts';
 import { Typography, Box } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';

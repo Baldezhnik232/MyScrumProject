@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material"
 import { useTranslation } from "react-i18next"
-import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks/hooks.ts';
 import {setFilterBacklog} from "../../../store/backlogSlice"
 
 

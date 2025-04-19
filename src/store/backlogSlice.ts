@@ -7,8 +7,8 @@ export const fetchBacklog = createAsyncThunk<Tasks[]>('backlog/fetchBacklog', as
     const response = await backlogMoksApi.getBacklog()
     return response
 });
-
-interface BacklogState {
+ 
+export interface BacklogState {
     backlog: Tasks[],
     sprints: Tasks[],
     filterBacklog: string,
