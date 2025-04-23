@@ -3,7 +3,7 @@ import { Grid2, Typography } from '@mui/material';
 import { AppProjectsItem } from '../HomeProjectsItems/HomeProjectsItem.tsx';
 import { Project } from '../../../api/types/interfaceApi.tsx';
 import AppSearch from '../HomeSearch/HomeSearch.tsx';
-import { useAppSelector, useAppDispatch } from '../../../store/hooks/hooks.ts';
+import { useAppSelector, useAppDispatch } from '../../../store/hooks.ts';
 import { fetchProjects } from '../../../store/projectsSlice.ts';
 import { useTranslation } from 'react-i18next';
 

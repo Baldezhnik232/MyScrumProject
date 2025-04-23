@@ -3,7 +3,7 @@ import {Project } from '../../../api/types/interfaceApi.ts'
 import {formDate} from '../../../api/moks/projects.mock.ts'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AppAuth } from '../HomeFormAuth/HomeAuth.tsx'
+import { AppAuth } from '../HomeAuth/HomeAuth.tsx'
 import { useAppSelector } from "../../../store/hooks.ts";
 
 interface ProjectProps {
@@ -36,7 +36,7 @@ export const AppProjectsItem = ({project}: ProjectProps) => {
         </Typography>
         <Typography sx={{fontSize:{xs:'0.7rem', sm:'1.5rem'}}} gutterBottom variant="h6">{project.description}</Typography>
         <Typography   variant="body2" sx={{ color: 'text.secondary', fontSize:{xs:'0.6rem', sm:'1.5rem'} }}>
-          {formDate(project.timestamp)}dk
+          {formDate(project.timestamp)}
         </Typography>
       </CardContent>
       <CardActions sx={{display: 'flex', flexWrap:'wrap', justifyContent: 'start', overflow: 'hidden'}}>

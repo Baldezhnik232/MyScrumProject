@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import {setFilterProject} from '../../../store/projectsSlice'
 
 

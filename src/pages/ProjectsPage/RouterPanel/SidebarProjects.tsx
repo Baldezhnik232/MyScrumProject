@@ -7,7 +7,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink, useLocation, useParams } from 'react-router-dom';
 import { Drawer, ListItem } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks/hooks.ts';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
 import { useEffect } from 'react';
 import { fetchProjects } from '../../../store/projectsSlice.ts';
 import { AppButtonAdd } from '../../BacklogPage/AddButton/FloatingActionButton.tsx';

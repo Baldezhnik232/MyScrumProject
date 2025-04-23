@@ -18,7 +18,7 @@ import {
   updateTaskStatusSprints,
   removeTaskFromSprint,
 } from '../../../store/backlogSlice.ts';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks/hooks.ts';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
 import { useTranslation } from 'react-i18next';
 import { fetchSprints } from '../../../store/sprintsSlice.ts';
 import { StatusColumn } from '../TasksDndColumn/StatusColumn.tsx';

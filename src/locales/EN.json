@@ -50,7 +50,18 @@
     "button": "Add image",
     "value": "Selected file:"
   },
-
+  "fireBaseMess": {
+  "authRepeatEmail": "This account is already created, please Log In",
+  "authError": "Oops! Couldn't complete registration. Try once more?"
+},
+  "formAuthEmail": "email",
+  "formAuthPassword": "password",
+  "LogIn": "Log In",
+  "SignUp": "SignUp",
+  "createAcc": "Don’t have a Account?",
+  "SignUpAcc": "SignUp",
+  "or": "Or",
+  "LogInAcc": "use an existing account", 
   "labelDesc": "Description",
   "create": "Create",
   "cancel":"Cancel",
@@ -62,5 +73,6 @@
   "backlog": "Backlog page",
   "loading": "Loading...",
   "error": "Error",
-  "projectsFind": "No tasks"
+  "projectsFind": "No tasks",
+  "close": "close"
 }

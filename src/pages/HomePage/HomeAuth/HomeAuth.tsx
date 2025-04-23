@@ -4,6 +4,8 @@ import {  signInWithEmailAndPassword, createUserWithEmailAndPassword, getAuth } 
 import { HomeFormAuth  } from './HomeFormAuth';
 import { useAppDispatch } from '../../../store/hooks';
 import {setUser} from "../../../store/authSlice"
+import { useState } from 'react';
+import { useTranslation } from "react-i18next";
 
 
 interface AppAuth {
@@ -13,6 +15,10 @@ interface AppAuth {
 }
 
 export const AppAuth = ({ open, setOpen, onSuccess}: AppAuth) => {
+  const [authError, setAuthError] = useState<string | null>(null);
+
+  const {t} = useTranslation();
+
   const dispatch = useAppDispatch();
 
   const handleLogIn = (email: string, password: string )=> {
@@ -44,11 +50,15 @@ export const AppAuth = ({ open, setOpen, onSuccess}: AppAuth) => {
     );
     setOpen(false);
     onSuccess();
+    setAuthError('')
     })
     .catch(error => {
-      console.error('login error:', error);
+      if(error.code === 'auth/email-already-in-use'){
+        setAuthError('authRepeatEmail')
+      }else{
+        setAuthError('authError')
+      };
     });
-
   }
 
   return (
@@ -57,6 +67,7 @@ export const AppAuth = ({ open, setOpen, onSuccess}: AppAuth) => {
           setOpen={setOpen}
           onLogin={handleLogIn}
           onRegister={handleSignUp}
+          authError={authError}
       />
   );
 };

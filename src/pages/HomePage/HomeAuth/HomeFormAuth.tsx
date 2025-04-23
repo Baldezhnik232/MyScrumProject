@@ -1,4 +1,4 @@
-import {  useState } from 'react';
+import { useState } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -7,7 +7,9 @@ import {
   Button,
   TextField,
   Typography,
+  Link,
 } from '@mui/material';
+
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -21,6 +23,7 @@ interface AppFormPropsAuth {
   setOpen: (value: boolean) => void;
   onLogin: (email: string, password: string) => void;
   onRegister: (email: string, password: string) => void;
+  authError: string | null;
 }
 
 export const HomeFormAuth = ({
@@ -28,10 +31,12 @@ export const HomeFormAuth = ({
   setOpen,
   onLogin,
   onRegister,
+  authError,
 }: AppFormPropsAuth) => {
   const [isLogin, setIsLogin] = useState(true);
 
   const { t } = useTranslation();
+
   const {
     handleSubmit,
     control,
@@ -46,6 +51,7 @@ export const HomeFormAuth = ({
   const onSubmit = ({ email, password }: FormValues) => {
     isLogin ? onLogin(email, password) : onRegister(email, password);
   };
+  const toggle = () => setIsLogin((prev) => !prev);
 
   return (
     <Dialog
@@ -55,7 +61,7 @@ export const HomeFormAuth = ({
       fullWidth
     >
       <DialogTitle sx={{ display: 'flex', justifyContent: 'center' }}>
-        {isLogin ? 'Login' : 'Register'}
+        {isLogin ? t('LogIn') : t('SignUp')}
       </DialogTitle>
       <DialogContent>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -68,7 +74,7 @@ export const HomeFormAuth = ({
             render={({ field }) => (
               <TextField
                 {...field}
-                label='email'
+                label={t('formAuthEmail')}
                 type='email'
                 fullWidth
                 margin='dense'
@@ -86,7 +92,7 @@ export const HomeFormAuth = ({
             render={({ field }) => (
               <TextField
                 {...field}
-                label='password'
+                label={t('formAuthPassword')}
                 type='password'
                 fullWidth
                 margin='dense'
@@ -98,12 +104,44 @@ export const HomeFormAuth = ({
         </form>
         <Typography
           align='center'
-          sx={{ mt: 2, cursor: 'pointer' }}
-          onClick={() => setIsLogin(!isLogin)}
+          sx={{ mt: 2 }}
         >
-          {isLogin
-            ? 'Еще нет аккаунта? Зарегистрируйтесь'
-            : 'Уже есть аккаунт? Войдите'}
+          {isLogin ? (
+            <>
+              {t('createAcc')}
+              <Link
+                href='#'
+                underline='always'
+                onClick={toggle}
+                sx={{ cursor: 'pointer' }}
+              >
+                {' '}
+                {t('SignUpAcc')}
+              </Link>
+            </>
+          ) : (
+            <>
+              {t('or')}
+              <Link
+                href='#'
+                underline='always'
+                onClick={toggle}
+                sx={{ cursor: 'pointer' }}
+              >
+                {' '}
+                {t('LogInAcc')}
+              </Link>
+            </>
+          )}
+          {authError && (
+            <Typography
+              color='error'
+              align='center'
+              sx={{ mt: 1 }}
+            >
+              {t(`fireBaseMess.${authError}`)}
+            </Typography>
+          )}
         </Typography>
       </DialogContent>
       <DialogActions>
@@ -112,9 +150,9 @@ export const HomeFormAuth = ({
           onClick={handleSubmit(onSubmit)}
           variant='contained'
         >
-          {isLogin ? 'Войти' : 'Зарегистрироваться'}
+          {isLogin ? t('LogIn') : t('SignUp')}
         </Button>
-        <Button onClick={() => setOpen(false)}>Close</Button>
+        <Button onClick={() => setOpen(false)}>{t('close')}</Button>
       </DialogActions>
     </Dialog>
   );
