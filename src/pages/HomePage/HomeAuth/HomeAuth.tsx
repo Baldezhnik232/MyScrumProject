@@ -7,7 +7,6 @@ import {setUser} from "../../../store/authSlice"
 import { useState } from 'react';
 import { useTranslation } from "react-i18next";
 
-
 interface AppAuth {
   open: boolean,
   setOpen: (value: boolean) => void,

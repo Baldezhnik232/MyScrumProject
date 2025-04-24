@@ -40,12 +40,13 @@ export const AppProjectsList: React.FC = () => {
 
   return (
     <>
-      <AppSearch />
+      
       <Grid2
         container
         spacing={2}
-        sx={{ mt: 5, pr: 4, ml: { xs: '1.5rem', lg: '14rem' }}}
+        sx={{ mt: 5, ml: { xs: '1.5rem', sm: '1.5rem' , lg: '1.5rem' }}}
       >
+        <AppSearch />
         {filterProjects.length > 0 ? (
           filterProjects.map((project: Project) => (
             <AppProjectsItem
