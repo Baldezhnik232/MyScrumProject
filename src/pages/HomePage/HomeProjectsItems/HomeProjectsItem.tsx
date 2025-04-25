@@ -25,7 +25,7 @@ export const AppProjectsItem = ({project}: ProjectProps) => {
 
   return (
     <Grid2 size={4} >
-      <Card sx={{ width: {xs:'100%', sm:200, md: 300 }  }}>
+      <Card sx={{ width: {xs:'100%', sm:200, md: 300, lg: 300 }  }}>
       <CardMedia
         sx={{ height: {xs: 100, sm:200, md: 300}}}
         image="https://img.freepik.com/premium-photo/owl-with-mountain-glasses-it_899894-52387.jpg?w=826"

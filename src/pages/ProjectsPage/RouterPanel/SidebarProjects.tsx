@@ -63,10 +63,10 @@ export const SideBar: React.FC<ShowLinks> = ({
       variant='permanent'
       anchor='left'
       sx={{
-        width: {xs:100, lg:140},
+        width: {xs:1, lg:140},
         flexShrink: 0,
         position: { xs:'fixed', lg:'fixed'},
-        left: 10,
+        left: 20,
         height: { 
           xs: '38vh',
           lg: '75vh' },
@@ -99,33 +99,12 @@ export const SideBar: React.FC<ShowLinks> = ({
             {currentProject ? t('projects', { id: currentProject.id }) : '...'}
           </Typography>
         </Link>
-
         <ListItem
-          sx={{ height: projectPage ? 40 : 'auto' }}
+          sx={{ height: projectPage ? 10 : 'auto' }}
           divider
         />
-        {projectPage && (
-          <Link
-            sx={{
-              color: 'black',
-              position: 'fixed',
-              top: {
-                xs: '28%',
-                lg:'22%'},
-              cursor: 'pointer',
-            }}
-            underline='none'
-          >
-            <AppButtonAddSprints setOpen={setOpen} />
-            <AppFormSprints
-              open={open}
-              setOpen={setOpen}
-              addSprint={addSprints}
-            />
-          </Link>
-        )}
         
-
+        
         {showBacklogLink && (
           <Link
             sx={{ color: backlogPage ? theme.palette.primary.main : 'black' }}
@@ -136,6 +115,27 @@ export const SideBar: React.FC<ShowLinks> = ({
             <Typography sx={{fontSize:{xs: '0.6rem', lg: '1rem'}}}>
               {t('backlog')}
             </Typography>
+          </Link>
+        )}
+      {projectPage && (
+          <Link
+            sx={{
+              color: 'black',
+              mt: {
+                xs: '5%',
+                lg:'22%',
+                xl: '5%'
+              },
+              cursor: 'pointer',
+            }}
+            underline='none'
+          >
+            <AppButtonAddSprints setOpen={setOpen} />
+            <AppFormSprints
+              open={open}
+              setOpen={setOpen}
+              addSprint={addSprints}
+            />
           </Link>
         )}
 

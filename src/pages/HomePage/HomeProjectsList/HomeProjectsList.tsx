@@ -44,7 +44,7 @@ export const AppProjectsList: React.FC = () => {
       <Grid2
         container
         spacing={2}
-        sx={{ mt: 5, ml: { xs: '1.5rem', sm: '1.5rem' , lg: '1.5rem' }}}
+        sx={{ mt: 5, ml: { xs: '1.5rem', sm: '1.5rem' , md: '1.1rem', lg: '1.1rem', xl: '15rem' }}}
       >
         <AppSearch />
         {filterProjects.length > 0 ? (
@@ -55,7 +55,7 @@ export const AppProjectsList: React.FC = () => {
             />
           ))
         ) : (
-          <Typography sx={{display: 'flex', justifyContent: 'center'}}>{t('homeSearch.projectsFind')}</Typography>
+          <Typography sx={{display: 'flex', justifyContent: 'center', mt: {xl: 2}}}>{t('homeSearch.projectsFind')}</Typography>
         )}
       </Grid2>
     </>
