@@ -54,6 +54,7 @@
   "authRepeatEmail": "This account is already created, please Log In",
   "authError": "Oops! Couldn't complete registration. Try once more?"
 },
+  
   "formAuthEmail": "email",
   "formAuthPassword": "password",
   "LogIn": "Log In",

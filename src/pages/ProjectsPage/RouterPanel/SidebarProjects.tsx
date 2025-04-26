@@ -167,10 +167,10 @@ export const SideBar: React.FC<ShowLinks> = ({
         <Link
           sx={{
             color: 'black',
-            position: 'fixed',
-            top: {
-              xs:'27%',
-              lg:'23%'},
+            mt: {
+                xs:'5%',
+                lg:'22%',
+                xl: '5%'},
             cursor: 'pointer'
           }}
           underline='none' 

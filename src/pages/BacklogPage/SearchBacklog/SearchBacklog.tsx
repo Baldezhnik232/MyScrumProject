@@ -18,8 +18,7 @@ return (
   id="outlined-multiline-flexible"
   label={t("backlogSearch.title")}
   type="search"
-  fullWidth
-  sx={{width: { xs: '60%', lg:'74%'}, mt:2, ml:{xs:12, lg:28}}}
+  sx={{width: { xs: '100%', sm: '95.5%', md: '100%', lg:'92.5%', xl: '85.8%'}}}
   value={filterBacklog}
   onChange={(e) => dispatch(setFilterBacklog(e.target.value))}
   >

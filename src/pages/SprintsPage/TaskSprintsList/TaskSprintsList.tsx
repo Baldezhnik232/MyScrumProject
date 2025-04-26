@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Grid2, Typography } from '@mui/material';
+import { Grid2, Typography, Box } from '@mui/material';
 import {
   DndContext,
   closestCenter,
@@ -120,7 +120,7 @@ export const AppTaskSprints = () => {
     );
 
   return (
-    <>
+    <Box>
       <SideBar
         showSprintLink={true}
         showBacklogLink={false}
@@ -169,6 +169,6 @@ export const AppTaskSprints = () => {
           {t('projectsFind')}
         </Typography>
       )}
-    </>
+    </Box>
   );
 };

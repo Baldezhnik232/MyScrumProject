@@ -58,20 +58,23 @@ export const AppBacklogList = () => {
     );
   return (
     <>
-      <AppSearchBacklog />
-      <SideBar />
       <Grid2
         container
         spacing={2}
         sx={{ mt: 5, pr: 4, ml: { xs: '6rem', lg: '14rem' } }}
       >
-        {filteredBacklog.map((backlog) => (
-          <BacklogPageItem
-            key={backlog.tasksID}
-            backlog={backlog}
-            onMoveTask={handleMoveTask}
-          />
-        ))}
+        <AppSearchBacklog />
+        <SideBar />
+        {filteredBacklog.length > 0 ? (
+                filteredBacklog.map((backlog) => (
+                  <BacklogPageItem
+                    key={backlog.tasksID}
+                    backlog={backlog}
+                    onMoveTask={handleMoveTask}
+                  />
+                ))
+        ) : (<Typography sx={{display: 'flex', justifyContent: 'center', mt: {xl: 2}}}>{t('projectsFind')}</Typography>)
+                }
       </Grid2>
     </>
   );
