@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Grid2, Typography } from '@mui/material';
+import { Grid2, Typography, Box } from '@mui/material';
 import { AppProjectsItem } from '../HomeProjectsItems/HomeProjectsItem.tsx';
 import { Project } from '../../../api/types/interfaceApi.tsx';
 import AppSearch from '../HomeSearch/HomeSearch.tsx';
@@ -39,12 +39,11 @@ export const AppProjectsList: React.FC = () => {
   if (error) return (<Typography align={'center'}> {t('error')}:{error} </Typography>);
 
   return (
-    <>
-      
+    <Box sx={{flexGrow: 1, display: 'flex', flexDirection: 'column'}}>
       <Grid2
         container
         spacing={2}
-        sx={{ mt: 5, ml: { xs: '1.5rem', sm: '1.5rem' , md: '1.1rem', lg: '1.1rem', xl: '15rem' }}}
+        sx={{ mt: 5, ml: { xs: '1.5rem', sm: '1.5rem' , md: '1.1rem', lg: '6.2rem', xl: '15rem' }}}
       >
         <AppSearch />
         {filterProjects.length > 0 ? (
@@ -58,6 +57,6 @@ export const AppProjectsList: React.FC = () => {
           <Typography sx={{display: 'flex', justifyContent: 'center', mt: {xl: 2}}}>{t('homeSearch.projectsFind')}</Typography>
         )}
       </Grid2>
-    </>
+    </Box>
   );
 };

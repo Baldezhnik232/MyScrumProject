@@ -24,9 +24,9 @@ export const SprintsPageItems = ({sprints}:SprintsProps) => {
     }
     return (
       <Grid2  size={4} >
-        <Card sx={{ width: {sx:300, sm:200, md: 300 } }}>
+        <Card sx={{ width: {sx:290, sm:190, md: 250, lg: 300, xl:300  } }}>
         <CardMedia
-          sx={{ height: {xs: 70, sm:200, md: 300}}}
+          sx={{ height: {xs: 94, sm:200, md: 270, lg: 300, xl:300}}}
           image="https://img.freepik.com/premium-photo/radiant-rhythms-exploring-neon-line-art-spectrum_1020495-70919.jpg?w=1060"
         />
         <CardContent sx={{ width: {sx:'100%'}}}>

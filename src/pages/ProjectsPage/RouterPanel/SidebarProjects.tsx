@@ -68,8 +68,11 @@ export const SideBar: React.FC<ShowLinks> = ({
         position: { xs:'fixed', lg:'fixed'},
         left: 20,
         height: { 
-          xs: '38vh',
-          lg: '75vh' },
+          xs: 310,
+          sm: '46vh',
+          lg: 540,
+          xl: '75vh'
+         },
         '& .MuiDrawer-paper': {
           width: {
             xs: 75,

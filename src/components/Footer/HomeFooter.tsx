@@ -9,7 +9,8 @@ export const AppFooter = () => {
       component='footer'
       sx={{
         width: '100%',
-        mt: {xs: 1, sm: 5, md:5,},
+        position: 'fixed',
+        top: {xs: 500, sm: 750, md:800, lg:710, xl: 844},
         backgroundColor: theme.palette.primary.main,
         color: 'white',
       }}
