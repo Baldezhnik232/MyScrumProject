@@ -9,7 +9,6 @@ import { addSprints, fetchSprints } from '../../../store/sprintsSlice.ts';
 import { Sprint } from '../../../api/types/interfaceApi.tsx';
 import { AppButtonAddSprints } from '../AddButtonSprints/AppButtonSpirits.tsx';
 import { AppFormSprints } from '../AddFormSpirits/CreateFormSprints.tsx';
-// import { addSprint } from '../../../store/sprintsSlice.ts'
 
 export const AppSprintsList = () => {
   const { t } = useTranslation();
@@ -25,7 +24,7 @@ export const AppSprintsList = () => {
   }, [dispatch]);
 
   const projectSprints: Sprint[] = sprints.filter(
-    (sprint) => String(sprint.projectId) === id
+    (sprint) => String(sprint.projectId?.toString()) === id
   );
 
   const addNewSprint = (newSprint: Sprint) => {
@@ -58,11 +57,14 @@ export const AppSprintsList = () => {
           ))}
         </Grid2>
       ) : (
+        <Box>
+          <SideBar />
         <Typography
           sx={{ display: 'flex', justifyContent: 'center', mt: 3, mb: 60 }}
         >
-          Нет спринтов
+            {t('sprintsFind')}
         </Typography>
+        </Box>
       )}
     </Box>
   );

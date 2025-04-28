@@ -5,7 +5,9 @@ import { Card, CardMedia, CardContent, Typography, CardActions, Button, Grid2 } 
 import DeleteIcon from '@mui/icons-material/Delete';
 import {formDate} from '../../../api/moks/sprints.mock.ts'
 import { Link } from "react-router-dom";
-import {useState} from "react";
+import { useAppDispatch } from '../../../store/hooks.ts';
+import {  removeSprints } from '../../../store/sprintsSlice.ts';
+import { sprintsMoksApi} from '../../../api/index.ts'
 
 
 interface SprintsProps {
@@ -13,15 +15,20 @@ interface SprintsProps {
 }
 
 export const SprintsPageItems = ({sprints}:SprintsProps) => {
+    const dispatch = useAppDispatch()
 
-    const [isVisible, setIsVisible] = useState(true);
-        const handleDelete = (): void => {
-        setIsVisible(false); 
+    const handleDeleteSprint = async (sprintId: number) => {
+      try {
+        await sprintsMoksApi.deleteSprintApi(sprintId); 
+        dispatch(removeSprints(sprintId));
+      } catch (error) {
+        console.error('Ошибка удаления спринта:', error);
+      }
     };
 
-    if (!isVisible) {
-        return null;
-    }
+    console.log(handleDeleteSprint, 'удаление ');
+
+    
     return (
       <Grid2  size={4} >
         <Card sx={{ width: {sx:290, sm:190, md: 250, lg: 300, xl:300  } }}>
@@ -40,7 +47,7 @@ export const SprintsPageItems = ({sprints}:SprintsProps) => {
         </CardContent>
         <CardActions sx={{display: 'flex', flexWrap:'wrap', justifyContent: 'start', overflow: 'hidden'}}>
           <Button sx={{fontSize:{xs:'0.4rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size="small" component={Link} to={`/project/${sprints.projectId}/sprints/${sprints.sprintId}`} >Learn More</Button>
-            <Button sx={{display:'flex', justifyContent: 'flex-start'}} size = "small" onClick={handleDelete}>
+            <Button sx={{display:'flex', justifyContent: 'flex-start'}} size = "small" onClick={()=> handleDeleteSprint(sprints.sprintId)}>
                 <DeleteIcon  />
             </Button>
         </CardActions>

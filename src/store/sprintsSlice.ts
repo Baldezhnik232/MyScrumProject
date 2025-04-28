@@ -9,6 +9,8 @@ import { sprintsMoksApi } from "../api/index";
  }) 
 
 
+ 
+
 export interface SprintsState {
     sprints: Sprint[],
     filterSprints: string,
@@ -30,7 +32,13 @@ const sprintsSlice = createSlice({
   reducers: {
     addSprints: (state, action: PayloadAction<Sprint>)=>{
       state.sprints.push(action.payload)
-    }
+    },
+    removeSprints: (state, action: PayloadAction<number>) => {
+      state.sprints = state.sprints.filter(
+        (sprint) => sprint.sprintId !== action.payload
+      );
+    },
+    
   },
   extraReducers:(builder): void=> {
     builder
@@ -45,11 +53,10 @@ const sprintsSlice = createSlice({
     .addCase(fetchSprints.rejected, (state, action):void=> {
       state.loading = false;
       state.error = action.error.message || "Ошибка загрузки" ;
-
     })
   }
 })
 
 
-export const {addSprints} = sprintsSlice.actions;
+export const {addSprints, removeSprints} = sprintsSlice.actions;
 export default sprintsSlice.reducer

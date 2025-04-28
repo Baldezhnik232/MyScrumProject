@@ -75,5 +75,6 @@
   "loading": "Loading...",
   "error": "Error",
   "projectsFind": "No tasks",
+  "sprintsFind": "No Sprints",
   "close": "close"
 }

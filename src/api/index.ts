@@ -23,11 +23,20 @@ export const sprintsMoksApi = {
       }, 1000);
     });
   },
+  deleteSprintApi: async (sprintId: number): Promise<Sprint[]> => {
+    return new Promise((resolve): void => {
+      setTimeout((): void=> {
+        resolve(sprintsMoks);
+      }, 100); 
+  });
+  }
+}
 
-};
+
+
 
 export const backlogMoksApi = {
-  getBacklog:  ():Promise<Tasks[]> => {
+  getBacklog: ():Promise<Tasks[]> => {
     return new Promise((resolve): void => {
       setTimeout((): void => {
         resolve([...backlogMocks.tasks]); 
