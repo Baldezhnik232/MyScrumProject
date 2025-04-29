@@ -19,15 +19,12 @@ export const SprintsPageItems = ({sprints}:SprintsProps) => {
 
     const handleDeleteSprint = async (sprintId: number) => {
       try {
-        await sprintsMoksApi.deleteSprintApi(sprintId); 
+        await sprintsMoksApi.deleteSprintApi(sprintId)
         dispatch(removeSprints(sprintId));
       } catch (error) {
         console.error('Ошибка удаления спринта:', error);
       }
     };
-
-    console.log(handleDeleteSprint, 'удаление ');
-
     
     return (
       <Grid2  size={4} >

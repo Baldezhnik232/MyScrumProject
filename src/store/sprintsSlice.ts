@@ -4,7 +4,7 @@ import { sprintsMoksApi } from "../api/index";
 
 
  export const fetchSprints = createAsyncThunk("sprints/fetchSprints",async (): Promise<Sprint[]>=> {
-    const response: Sprint[] =  await sprintsMoksApi.getSprints({})
+    const response: Sprint[] =  await sprintsMoksApi.getSprints()
       return response
  }) 
 

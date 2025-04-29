@@ -1,4 +1,4 @@
-import { Typography, Grid2 } from '@mui/material';
+import { Typography, Grid2, Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { SideBar } from '../../ProjectsPage/RouterPanel/SidebarProjects.tsx';
@@ -12,7 +12,6 @@ import { TaskStatus } from '../../../api/types/interfaceApi.tsx';
 export const AppBacklogList = () => {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
-  const [open, setOpen] = useState(false);
   const [showLoading, setShowLoading] = useState(true);
 
   const dispatch = useAppDispatch();
@@ -22,6 +21,7 @@ export const AppBacklogList = () => {
 
   const filteredBacklog = backlog.filter((backlog) =>
     backlog.title.toLowerCase().includes(filterBacklog.toLowerCase())
+    // backlog.title?.toString() === id
   );
 
   const handleMoveTask = (
@@ -31,8 +31,7 @@ export const AppBacklogList = () => {
   ) => {
     dispatch(updateTaskStatus({ tasksID, status, sprintId }));
   };
-
-
+3
   useEffect(()=> {
     setShowLoading(true); 
     const timeOut = setTimeout(()=>{
@@ -57,7 +56,8 @@ export const AppBacklogList = () => {
       </Typography>
     );
   return (
-    <>
+    <Box>
+      {filteredBacklog.length > 0 ? (
       <Grid2
         container
         spacing={2}
@@ -65,17 +65,22 @@ export const AppBacklogList = () => {
       >
         <AppSearchBacklog />
         <SideBar />
-        {filteredBacklog.length > 0 ? (
-                filteredBacklog.map((backlog) => (
+                {filteredBacklog.map((backlog) => (
                   <BacklogPageItem
                     key={backlog.tasksID}
                     backlog={backlog}
                     onMoveTask={handleMoveTask}
                   />
-                ))
-        ) : (<Typography sx={{display: 'flex', justifyContent: 'center', mt: {xl: 2}}}>{t('projectsFind')}</Typography>)
-                }
-      </Grid2>
-    </>
+                ))}
+                </Grid2>
+        ) : (
+          <Box>
+            <SideBar />
+        <Typography sx={{display: 'flex', justifyContent: 'center', mt: {xl: 2}}}>
+          {t('projectsFind')}
+          </Typography>
+          </Box>
+        )}
+    </Box>
   );
 };

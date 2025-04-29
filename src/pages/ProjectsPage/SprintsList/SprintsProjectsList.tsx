@@ -7,20 +7,30 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
 import { addSprints, fetchSprints } from '../../../store/sprintsSlice.ts';
 import { Sprint } from '../../../api/types/interfaceApi.tsx';
-import { AppButtonAddSprints } from '../AddButtonSprints/AppButtonSpirits.tsx';
-import { AppFormSprints } from '../AddFormSpirits/CreateFormSprints.tsx';
+
 
 export const AppSprintsList = () => {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
-  const [open, setOpen] = useState(false);
+  const [showLoading, setShowLoading] = useState(true);
+
 
   const dispatch = useAppDispatch();
 
-  const { sprints, loading } = useAppSelector((state) => state.sprints);
+  const { sprints } = useAppSelector((state) => state.sprints);
+
+   useEffect(()=> {
+      setShowLoading(true)
+      const timeOut = setTimeout( ()=>{
+          setShowLoading(false)
+      }, 1000) 
+      return () => clearTimeout(timeOut) 
+   }, [id])
 
   useEffect((): void => {
-    dispatch(fetchSprints());
+    if(sprints.length === 0){
+      dispatch(fetchSprints());
+    }
   }, [dispatch]);
 
   const projectSprints: Sprint[] = sprints.filter(
@@ -32,14 +42,14 @@ export const AppSprintsList = () => {
     console.log(addNewSprint);
   };
 
-  if (loading)
-    return (
-      <Typography
-        sx={{ display: 'flex', justifyContent: 'center', minHeight: '100vh' }}
-      >
-        {t('loading')}
-      </Typography>
-    );
+  if (showLoading)
+  return (
+    <Typography
+      sx={{ display: 'flex', justifyContent: 'center', minHeight: '100vh' }}
+    >
+      {t('loading')}
+    </Typography>
+  );
   return (
     <Box>
       {projectSprints.length > 0 ? (

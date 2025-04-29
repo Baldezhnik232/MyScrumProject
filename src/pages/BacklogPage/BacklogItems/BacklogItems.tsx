@@ -14,7 +14,6 @@ import {useState} from "react";
 import {TaskPopover} from "../TasksModal/TasksPopover.tsx";
 import {TaskStatus} from "../../../api/types/interfaceApi.tsx";
 import React from "react";
-
 interface BacklogPageItemProps {
     backlog: {
       tasksID: number,
@@ -30,7 +29,6 @@ interface BacklogPageItemProps {
 
 
 export const BacklogPageItem: React.FC<BacklogPageItemProps>= ({ backlog, onMoveTask}) => {
-
     const [isValide, setIsValide] = useState(true);
 
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -110,7 +108,7 @@ export const BacklogPageItem: React.FC<BacklogPageItemProps>= ({ backlog, onMove
             <Button sx={{fontSize:{xs:'0.4rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small' onClick={handleOpenPopover}>Move
             </Button>
           <Button sx={{fontSize:{xs:'0.4rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small'>Learn More</Button>
-          <Button sx={ {display: ' flex',justifyContent: 'flex-start' ,fontSize:{xs:'0.4rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small' onClick={handleClose}>
+          <Button sx={ {display: ' flex',justifyContent: 'flex-start' ,fontSize:{xs:'0.4rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size='small' onClick={(handleClose)}>
             <DeleteIcon />
           </Button>
         </CardActions>

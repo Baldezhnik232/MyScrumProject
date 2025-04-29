@@ -16,14 +16,14 @@ export const projectsAPI = {
 }
 
 export const sprintsMoksApi = {
-  getSprints: async (_filters: IProjectsRequest): Promise<Sprint[]> => {
+  getSprints: async (): Promise<Sprint[]> => {
     return new Promise((resolve): void => {
       setTimeout((): void => {
         resolve(sprintsMoks);
       }, 1000);
     });
   },
-  deleteSprintApi: async (sprintId: number): Promise<Sprint[]> => {
+  deleteSprintApi: async (sprintId:number): Promise<Sprint[]> => {
     return new Promise((resolve): void => {
       setTimeout((): void=> {
         resolve(sprintsMoks);
@@ -31,9 +31,6 @@ export const sprintsMoksApi = {
   });
   }
 }
-
-
-
 
 export const backlogMoksApi = {
   getBacklog: ():Promise<Tasks[]> => {
