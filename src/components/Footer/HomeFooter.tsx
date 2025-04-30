@@ -10,7 +10,7 @@ export const AppFooter = () => {
       sx={{
         width: '100%',
         position: 'fixed',
-        top: {xs: 500, sm: 750, md:800, lg:710, xl: 844},
+        top: {xs: 500, sm: 750, md:800, lg:760, xl: 844},
         backgroundColor: theme.palette.primary.main,
         color: 'white',
       }}

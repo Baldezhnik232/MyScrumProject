@@ -19,10 +19,10 @@ export interface Tasks  {
     storyPoints: number;
     description: string;
     timestamp: string;
-    status: TaskStatus;
-    sprintId: number;
+    status?: TaskStatus;
+    sprintId?: number;
     isLegacy: boolean;
-    image?: File
+    image?: File | null
 
 }   
 
