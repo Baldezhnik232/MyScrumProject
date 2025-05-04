@@ -7,10 +7,6 @@ import { sprintsMoksApi } from "../api/index";
     const response: Sprint[] =  await sprintsMoksApi.getSprints()
       return response
  }) 
-
-
- 
-
 export interface SprintsState {
     sprints: Sprint[],
     filterSprints: string,

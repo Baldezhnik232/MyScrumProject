@@ -16,7 +16,7 @@ import {setFilterProject} from '../../../store/projectsSlice'
       id="outlined-search" 
       label={t('homeSearch.title')} 
       type="search"
-      sx={{width: { xs: '100%', sm: '95.5%', md: '93.5%', lg:'94%', xl: '85.8%'}}}
+      sx={{minWidth:'100%'}}
       value={filterProject}
       onChange={(e)=> dispatch((setFilterProject(e.target.value)))} 
       >

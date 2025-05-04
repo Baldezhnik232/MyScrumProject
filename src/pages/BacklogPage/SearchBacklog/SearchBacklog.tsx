@@ -13,12 +13,10 @@ export const AppSearchBacklog = () => {
 
 
 return (
-
   <TextField
-  id="outlined-multiline-flexible"
   label={t("backlogSearch.title")}
   type="search"
-  sx={{width: { xs: '100%', sm: '95.5%', md: '100%', lg:'92.5%', xl: '85.8%'}}}
+  sx={{minWidth:'100%', mb:'1rem'}}
   value={filterBacklog}
   onChange={(e) => dispatch(setFilterBacklog(e.target.value))}
   >

@@ -28,7 +28,7 @@ export const AppProjectsList: React.FC = () => {
     state => state.projects.error
   );
 
-  const filterProjects = projects.filter((project) =>
+  const filterProjects: Project[] = projects.filter((project) =>
     project.title
       .toLocaleLowerCase()
       .includes(filterProject.toLocaleLowerCase())
@@ -43,7 +43,7 @@ export const AppProjectsList: React.FC = () => {
       <Grid2
         container
         spacing={2}
-        sx={{ mt: 5, ml: { xs: '0.3rem', sm: '1.5rem' , md: '1.4rem', lg: '6.2rem', xl: '15rem' }}}
+        sx={{ mt: {xs:'0.5rem'}, ml: { xs: '0.2rem', sm: '1.5rem' , md: '1.4rem', lg: '1.2rem', xl: '1rem' } }}
       >
         <AppSearch />
         {filterProjects.length > 0 ? (
@@ -54,7 +54,7 @@ export const AppProjectsList: React.FC = () => {
             />
           ))
         ) : (
-          <Typography sx={{display: 'flex', justifyContent: 'center', mt: {xl: 2}}}>{t('homeSearch.projectsFind')}</Typography>
+          <Typography sx={{display: 'flex', justifyContent: 'center'}}>{t('homeSearch.projectsFind')}</Typography>
         )}
       </Grid2>
     </Box>

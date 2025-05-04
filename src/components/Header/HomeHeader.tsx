@@ -11,7 +11,7 @@ const AppHeader = () => {
   return (
     <Box  >
       <AppBar
-        sx={{height:{xs: 70, sm: 100, md: 100, lg: 100, xl:70 }}}
+        sx={{height:{xs: '4rem', sm: '4rem', md: '4rem', lg: '4rem', xl:'4rem' }}}
         position='static'>
         <Toolbar>
           <Typography
@@ -23,20 +23,19 @@ const AppHeader = () => {
               flexGrow: 1,
               textDecoration: 'none'
           }}
+          fontSize={{xs:'1.5rem'}}
           >
             {t('header.title')}
           </Typography>
-          <FormControl sx={{ m: 4, minWidth: 60, minHeight: 50 }}>
+          <FormControl sx={{ m: {xs: '0.4rem', sm: '0.2rem', md: '0.4rem', lg: '0.4rem', xl:'0.4rem'}, minWidth: '0.1rem', minHeight: '0.2rem' }}>
             <Select
-              labelId='demo-simple-select-autowidth-label'
-              id='demo-simple-select-autowidth'
               value={language}
               onChange={handleChange}
               displayEmpty
               sx={{
                 bgcolor: 'white',
-                width: 70,
-                height: 50
+                width: '4.4rem',
+                height: '2.5rem'
               }}
               renderValue={(selected) => (selected ? selected : 'Lang')}
             >

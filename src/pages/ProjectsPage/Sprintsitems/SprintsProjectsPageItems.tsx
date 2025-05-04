@@ -28,22 +28,22 @@ export const SprintsPageItems = ({sprints}:SprintsProps) => {
     
     return (
       <Grid2  size={4} >
-        <Card sx={{ width: {sx:290, sm:190, md: 250, lg: 300, xl:300  } }}>
+        <Card sx={{ minWidth: {xs:'8rem', sm:'6rem', md: '1rem', lg: '18rem', xl:'25rem'} }}>
         <CardMedia
-          sx={{ height: {xs: 94, sm:200, md: 270, lg: 300, xl:300}}}
+          sx={{ minHeight: {xs: '7rem', sm:'8rem', md: '1rem', lg: '20rem', xl:'26rem'}}}
           image="https://img.freepik.com/premium-photo/radiant-rhythms-exploring-neon-line-art-spectrum_1020495-70919.jpg?w=1060"
         />
-        <CardContent sx={{ width: {sx:'100%'}}}>
-          <Typography  sx={{fontSize:{xs:'0.6rem', sm:'1.5rem'}}} gutterBottom variant="h5" component="div">
+        <CardContent sx={{ minWidth: '100%'}}>
+          <Typography  sx={{fontSize:{xs:'0.8rem', sm:'1.2rem'}}} gutterBottom variant="h5" component="div">
             {sprints.title}
           </Typography>
-          <Typography sx={{fontSize:{xs:'0.5rem', sm:'1.5rem'}}} gutterBottom variant="h6">{sprints.description}</Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary', fontSize:{xs:'0.5rem', sm:'1.5rem'} }}>
+          <Typography sx={{fontSize:{xs:'0.6rem', sm:'0.7rem'}}} gutterBottom variant="h6">{sprints.description}</Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary', fontSize:{xs:'0.9rem', sm:'0.8rem'} }}>
             {formDate(sprints.timestamp)}
           </Typography>
         </CardContent>
         <CardActions sx={{display: 'flex', flexWrap:'wrap', justifyContent: 'start', overflow: 'hidden'}}>
-          <Button sx={{fontSize:{xs:'0.4rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size="small" component={Link} to={`/project/${sprints.projectId}/sprints/${sprints.sprintId}`} >Learn More</Button>
+          <Button sx={{fontSize:{xs:'0.6rem', sm: '0.6rem', lg: '0.75rem', }, minWidth: 'unset'}} size="small" component={Link} to={`/project/${sprints.projectId}/sprints/${sprints.sprintId}`} >Learn More</Button>
             <Button sx={{display:'flex', justifyContent: 'flex-start'}} size = "small" onClick={()=> handleDeleteSprint(sprints.sprintId)}>
                 <DeleteIcon  />
             </Button>

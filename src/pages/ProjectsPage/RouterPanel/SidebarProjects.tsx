@@ -63,20 +63,14 @@ export const SideBar: React.FC<ShowLinks> = ({
       variant='permanent'
       anchor='left'
       sx={{
-        width: {xs:1, lg:140},
-        flexShrink: 0,
-        position: { xs:'fixed', lg:'fixed'},
-        left: 20,
-        height: { 
-          xs: 310,
-          sm: '46vh',
-          lg: 540,
-          xl: '75vh'
-         },
+        mt: 'rem',
+        left:'1rem',
         '& .MuiDrawer-paper': {
           width: {
-            xs: 75,
-            lg: 200
+            xs: backlogPage?'5.5rem' : '5.5rem',
+            sm: backlogPage? '8rem' :'6rem',
+            lg: backlogPage? '15rem' : '10rem',
+            xl: backlogPage? '15rem' : '15rem'
           } ,
           position: 'relative',
         },
@@ -125,7 +119,7 @@ export const SideBar: React.FC<ShowLinks> = ({
             sx={{
               color: 'black',
               mt: {
-                xs: '5%',
+                xs: '5.1%',
                 lg:'22%',
                 xl: '5%'
               },

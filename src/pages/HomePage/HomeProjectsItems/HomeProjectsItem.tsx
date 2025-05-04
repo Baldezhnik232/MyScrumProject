@@ -25,22 +25,22 @@ export const AppProjectsItem = ({project}: ProjectProps) => {
 
   return (
     <Grid2 size={4} >
-      <Card sx={{ width: {xs:95, sm:200, md: 240, lg: 300 }}}>
+      <Card sx={{ minWidth: {xs:'3rem', sm:'2rem', md: '3rem', lg: '4rem', xl:'6rem' }}}>
       <CardMedia
-        sx={{ height: {xs: 100, sm:200, md: 300}}}
+        sx={{ minHeight: {xs: '8rem', sm:'12rem', md: '18rem', lg: '22rem', xl: '25rem'}}}
         image="https://img.freepik.com/premium-photo/owl-with-mountain-glasses-it_899894-52387.jpg?w=826"
       />
       <CardContent sx={{ width: {sx:'100%'}}}>
         <Typography sx={{fontSize:{xs:'1rem', sm:'1.5rem'}}}  gutterBottom variant="h5" component="div">
           {project.title}
         </Typography>
-        <Typography sx={{fontSize:{xs:'0.7rem', sm:'1.5rem'}}} gutterBottom variant="h6">{project.description}</Typography>
-        <Typography   variant="body2" sx={{ color: 'text.secondary', fontSize:{xs:'0.6rem', sm:'1.5rem'} }}>
+        <Typography sx={{fontSize:{xs:'0.7rem', sm:'1.2rem'}}} gutterBottom variant="h6">{project.description}</Typography>
+        <Typography   variant="body2" sx={{ color: 'text.secondary', fontSize:{xs:'0.6rem', sm:'1.1rem'} }}>
           {formDate(project.timestamp)}
         </Typography>
       </CardContent>
       <CardActions sx={{display: 'flex', flexWrap:'wrap', justifyContent: 'start', overflow: 'hidden'}}>
-        <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '1rem' }, minWidth: 'unset'}} size="small"onClick={handleLearnMore}>Learn More</Button>
+        <Button sx={{fontSize:{xs:'0.5rem', lg: '0.75rem', sm: '0.8rem' }, minWidth: 'unset'}} size="small"onClick={handleLearnMore}>Learn More</Button>
       </CardActions>
     </Card>
     <AppAuth

@@ -6,7 +6,7 @@ import { BacklogPageItem } from '../BacklogItems/BacklogItems.tsx';
 import { AppSearchBacklog } from '../SearchBacklog/SearchBacklog.tsx';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
-import { fetchBacklog,updateTaskStatus } from '../../../store/backlogSlice.ts';
+import { fetchBacklog, updateTaskStatus } from '../../../store/backlogSlice.ts';
 import { TaskStatus } from '../../../api/types/interfaceApi.tsx';
 
 export const AppBacklogList = () => {
@@ -15,13 +15,10 @@ export const AppBacklogList = () => {
   const [showLoading, setShowLoading] = useState(true);
 
   const dispatch = useAppDispatch();
-  const { backlog, filterBacklog } = useAppSelector(
-    (state) => state.backlog
-  );
+  const { backlog, filterBacklog } = useAppSelector((state) => state.backlog);
 
   const filteredBacklog = backlog.filter((backlog) =>
     backlog.title.toLowerCase().includes(filterBacklog.toLowerCase())
-    // backlog.title?.toString() === id
   );
 
   const handleMoveTask = (
@@ -31,21 +28,20 @@ export const AppBacklogList = () => {
   ) => {
     dispatch(updateTaskStatus({ tasksID, status, sprintId }));
   };
-3
-  useEffect(()=> {
-    setShowLoading(true); 
-    const timeOut = setTimeout(()=>{
+  3;
+  useEffect(() => {
+    setShowLoading(true);
+    const timeOut = setTimeout(() => {
       setShowLoading(false);
-    }, 1000)
-    return () => clearTimeout(timeOut)
-  }, [id])
+    }, 1000);
+    return () => clearTimeout(timeOut);
+  }, [id]);
 
   useEffect((): void => {
-    if(backlog.length <= 0) {
-      dispatch(fetchBacklog())
+    if (backlog.length <= 0) {
+      dispatch(fetchBacklog());
     }
   }, [dispatch]);
-
 
   if (showLoading)
     return (
@@ -56,31 +52,59 @@ export const AppBacklogList = () => {
       </Typography>
     );
   return (
-    <Box>
-      {filteredBacklog.length > 0 ? (
-      <Grid2
-        container
-        spacing={2}
-        sx={{ mt: 5, pr: 4, ml: { xs: '6rem', lg: '14rem' } }}
-      >
+    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <AppSearchBacklog />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+        }}
+      >
         <SideBar />
-                {filteredBacklog.map((backlog) => (
-                  <BacklogPageItem
-                    key={backlog.tasksID}
-                    backlog={backlog}
-                    onMoveTask={handleMoveTask}
-                  />
-                ))}
-                </Grid2>
+        {filteredBacklog.length > 0 ? (
+          <Grid2
+            container
+            spacing={4}
+            sx={{
+              ml: {
+                xs: '1rem',
+                sm: '2rem',
+                md: '3rem',
+                lg: '3rem',
+                xl: '2rem',
+              },
+              gap: '2rem'
+            }}
+          >
+            
+            {filteredBacklog.map((backlog) => (
+                <BacklogPageItem
+                  key={backlog.tasksID}
+                  backlog={backlog}
+                  onMoveTask={handleMoveTask}
+                />
+            ))}
+          </Grid2>
         ) : (
-          <Box>
-            <SideBar />
-        <Typography sx={{display: 'flex', justifyContent: 'center', mt: {xl: 2}}}>
-          {t('projectsFind')}
+          <Typography
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              mt: { xl: 2 },
+              ml: {
+                xs: '6rem',
+                sm: '1rem',
+                md: '1rem',
+                lg: '1rem',
+                xl: '15rem',
+              },
+            }}
+          >
+            {t('projectsFind')}
           </Typography>
-          </Box>
         )}
+      </Box>
     </Box>
   );
 };

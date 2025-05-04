@@ -11,8 +11,8 @@ import { GlobalStyles } from '@mui/system';
 
 const App: React.FC = () => {
   return (
-    <Box sx={{display: 'flex', flexDirection: 'column',  minHeight: '100vh', flex: 1 }}>
-      <GlobalStyles styles={{ body: { overflowY: 'hidden' } }} />
+    <Box sx={{display: 'flex', flexDirection: 'column',  minHeight: '10rem', flex: 1 }}>
+      {/* <GlobalStyles styles={{ body: { overflowY: 'hidden' } }} /> */}
       <AppHeader />
       <Container maxWidth={false} sx={{flexGrow: {xs:1, sm:0.2, md: 0.2, lg: 0.3, xl: 0.4},  mt: 2 }} >
         <Routes>

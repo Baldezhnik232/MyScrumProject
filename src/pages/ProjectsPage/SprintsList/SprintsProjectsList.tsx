@@ -13,8 +13,6 @@ export const AppSprintsList = () => {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const [showLoading, setShowLoading] = useState(true);
-
-
   const dispatch = useAppDispatch();
 
   const { sprints } = useAppSelector((state) => state.sprints);
@@ -51,14 +49,19 @@ export const AppSprintsList = () => {
     </Typography>
   );
   return (
-    <Box>
+    <Box 
+      sx={{
+      display:'flex',
+      justifyContent: 'start'
+    }}
+    >
+      <SideBar />
       {projectSprints.length > 0 ? (
         <Grid2
           container
-          spacing={2}
-          sx={{ mt: 5, ml: { xs: '6rem', lg: '15rem' } }}
-        >
-          <SideBar />
+          spacing={{xs:20,sm:20,md:20,lg:20,xl:20 }}
+          
+        > 
           {projectSprints.map((sprints: Sprint) => (
             <SprintsPageItems
               sprints={sprints}
@@ -67,14 +70,11 @@ export const AppSprintsList = () => {
           ))}
         </Grid2>
       ) : (
-        <Box>
-          <SideBar />
         <Typography
           sx={{ display: 'flex', justifyContent: 'center', mt: 3, mb: 60 }}
         >
             {t('sprintsFind')}
         </Typography>
-        </Box>
       )}
     </Box>
   );
