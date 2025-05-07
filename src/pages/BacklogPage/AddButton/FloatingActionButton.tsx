@@ -25,9 +25,7 @@ export const AppButtonAdd = ({ setOpen }: AppButtonAddProps) => {
           },
         }}
       />
-      <Typography sx={{ fontSize: { xs: '0.6rem', lg: '1rem' } }}>
-        {t('newTask.title')}
-      </Typography>
+      <Typography sx={{ fontSize: { xs: '0.6rem', lg: '1rem' } }}>{t('newTask.title')}</Typography>
     </Box>
   );
 };

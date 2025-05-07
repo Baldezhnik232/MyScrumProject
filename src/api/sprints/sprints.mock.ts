@@ -1,4 +1,4 @@
-import { Sprint } from '../types/interfaceApi.tsx';
+import { Sprint } from '../shared/shared.types.ts';
 
 import { format, parseISO } from 'date-fns';
 

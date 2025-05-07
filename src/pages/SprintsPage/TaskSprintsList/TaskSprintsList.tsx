@@ -12,15 +12,16 @@ import {
   KeyboardSensor,
 } from '@dnd-kit/core';
 import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
-import { TaskStatus, Tasks } from '../../../api/types/interfaceApi.tsx';
+import { TaskStatus, Tasks } from '../../../api/tasks/tasks.types.ts';
 import { SideBar } from '../../ProjectsPage/RouterPanel/SidebarProjects.tsx';
 import {
   updateTaskStatusSprints,
   removeTaskFromSprint,
-} from '../../../store/backlogSlice.ts';
+} from '../../../store/backlog/backlog.slice.ts';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
 import { useTranslation } from 'react-i18next';
-import { fetchSprints } from '../../../store/sprintsSlice.ts';
+import { fetchSprints } from '../../../store/sprints/sprints.thunk.ts';
+import { selectBacklogItems } from '../../../store/backlog/backlog.selectors.ts';
 import { StatusColumn } from '../TasksDndColumn/StatusColumn.tsx';
 
 export const AppTaskSprints = () => {
@@ -32,7 +33,7 @@ export const AppTaskSprints = () => {
 
   const dispatch = useAppDispatch();
 
-  const { sprints } = useAppSelector((state) => state.backlog);
+  const sprints = useAppSelector(selectBacklogItems);
 
   const handleMoveSprintTask = (
     SprintTasksID: number,
@@ -60,9 +61,7 @@ export const AppTaskSprints = () => {
     return () => clearTimeout(timeOut);
   }, [sprintId]);
 
-  const taskSpr: Tasks[] = sprints.filter(
-    (task) => task.sprintId?.toString() === sprintId
-  );
+  const taskSpr: Tasks[] = sprints.filter((task) => task.sprintId?.toString() === sprintId);
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -112,9 +111,7 @@ export const AppTaskSprints = () => {
 
   if (showLoading)
     return (
-      <Typography
-        sx={{ display: 'flex', justifyContent: 'center', minHeight: '100vh' }}
-      >
+      <Typography sx={{ display: 'flex', justifyContent: 'center', minHeight: '100vh' }}>
         {t('loading')}
       </Typography>
     );
@@ -163,9 +160,7 @@ export const AppTaskSprints = () => {
           </Grid2>
         </DndContext>
       ) : (
-        <Typography
-          sx={{ display: 'flex', justifyContent: 'center', mt: 10, mb: 60 }}
-        >
+        <Typography sx={{ display: 'flex', justifyContent: 'center', mt: 10, mb: 60 }}>
           {t('projectsFind')}
         </Typography>
       )}

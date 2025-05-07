@@ -5,9 +5,10 @@ import { useParams } from 'react-router-dom';
 import { SideBar } from '../RouterPanel/SidebarProjects.tsx';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
-import { addSprints, fetchSprints } from '../../../store/sprintsSlice.ts';
-import { Sprint } from '../../../api/types/interfaceApi.tsx';
-
+import { addSprints } from '../../../store/sprints/sprints.slice.ts';
+import { fetchSprints } from '../../../store/sprints/sprints.thunk.ts';
+import { selectSprinstItems } from '../../../store/sprints/sprints.selector.ts';
+import { Sprint } from '../../../api/sprints/sprints.types.ts';
 
 export const AppSprintsList = () => {
   const { t } = useTranslation();
@@ -15,18 +16,18 @@ export const AppSprintsList = () => {
   const [showLoading, setShowLoading] = useState(true);
   const dispatch = useAppDispatch();
 
-  const { sprints } = useAppSelector((state) => state.sprints);
+  const sprints = useAppSelector(selectSprinstItems);
 
-   useEffect(()=> {
-      setShowLoading(true)
-      const timeOut = setTimeout( ()=>{
-          setShowLoading(false)
-      }, 1000) 
-      return () => clearTimeout(timeOut) 
-   }, [id])
+  useEffect(() => {
+    setShowLoading(true);
+    const timeOut = setTimeout(() => {
+      setShowLoading(false);
+    }, 1000);
+    return () => clearTimeout(timeOut);
+  }, [id]);
 
   useEffect((): void => {
-    if(sprints.length === 0){
+    if (sprints.length === 0) {
       dispatch(fetchSprints());
     }
   }, [dispatch]);
@@ -41,27 +42,24 @@ export const AppSprintsList = () => {
   };
 
   if (showLoading)
+    return (
+      <Typography sx={{ display: 'flex', justifyContent: 'center', minHeight: '100vh' }}>
+        {t('loading')}
+      </Typography>
+    );
   return (
-    <Typography
-      sx={{ display: 'flex', justifyContent: 'center', minHeight: '100vh' }}
-    >
-      {t('loading')}
-    </Typography>
-  );
-  return (
-    <Box 
+    <Box
       sx={{
-      display:'flex',
-      justifyContent: 'start'
-    }}
+        display: 'flex',
+        justifyContent: 'start',
+      }}
     >
       <SideBar />
       {projectSprints.length > 0 ? (
         <Grid2
           container
-          spacing={{xs:20,sm:20,md:20,lg:20,xl:20 }}
-          
-        > 
+          spacing={{ xs: 20, sm: 20, md: 20, lg: 20, xl: 20 }}
+        >
           {projectSprints.map((sprints: Sprint) => (
             <SprintsPageItems
               sprints={sprints}
@@ -70,10 +68,8 @@ export const AppSprintsList = () => {
           ))}
         </Grid2>
       ) : (
-        <Typography
-          sx={{ display: 'flex', justifyContent: 'center', mt: 3, mb: 60 }}
-        >
-            {t('sprintsFind')}
+        <Typography sx={{ display: 'flex', justifyContent: 'center', mt: 3, mb: 60 }}>
+          {t('sprintsFind')}
         </Typography>
       )}
     </Box>

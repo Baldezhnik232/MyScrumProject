@@ -18,14 +18,14 @@
   "newTask": {
     "title": "Новая Задача"
   },
-  "newSprint":{
+  "newSprint": {
     "title": "Новый Спринт"
   },
   "ceateNewTask": {
     "message": "Создать Новую Задачу",
     "labelTasks": "Задача #"
   },
-   "createNewSprint": {
+  "createNewSprint": {
     "message": "Создать Новый Спринт",
     "labelSprint": "Спринт #"
   },
@@ -48,9 +48,9 @@
     "button": "Добавить изображение",
     "value": "Выбран файл:"
   },
-  "fireBaseMess":{
-  "authRepeatEmail": "Этот аккаунт уже зарегистрирован, пожалуйста, войдите",
-  "authError": "Упс! Не удалось завершить регистрацию. Попробовать еще раз?"
+  "fireBaseMess": {
+    "authRepeatEmail": "Этот аккаунт уже зарегистрирован, пожалуйста, войдите",
+    "authError": "Упс! Не удалось завершить регистрацию. Попробовать еще раз?"
   },
   "formAuthEmail": "почта",
   "formAuthPassword": "пароль",
@@ -75,5 +75,4 @@
   "projectsFind": "Нет Задач",
   "sprintsFind": "Нет Спринтов",
   "close": "закрыть"
-
 }

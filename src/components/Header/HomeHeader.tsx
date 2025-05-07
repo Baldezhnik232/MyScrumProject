@@ -9,25 +9,32 @@ const AppHeader = () => {
   const { t } = useTranslation();
   const { language, handleChange } = useLanguage();
   return (
-    <Box  >
+    <Box>
       <AppBar
-        sx={{height:{xs: '4rem', sm: '4rem', md: '4rem', lg: '4rem', xl:'4rem' }}}
-        position='static'>
+        sx={{ height: { xs: '4rem', sm: '4rem', md: '4rem', lg: '4rem', xl: '4rem' } }}
+        position='static'
+      >
         <Toolbar>
           <Typography
             component={Link}
-            variant= 'h5'
+            variant='h5'
             color={'inherit'}
             to='/'
             sx={{
               flexGrow: 1,
-              textDecoration: 'none'
-          }}
-          fontSize={{xs:'1.5rem'}}
+              textDecoration: 'none',
+            }}
+            fontSize={{ xs: '1.5rem' }}
           >
             {t('header.title')}
           </Typography>
-          <FormControl sx={{ m: {xs: '0.4rem', sm: '0.2rem', md: '0.4rem', lg: '0.4rem', xl:'0.4rem'}, minWidth: '0.1rem', minHeight: '0.2rem' }}>
+          <FormControl
+            sx={{
+              m: { xs: '0.4rem', sm: '0.2rem', md: '0.4rem', lg: '0.4rem', xl: '0.4rem' },
+              minWidth: '0.1rem',
+              minHeight: '0.2rem',
+            }}
+          >
             <Select
               value={language}
               onChange={handleChange}
@@ -35,7 +42,7 @@ const AppHeader = () => {
               sx={{
                 bgcolor: 'white',
                 width: '4.4rem',
-                height: '2.5rem'
+                height: '2.5rem',
               }}
               renderValue={(selected) => (selected ? selected : 'Lang')}
             >

@@ -1,17 +1,17 @@
-import { configureStore } from "@reduxjs/toolkit";
-import projectsReducer from "./projectsSlice";
-import sprintsReducer from "./sprintsSlice"
-import tasksReducer from "./tasksSlice";
-import backlogReducer from "./backlogSlice";
-import authSlice from "./authSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import projectsReducer from './projects/projects.slice';
+import sprintsReducer from './sprints/sprints.slice';
+import tasksReducer from './tasks/tasks.slice';
+import backlogReducer from './backlog/backlog.slice';
+import authSlice from './auth/auth.slice';
 
-export  const store = configureStore({
+export const store = configureStore({
   reducer: {
     projects: projectsReducer,
     tasks: tasksReducer,
     backlog: backlogReducer,
     sprints: sprintsReducer,
-    auth: authSlice
+    auth: authSlice,
   },
 });
 

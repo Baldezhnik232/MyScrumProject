@@ -7,17 +7,16 @@ import {
   TextField,
 } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
-import { ControllerRenderProps, FieldValues } from "react-hook-form";
+import { ControllerRenderProps, FieldValues } from 'react-hook-form';
 import { format, parse } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../../store/hooks.ts';
-import { addBacklogTask } from '../../../store/backlogSlice.ts';
+import { addBacklogTask } from '../../../store/backlog/backlog.slice.ts';
 import { Typography, Box } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import {Tasks, TaskStatus} from '../../../api/types/interfaceApi.ts'
-import { ChangeEvent } from "react";
-
-
+import { TaskStatus } from '../../../api/tasks/tasks.types';
+import { Backlog } from '../../../api/backlog/backlog.types.ts';
+import { ChangeEvent } from 'react';
 
 type FormValues = {
   tasksID: number;
@@ -27,13 +26,13 @@ type FormValues = {
   timestamp: string;
   status: string;
   sprintId: number;
-  isLegacy: boolean,
+  isLegacy: boolean;
   image?: File;
 };
 
 interface AppFormProps {
   open: boolean;
-  addTask: (value:Tasks) => void;
+  addTask: (value: Backlog) => void;
   setOpen: (value: boolean) => void;
 }
 
@@ -69,22 +68,26 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
       ),
     };
 
-    const newTask = { id: Date.now(), ...newDate, image: data.image || undefined, isLegacy: false, status: newDate.status as TaskStatus };
+    const newTask = {
+      id: Date.now(),
+      ...newDate,
+      image: data.image || undefined,
+      isLegacy: false,
+      status: newDate.status as TaskStatus,
+    };
     dispatch(addBacklogTask(newTask));
     setOpen(false);
     reset();
   };
 
-  const FileInput = ({ field }: { field: ControllerRenderProps<FormValues, "image"> }) => {
+  const FileInput = ({ field }: { field: ControllerRenderProps<FormValues, 'image'> }) => {
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>): void => {
       const file = event.target.files?.[0];
       field.onChange(file);
     };
 
     return (
-      <Box
-        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-      >
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <input
           type='file'
           accept='image/*'
@@ -99,7 +102,7 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
             startIcon={<CloudUploadIcon />}
             sx={{ textTransform: 'none' }}
           >
-           {t('formImage.button')}
+            {t('formImage.button')}
           </Button>
         </label>
         {field.value && (
@@ -107,7 +110,8 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
             variant='body2'
             sx={{ mt: 1 }}
           >
-            {t('formImage.value')}{field.value.name}
+            {t('formImage.value')}
+            {field.value.name}
           </Typography>
         )}
       </Box>
@@ -122,7 +126,7 @@ export const AppForm = ({ open, setOpen }: AppFormProps) => {
       fullWidth
     >
       <DialogTitle sx={{ display: 'flex', justifyContent: 'center' }}>
-       {t('ceateNewTask.message')}
+        {t('ceateNewTask.message')}
       </DialogTitle>
       <DialogContent>
         <form onSubmit={handleSubmit(onSubmit)}>

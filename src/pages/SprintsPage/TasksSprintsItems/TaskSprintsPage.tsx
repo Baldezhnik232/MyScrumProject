@@ -1,4 +1,4 @@
-import { Tasks, TaskStatus } from '../../../api/types/interfaceApi.ts';
+import { Tasks, TaskStatus } from '../../../api/tasks/tasks.types.ts';
 import {
   Card,
   CardContent,
@@ -9,7 +9,7 @@ import {
   Button,
   Box,
 } from '@mui/material';
-import { formDate } from '../../../api/moks/sprints.mock.ts';
+import { formDate } from '../../../api/sprints/sprints.mock.ts';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 import { SprintTaskPopover } from '../SprintTaskPopover/SprintTaskPopover.tsx';
@@ -18,20 +18,11 @@ import { CSS } from '@dnd-kit/utilities';
 
 interface TaskSprints {
   tasks: Tasks;
-  onMoveSprintTask: (
-    SprintTasksID: number,
-    status: TaskStatus,
-    sprintId: number
-  ) => void;
+  onMoveSprintTask: (SprintTasksID: number, status: TaskStatus, sprintId: number) => void;
   onDeleteTask: (SprintTasksID: number) => void;
 }
 
-export const TaskSprintsItems = ({
-  tasks,
-  onMoveSprintTask,
-  onDeleteTask,
-}: TaskSprints) => {
-
+export const TaskSprintsItems = ({ tasks, onMoveSprintTask, onDeleteTask }: TaskSprints) => {
   const [isValide, setIsValide] = useState(true);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
@@ -43,13 +34,12 @@ export const TaskSprintsItems = ({
     setAnchorEl(null);
   };
 
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({
-      id: tasks.tasksID,
-      data: {
-        tasks: tasks,
-      },
-    });
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+    id: tasks.tasksID,
+    data: {
+      tasks: tasks,
+    },
+  });
 
   const style = {
     transform: CSS.Transform.toString(transform),

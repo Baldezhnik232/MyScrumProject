@@ -25,7 +25,6 @@
     "message": "Create New Task",
     "labelTasks": "Task #",
     "labelStory": "Story Points"
-  
   },
   "createNewSprint": {
     "message": "Create New Sprint",
@@ -46,15 +45,15 @@
   "formDate": {
     "required": "Date is required "
   },
-   "formImage": {
+  "formImage": {
     "button": "Add image",
     "value": "Selected file:"
   },
   "fireBaseMess": {
-  "authRepeatEmail": "This account is already created, please Log In",
-  "authError": "Oops! Couldn't complete registration. Try once more?"
-},
-  
+    "authRepeatEmail": "This account is already created, please Log In",
+    "authError": "Oops! Couldn't complete registration. Try once more?"
+  },
+
   "formAuthEmail": "email",
   "formAuthPassword": "password",
   "LogIn": "Log In",
@@ -62,10 +61,10 @@
   "createAcc": "Don’t have a Account?",
   "SignUpAcc": "SignUp",
   "or": "Or",
-  "LogInAcc": "use an existing account", 
+  "LogInAcc": "use an existing account",
   "labelDesc": "Description",
   "create": "Create",
-  "cancel":"Cancel",
+  "cancel": "Cancel",
   "homePageRoute": "Home Page",
   "projects": "Project #{{id}}",
   "sprints": "Sprint #{{id}}",

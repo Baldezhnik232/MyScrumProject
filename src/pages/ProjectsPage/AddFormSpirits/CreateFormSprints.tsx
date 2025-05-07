@@ -10,10 +10,10 @@ import {
 import { useForm, Controller } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { format, parse } from 'date-fns';
-import { Sprint } from '../../../api/types/interfaceApi.tsx';
+import { Sprint } from '../../../api/sprints/sprints.types.ts';
 import { useAppDispatch } from '../../../store/hooks.ts';
 import { useTranslation } from 'react-i18next';
-import { addSprints } from '../../../store/sprintsSlice.ts';
+import { addSprints } from '../../../store/sprints/sprints.slice.ts';
 
 type FormSprintsValues = {
   projectId: number;
@@ -85,7 +85,7 @@ export const AppFormSprints = ({ open, setOpen }: AppFormPropsSprints) => {
             render={({ field }) => (
               <TextField
                 {...field}
-                label= {t('createNewSprint.labelSprint')}
+                label={t('createNewSprint.labelSprint')}
                 fullWidth
                 margin='dense'
                 error={!!errors.title}

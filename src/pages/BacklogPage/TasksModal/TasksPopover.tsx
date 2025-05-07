@@ -1,13 +1,6 @@
-import {
-  Box,
-  Typography,
-  Button,
-  MenuItem,
-  Select,
-  FormControl,
-} from '@mui/material';
+import { Box, Typography, Button, MenuItem, Select, FormControl } from '@mui/material';
 import React, { useState } from 'react';
-import { TaskStatus } from '../../../api/types/interfaceApi.ts';
+import { TaskStatus } from '../../../api/tasks/tasks.types';
 import Popover from '@mui/material/Popover';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
@@ -19,12 +12,7 @@ interface TaskPopoverProps {
   onSave: (tasksID: number, status: TaskStatus, sprintId: number) => void;
 }
 
-export const TaskPopover: React.FC<TaskPopoverProps> = ({
-  anchorEl,
-  onClose,
-  tasksID,
-  onSave,
-}) => {
+export const TaskPopover: React.FC<TaskPopoverProps> = ({ anchorEl, onClose, tasksID, onSave }) => {
   const { id } = useParams<{ id: string }>();
 
   const open = Boolean(anchorEl);

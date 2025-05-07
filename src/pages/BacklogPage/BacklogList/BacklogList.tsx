@@ -6,26 +6,23 @@ import { BacklogPageItem } from '../BacklogItems/BacklogItems.tsx';
 import { AppSearchBacklog } from '../SearchBacklog/SearchBacklog.tsx';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
-import { fetchBacklog, updateTaskStatus } from '../../../store/backlogSlice.ts';
-import { TaskStatus } from '../../../api/types/interfaceApi.tsx';
+import { updateTaskStatus } from '../../../store/backlog/backlog.slice.ts';
+import { fetchBacklog } from '../../../store/backlog/backlog.thunk.ts';
+import { TaskStatus } from '../../../api/tasks/tasks.types.ts';
+import { selectBacklogItems } from '../../../store/backlog/backlog.selectors.ts';
 
 export const AppBacklogList = () => {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const [showLoading, setShowLoading] = useState(true);
-
   const dispatch = useAppDispatch();
-  const { backlog, filterBacklog } = useAppSelector((state) => state.backlog);
-
+  const backlog = useAppSelector(selectBacklogItems);
+  const { filterBacklog } = useAppSelector((state) => state.backlog);
   const filteredBacklog = backlog.filter((backlog) =>
     backlog.title.toLowerCase().includes(filterBacklog.toLowerCase())
   );
 
-  const handleMoveTask = (
-    tasksID: number,
-    status: TaskStatus,
-    sprintId: number
-  ) => {
+  const handleMoveTask = (tasksID: number, status: TaskStatus, sprintId: number) => {
     dispatch(updateTaskStatus({ tasksID, status, sprintId }));
   };
   3;
@@ -45,15 +42,13 @@ export const AppBacklogList = () => {
 
   if (showLoading)
     return (
-      <Typography
-        sx={{ display: 'flex', justifyContent: 'center', minHeight: '100vh' }}
-      >
+      <Typography sx={{ display: 'flex', justifyContent: 'center', minHeight: '100vh' }}>
         {t('loading')}
       </Typography>
     );
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <AppSearchBacklog />
+      <AppSearchBacklog />
       <Box
         sx={{
           display: 'flex',
@@ -74,16 +69,15 @@ export const AppBacklogList = () => {
                 lg: '3rem',
                 xl: '2rem',
               },
-              gap: '2rem'
+              gap: '2rem',
             }}
           >
-            
             {filteredBacklog.map((backlog) => (
-                <BacklogPageItem
-                  key={backlog.tasksID}
-                  backlog={backlog}
-                  onMoveTask={handleMoveTask}
-                />
+              <BacklogPageItem
+                key={backlog.tasksID}
+                backlog={backlog}
+                onMoveTask={handleMoveTask}
+              />
             ))}
           </Grid2>
         ) : (
