@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { setFilterProject } from '../../../store/projects/projects.slice';
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { setFilterProject } from '../../../../store/projects/projects.slice';
 
 const AppSearch = () => {
   const { t } = useTranslation();

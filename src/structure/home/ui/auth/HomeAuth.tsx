@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { HomeFormAuth } from './HomeFormAuth';
-import { useAppDispatch } from '../../../store/hooks';
-import { setUser } from '../../../store/auth/auth.slice';
+import { useAppDispatch } from '../../../../store/hooks';
+import { setUser } from '../../../../store/auth/auth.slice';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 

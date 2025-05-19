@@ -14,7 +14,7 @@ import { useAppDispatch } from '../../../store/hooks.ts';
 import { addBacklogTask } from '../../../store/backlog/backlog.slice.ts';
 import { Typography, Box } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { TaskStatus } from '../../../api/tasks/tasks.types';
+import { TaskStatus } from '../../../api/tasks/tasks.types.ts';
 import { Backlog } from '../../../api/backlog/backlog.types.ts';
 import { ChangeEvent } from 'react';
 

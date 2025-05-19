@@ -7,12 +7,12 @@ import {
   Button,
   Grid2,
 } from '@mui/material';
-import { Project } from '../../../api/projects/projects.types.ts';
-import { formDate } from '../../../api/projects/projects.mock.ts';
+import { Project } from '../../../../api/projects/projects.types.ts';
+import { formDate } from '../../../../api/projects/projects.mock.ts';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AppAuth } from '../HomeAuth/HomeAuth.tsx';
-import { useAppSelector } from '../../../store/hooks.ts';
+import { AppAuth } from '../auth/HomeAuth.tsx';
+import { useAppSelector } from '../../../../store/hooks.ts';
 
 interface ProjectProps {
   project: Project;

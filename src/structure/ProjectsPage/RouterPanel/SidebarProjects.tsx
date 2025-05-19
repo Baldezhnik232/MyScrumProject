@@ -4,7 +4,7 @@ import { Link as RouterLink, useLocation, useParams } from 'react-router-dom';
 import { Drawer, ListItem } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks.ts';
 import { useEffect } from 'react';
-import { fetchProjects } from '../../../store/projects/projects.slice.ts';
+import { fetchProjects } from '../../../store/projects/projects.thunk.ts';
 import { AppButtonAdd } from '../../BacklogPage/AddButton/FloatingActionButton.tsx';
 import { AppForm } from '../../BacklogPage/AddForm/CreateFormTask.tsx';
 import { addBacklogTask } from '../../../store/backlog/backlog.slice.ts';
