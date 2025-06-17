@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@mui/material/styles';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './structure/home/page/HomePage.tsx';
+import App from './pages/home/HomePage.tsx';
 import './locales/i18n.ts';
 import { theme } from './styles/themes/lightTheme.ts';
 import { Provider } from 'react-redux';
