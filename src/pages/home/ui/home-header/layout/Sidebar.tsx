@@ -6,11 +6,12 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { Typography, CardMedia } from '@mui/material';
+import { HomeAuthForm } from '../../auth/HomeAuthForm';
 
 interface AnchorTemporaryDrawerProps {
   anchor: 'top';
   open: boolean;
-  onClose: (value: boolean) => void;
+  onClose: () => void;
 }
 
 export const AnchorTemporaryDrawer: React.FC<AnchorTemporaryDrawerProps> = ({
@@ -18,7 +19,16 @@ export const AnchorTemporaryDrawer: React.FC<AnchorTemporaryDrawerProps> = ({
   open,
   onClose,
 }) => {
-  const menuItems = ['Главная', 'Тарифы', 'Возможности', 'Блог', 'Чаво', 'Вход'];
+  const [openFormAuth, setOpenFormAuth] = React.useState(false);
+  const menuItems: string[] = ['Главная', 'Тарифы', 'Возможности', 'Блог', 'Чаво', 'Вход'];
+
+  const handleClickOpen = (open: boolean) => () => {
+    setOpenFormAuth(open);
+  };
+
+  const closeModal = () => {
+    setOpenFormAuth(false);
+  };
 
   return (
     <Drawer
@@ -46,7 +56,7 @@ export const AnchorTemporaryDrawer: React.FC<AnchorTemporaryDrawerProps> = ({
             height: '1rem',
             ml: '25rem',
           }}
-          onClick={() => onClose(false)}
+          onClick={() => onClose()}
         >
           <CardMedia
             component='img'
@@ -89,6 +99,7 @@ export const AnchorTemporaryDrawer: React.FC<AnchorTemporaryDrawerProps> = ({
         </List>
         <Button
           variant='contained'
+          onClick={handleClickOpen(true)}
           sx={{
             borderRadius: 26,
             width: 183,
@@ -103,6 +114,10 @@ export const AnchorTemporaryDrawer: React.FC<AnchorTemporaryDrawerProps> = ({
             Регистрация
           </Typography>
         </Button>
+        <HomeAuthForm
+          open={openFormAuth}
+          onClose={handleClickOpen(false)}
+        />
       </Box>
     </Drawer>
   );

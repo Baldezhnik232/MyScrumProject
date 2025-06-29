@@ -6,7 +6,6 @@ import { HomePurpleBlock } from '../home-purple-block/HomePurpleBlock';
 import { HomeRedBlock } from '../home-red-block/HomeRedBlock';
 import { HomeVideo } from '../home-video/HomeVideo';
 
-
 export const HomePossibilities: React.FC = () => {
   const data: HomePossibilitiesCards[] = [
     {

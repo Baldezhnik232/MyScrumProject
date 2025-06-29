@@ -1,7 +1,7 @@
 import { HomeBanner } from './content/home-banner/HomeBanner';
 import { Box } from '@mui/material';
 import { HomePossibilities } from './content/home-possibilities/HomePossibilities';
-import  {AppHeader}  from '../home-header/HomeHeader';
+import { AppHeader } from '../home-header/HomeHeader';
 import { AppFooter } from '../home-footer/HomeFooter';
 
 import React from 'react';
