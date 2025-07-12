@@ -3,7 +3,8 @@
     "title": "Scrum Projects"
   },
   "homeSearch": {
-    "title": "Search projects"
+    "title": "Search projects",
+    "projectsFind": "Project not found"
   },
   "homePage": {
     "title": "Welcome"
@@ -15,19 +16,12 @@
     "title": "Tasks"
   },
   "newTask": {
-    "title": "new Task"
+    "title": "New Task"
   },
-  
-  "ceateNewTask": {
-    "message": "Create New Task",
-    "labelTasks": "Task #",
-    "labelStory": "Story Points",
-    "labelDesc": "Description",
-    "cancel": "Cancel",
-    "create": "Create"
+  "newSprint": {
+    "title": "new Sprint"
   },
 
-  
   "formTaskRequired": {
     "required": "This field is required",
     "message": "You need 3"
@@ -43,13 +37,15 @@
   "formDate": {
     "required": "Date is required "
   },
-  "formImage": {
-    "button": "Add image",
-    "value": "Selected file:"
-  },
   "homePageRoute": "Home Page",
   "projects": "Project #{{id}}",
+  "sprints": "Sprint #{{id}}",
+  "moveSpint": "Move Task to Sprint",
+  "sprint": "Sprint",
   "backlog": "Backlog page",
   "loading": "Loading...",
-  "error": "Error"
+  "error": "Error",
+  "projectsFind": "No tasks",
+  "sprintsFind": "No Sprints",
+  "close": "close"
 }
