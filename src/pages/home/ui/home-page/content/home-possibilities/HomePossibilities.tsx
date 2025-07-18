@@ -62,7 +62,7 @@ export const HomePossibilities: React.FC = () => {
       titleSX: {
         width: { xs: '1rem' },
       },
-      subtitile: 'Планирование смен',
+      subtitle: 'Планирование смен',
       items: [
         { text: 'Настраиваемые шаблоны смен' },
         { text: 'Обмен сменами между сотрудниками', sx: { width: { xs: '15rem', sm: '10rem' } } },
@@ -123,7 +123,7 @@ export const HomePossibilities: React.FC = () => {
       titleSX: {
         width: { xs: '10rem' },
       },
-      subtitile: 'Контроль сотрудников',
+      subtitle: 'Контроль сотрудников',
       items: [
         { text: 'Назначение задач' },
         { text: 'Создание контрольных списков', sx: { width: { sm: '10rem' } } },
@@ -325,8 +325,8 @@ export const HomePossibilities: React.FC = () => {
         },
       ],
       title: 'Масштабируй',
-      subtitile: 'Интеграции и неограниченный доступ',
-      subtitileSx: {
+      subtitle: 'Интеграции и неограниченный доступ',
+      subtitleSx: {
         width: { xs: '18rem', sm: '15rem' },
       },
       items: [
@@ -427,8 +427,8 @@ export const HomePossibilities: React.FC = () => {
       titleSX: {
         width: { xs: '14rem', sm: '13rem' },
       },
-      subtitile: 'Оценки и прогнозы',
-      subtitileSx: {
+      subtitle: 'Оценки и прогнозы',
+      subtitleSx: {
         width: { sm: '10rem' },
       },
       items: [

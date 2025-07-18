@@ -107,7 +107,7 @@ export const HomeBlueBlock: React.FC<HomeBlueBlockProps> = ({}) => {
                 fontWeight: 500,
               }}
             >
-              Зарегистирироваться
+              Зарегистрироваться
             </Typography>
           </Button>
         </Box>

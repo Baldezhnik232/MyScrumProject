@@ -10,7 +10,7 @@ type IconImage = {
 type ListItemData = {
   text: string;
   sx?: SxProps<Theme>;
-  costomsWidth?: Record<number, string>;
+  customsWidth?: Record<number, string>;
 };
 
 export interface HomePossibilitiesCards {
@@ -18,11 +18,11 @@ export interface HomePossibilitiesCards {
   iconColor: string;
   iconImages: IconImage[];
   title: string;
-  subtitile: string;
+  subtitle: string;
   items: ListItemData[];
   boxSx?: SxProps<Theme>;
   titleSX?: SxProps<Theme>;
-  subtitileSx?: SxProps<Theme>;
+  subtitleSx?: SxProps<Theme>;
 }
 
 export const HomeCards: React.FC<HomePossibilitiesCards> = ({
@@ -30,11 +30,11 @@ export const HomeCards: React.FC<HomePossibilitiesCards> = ({
   iconColor,
   iconImages,
   title,
-  subtitile,
+  subtitle: subtitle,
   items,
   boxSx,
   titleSX,
-  subtitileSx,
+  subtitleSx: subtitleSx,
 }) => {
   return (
     <Box
@@ -95,10 +95,10 @@ export const HomeCards: React.FC<HomePossibilitiesCards> = ({
           mt: { xs: '1rem' },
           fontWeight: { xs: 500 },
           color: '#434449',
-          ...subtitileSx,
+          ...subtitleSx,
         }}
       >
-        {subtitile}
+        {subtitle}
       </Typography>
       <List
         sx={{
