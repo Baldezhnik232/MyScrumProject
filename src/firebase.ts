@@ -1,15 +1,42 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import { Environments } from './environments/environment';
+
+import {
+  getFirestore,
+  addDoc,
+  collection,
+  doc,
+  setDoc,
+  initializeFirestore,
+  persistentMultipleTabManager,
+  persistentLocalCache,
+  CACHE_SIZE_UNLIMITED,
+} from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  apiKey: Environments.firebaseConfig.apiKey,
+  authDomain: Environments.firebaseConfig.authDomain,
+  projectId: Environments.firebaseConfig.projectId,
+  storageBucket: Environments.firebaseConfig.storageBucket,
+  messagingSenderId: Environments.firebaseConfig.messagingSenderId,
+  appId: Environments.firebaseConfig.appId,
 };
 
 export const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+
+// export const db = initializeFirestore(app, {
+//   localCache:persistentLocalCache({
+//     tabManager: persistentMultipleTabManager(),
+//       cacheSizeBytes: CACHE_SIZE_UNLIMITED
+//     })
+//   });
+
+//   await setDoc(doc(db, 'user'),{
+//     firstName: '',
+//     lastName: '',
+//     email: 'userData.email',
+//     phone: 'userData.phone'
+//   })

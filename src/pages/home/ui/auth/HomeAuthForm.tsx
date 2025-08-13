@@ -5,7 +5,6 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useForm, Controller } from 'react-hook-form';
 import { Box, FormControl, TextField } from '@mui/material';
 import FormLabel from '@mui/material/FormLabel';
 import FormGroup from '@mui/material/FormGroup';
@@ -17,16 +16,15 @@ import 'react-phone-input-2/lib/material.css';
 import { useTheme } from '@mui/material/styles';
 import ru from 'react-phone-input-2/lang/ru.json';
 import { MyCaptcha } from './HomeCaptchaForm';
-
+import { FormContainer, useForm, Controller, FormProvider  } from 'react-hook-form-mui';
 // import 'react-phone-number-input/style.css'
-interface AuthFormInputs {
+export interface AuthFormInputs {
   firstName: string;
   lastName: string;
   email: string;
   phoneNumber: string;
   password: string;
   confirmPassword: string;
-  captcha: string;
 }
 type FormInputs = {
   name: 'firstName' | 'lastName' | 'email' | 'phoneNumber' | 'password' | 'confirmPassword';
@@ -50,26 +48,23 @@ export const HomeAuthForm = ({ open, onClose }: HomeAuthForm) => {
     { name: 'confirmPassword', label: 'Подтвердите пароль', type: 'text' },
   ];
 
- 
-
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<AuthFormInputs>({
+  const methods = useForm<AuthFormInputs>({
     defaultValues: {
       firstName: '',
       lastName: '',
       email: '',
       phoneNumber: '',
       password: '',
-      confirmPassword:'',
-      captcha: '',
+      confirmPassword: '',
     },
   });
 
+  const {
+    formState: { errors },
+  } = methods;
+
   const onSubmit = (data: AuthFormInputs) => {
-    console.log('Данные формы:', data.captcha);
+    console.log('Валидация сработала ', data)
   };
 
   return (
@@ -105,128 +100,118 @@ export const HomeAuthForm = ({ open, onClose }: HomeAuthForm) => {
             overflow: 'hidden',
           }}
         >
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Box
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(2,1fr)',
-                gap: { xs: '0.4rem', sm: '1.3rem' },
-              }}
-            >
-              {formInputs.map((item) => (
-                <Box key={item.name}>
-                  <FormLabel>{item.label}</FormLabel>
-                  <Controller
-                    name={item.name}
-                    control={control}
-                    rules={{
-                      required: 'Это поле должно быть заполнено',
-                      minLength: {
-                        value: item.type === 'text' ? 3 : 10,
-                        message:
-                          item.type === 'text'
-                            ? 'Введите данные полностью'
-                            : 'Введите полный номер телефона ',
-                      },
-                    }}
-                    render={({ field, fieldState: { error } }) =>
-                      item.type === 'phone' ? (
-                        <FormControl error={!!error}>
-                          <PhoneInput
-                            {...field}
-                            country='by'
-                            onlyCountries={['by', 'ru', 'ua', 'pl', 'lt', 'lv']}
-                            regions={'europe'}
-                            specialLabel=''
-                            localization={ru}
-                            inputProps={{
-                              placeholder: 'Номер в международном формате',
-                              required: true,
-                              errors: !!error,
-                              helperText: error?.message,
-                            }}
-                            dropdownStyle={{
-                              width: '15rem',
-                              marginBlockStart:'0.4rem',
-                              height: '6rem',
-                              overflow: 'auto',
-                            }}
-                            inputStyle={{
-                              textOverflow: 'ellipsis',
-                              overflow: 'hidden',
-                              border: error ? '1px solid red' : '',
-                              width: '100%',
-                              [theme.breakpoints.up('xs')]: { width: '14.6rem' },
-                            }}
-                          />
-
-                          {error && <FormHelperText>{error?.message}</FormHelperText>}
-                        </FormControl>
-                      ) : (
-                        <TextField
-                          {...field}
-                          placeholder={item.label}
-                          error={!!errors[item.name]}
-                          autoComplete='off'
-                          helperText={errors[item.name]?.message}
-                          sx={{
-                            width: '14.6rem',
-                          }}
-                        />
-                      )
-                    }
-                  />
-                </Box>
-              ))}
-            </Box>
-            <DialogContent
-              style={{
-                marginBlockStart: '1rem',
-                marginInlineStart: '-1.5rem',
-                width: '30rem',
-                overflow: 'hidden',
-              }}
-            >
-              <DialogContentText sx={{ fontSize: '0.8rem', marginBlockEnd: '2rem' }}>
-                Нажимая «Зарегистрироваться», вы соглашаетесь с нашими Условиями, Политикой
-                конфиденциальности и Политикой в ​​отношении файлов cookie.
-              </DialogContentText>
-            </DialogContent>
-            <Controller
-              control={control}
-              name='captcha'
-              rules={{
-                required: 'Нажмите на капчу',
-              }}
-              render={({ field, fieldState: { error } }) => (
-                <FormControl error={!!error}>
-                  <MyCaptcha onChange={field.onChange} />
-                  {error && <FormHelperText>{error?.message}</FormHelperText>}
-                </FormControl>
-              )}
-            />
-            <DialogActions
-              style={{
-                display: 'flex',
-                justifyContent: 'start',
-                marginInlineStart: '-0.5rem',
-                paddingBlockStart:'2rem',
-                paddingBlockEnd: '2rem',
-              }}
-            >
-              <Button
-                type='submit'
+          <FormContainer 
+            formContext={methods}
+            onSuccess={onSubmit}
+          >
+              <Box
                 sx={{
-                  fontSize: '1rem',
-                  textTransform: 'capitalize',
-                  color: 'white',
-                  backgroundColor: 'green',
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(2,1fr)',
+                  gap: { xs: '0.4rem', sm: '1.3rem' },
                 }}
               >
-                Регистрация
-              </Button>
-            </DialogActions>
-          </form>
+                {formInputs.map((item) => (
+                  <Box key={item.name}>
+                    <FormLabel>{item.label}</FormLabel>
+                    <Controller
+                      name={item.name}
+                      rules={{
+                        required: 'Это поле должно быть заполнено',
+                        minLength: {
+                          value: item.type === 'text' ? 3 : 10,
+                          message:
+                            item.type === 'text'
+                              ? 'Введите данные полностью'
+                              : 'Введите полный номер телефона ',
+                        },
+                      }}
+                      render={({ field, fieldState: { error } }) =>
+                        item.type === 'phone' ? (
+                          <FormControl error={!!error}>
+                            <PhoneInput
+                              {...field}
+                              country='by'
+                              onlyCountries={['by', 'ru', 'ua', 'pl', 'lt', 'lv']}
+                              regions={'europe'}
+                              specialLabel=''
+                              localization={ru}
+                              inputProps={{
+                                placeholder: 'Номер в международном формате',
+                                required: true,
+                                errors: !!error,
+                                helperText: error?.message,
+                              }}
+                              dropdownStyle={{
+                                width: '15rem',
+                                marginBlockStart: '0.4rem',
+                                height: '6rem',
+                                overflow: 'auto',
+                              }}
+                              inputStyle={{
+                                textOverflow: 'ellipsis',
+                                overflow: 'hidden',
+                                border: error ? '1px solid red' : '',
+                                width: '14.6rem',
+                                // [theme.breakpoints.up('xs')]: { width: '14.6rem' },
+                              }}
+                            />
+                            {error && <FormHelperText>{error?.message}</FormHelperText>}
+                          </FormControl>
+                        ) : (
+                          <TextField
+                            {...field}
+                            placeholder={item.label}
+                            error={!!errors[item.name]}
+                            autoComplete='off'
+                            helperText={errors[item.name]?.message}
+                            sx={{
+                              width: '14.6rem',
+                            }}
+                          />
+                        )
+                      }
+                    />
+                  </Box>
+                ))}
+              </Box>
+              <DialogContent
+                style={{
+                  marginBlockStart: '1rem',
+                  marginInlineStart: '-1.5rem',
+                  width: '30rem',
+                  overflow: 'hidden',
+                }}
+              >
+                <DialogContentText sx={{ fontSize: '0.8rem', marginBlockEnd: '2rem' }}>
+                  Нажимая «Зарегистрироваться», вы соглашаетесь с нашими Условиями, Политикой
+                  конфиденциальности и Политикой в ​​отношении файлов cookie.
+                </DialogContentText>
+              </DialogContent>
+              <MyCaptcha />
+              <DialogActions
+                style={{
+                  display: 'flex',
+                  justifyContent: 'start',
+                  marginInlineStart: '-0.5rem',
+                  paddingBlockStart: '2rem',
+                  paddingBlockEnd: '2rem',
+                }}
+              >
+                <Button
+                  type='submit'
+                  sx={{
+                    fontSize: '1rem',
+                    textTransform: 'capitalize',
+                    color: 'white',
+                    backgroundColor: 'green',
+                  }}
+                >
+                  Регистрация
+                </Button>
+              </DialogActions>
+            
+          </FormContainer>
         </DialogContent>
       </Dialog>
     </React.Fragment>

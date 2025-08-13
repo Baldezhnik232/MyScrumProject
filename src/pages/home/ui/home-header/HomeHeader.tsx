@@ -156,7 +156,6 @@ export const AppHeader: React.FC<AppHeaderProps> = ({}) => {
           </IconButton>
         )}
       </Toolbar>
-
       <HomeAuthForm
         open={openFormAuth}
         onClose={handleClickOpen(false)}

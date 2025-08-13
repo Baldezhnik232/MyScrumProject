@@ -2,6 +2,8 @@ import { Box, Typography, useTheme, Container, CardMedia, Card } from '@mui/mate
 import Divider from '@mui/material/Divider';
 import { useTranslation } from 'react-i18next';
 
+
+
 export const AppFooter = () => {
   const theme = useTheme();
   const { t } = useTranslation();
